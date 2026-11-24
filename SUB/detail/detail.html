@@ -1,12 +1,1062 @@
+
 <!DOCTYPE html>
-<html lang="KO">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상세페이지</title>
-    <link rel="stylesheet" href="CSS/detail.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>입덕볶이 - 주문 상세페이지</title>
+
+  <!-- Noto Sans KR -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap">
+
+  <!-- 외부 CSS -->
+  <link rel="stylesheet" href="CSS/detail.css">
+
+  <!-- Lucide 아이콘 -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
-    
+
+  <div class="container">
+
+    <div class="page-content">
+
+      <!-- ========================================
+           HEADER
+      ========================================= -->
+
+      <header class="header">
+
+        <!-- 이전 버튼 -->
+
+        <a href="../list/list.html"
+           class="back-btn"
+           id="backBtn"
+           aria-label="메뉴 리스트로 돌아가기">
+
+          <i data-lucide="chevron-left"></i>
+
+        </a>
+
+
+        <!-- 로고 -->
+
+        <div class="logo">
+
+          <img src="img/ChatGPT 이미지 2026년 11월 24일 오전 11_19_26-1.png" alt="입덕볶이 로고">
+
+        </div>
+
+
+        <!-- 햄버거 메뉴 -->
+
+        <button class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="메뉴 열기"
+                aria-controls="sideMenu"
+                aria-expanded="false">
+
+          <i data-lucide="menu"></i>
+
+        </button>
+
+      </header>
+
+
+      <main>
+
+        <!-- ========================================
+             SECTION 1
+             음식 이미지 및 기본 정보
+        ========================================= -->
+
+        <section class="product-section">
+
+          <div class="product-image-area">
+
+            <div class="decoration decoration-1"></div>
+            <div class="decoration decoration-2"></div>
+
+            <!-- 메뉴별 음식 이미지 자동 변경 -->
+
+            <div class="product-image"
+                 id="productImage"
+                 role="img"
+                 aria-label="치즈폭탄 떡볶이">
+            </div>
+
+          </div>
+
+
+          <!-- 음식 정보 -->
+
+          <div class="product-info">
+
+            <span class="best-label">BEST</span>
+
+            <div class="product-title-row">
+
+              <!-- 메뉴 이름 자동 변경 -->
+
+              <h1 class="product-name" id="productName">
+                치즈폭탄 떡볶이
+              </h1>
+
+
+              <!-- 찜하기 버튼 -->
+
+              <button class="favorite-btn"
+                      id="favoriteBtn"
+                      type="button"
+                      aria-label="찜하기"
+                      aria-pressed="false">
+
+                <i data-lucide="heart"></i>
+
+              </button>
+
+            </div>
+
+
+            <!-- 메뉴 가격 자동 변경 -->
+
+            <p class="product-price" id="productPrice">
+              11,900원
+            </p>
+
+
+            <!-- 메뉴 설명 자동 변경 -->
+
+            <p class="product-description" id="productDescription">
+
+              매콤한 떡볶이에 고소한 모짜렐라 치즈가 듬뿍 올라간
+              입덕볶이의 인기 메뉴!
+
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ========================================
+             SECTION 2
+             주문 옵션
+        ========================================= -->
+
+        <section class="option-section">
+
+          <!-- 맵기 선택 -->
+
+          <div class="option-card">
+
+            <div class="option-title-row">
+
+              <i data-lucide="flame" class="option-icon"></i>
+
+              <h2 class="option-title">맵기 선택</h2>
+
+              <span class="required-label">필수</span>
+
+            </div>
+
+            <div class="spicy-options">
+
+              <label class="spicy-btn">
+
+                <input type="radio"
+                       name="spicy"
+                       value="순한맛"
+                       checked>
+
+                <span>순한맛</span>
+
+              </label>
+
+              <label class="spicy-btn">
+
+                <input type="radio"
+                       name="spicy"
+                       value="보통맛">
+
+                <span>보통맛</span>
+
+              </label>
+
+              <label class="spicy-btn">
+
+                <input type="radio"
+                       name="spicy"
+                       value="매운맛">
+
+                <span>매운맛</span>
+
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <!-- 토핑 추가 -->
+
+          <div class="option-card">
+
+            <div class="option-title-row">
+
+              <i data-lucide="circle-plus" class="option-icon"></i>
+
+              <h2 class="option-title">토핑 추가</h2>
+
+              <span class="optional-label">선택</span>
+
+            </div>
+
+
+            <div class="topping-list">
+
+              <!-- 모짜렐라 치즈 -->
+
+              <label class="topping-item">
+
+                <input type="checkbox"
+                       class="topping-checkbox"
+                       id="cheeseTopping"
+                       value="2000">
+
+                <span class="topping-name">
+                  모짜렐라 치즈 추가
+                </span>
+
+                <span class="topping-price">
+                  +2,000원
+                </span>
+
+              </label>
+
+
+              <!-- 계란 -->
+
+              <label class="topping-item">
+
+                <input type="checkbox"
+                       class="topping-checkbox"
+                       value="1000">
+
+                <span class="topping-name">
+                  계란 추가
+                </span>
+
+                <span class="topping-price">
+                  +1,000원
+                </span>
+
+              </label>
+
+
+              <!-- 소시지 -->
+
+              <label class="topping-item">
+
+                <input type="checkbox"
+                       class="topping-checkbox"
+                       value="1500">
+
+                <span class="topping-name">
+                  소시지 추가
+                </span>
+
+                <span class="topping-price">
+                  +1,500원
+                </span>
+
+              </label>
+
+
+              <!-- 어묵 -->
+
+              <label class="topping-item">
+
+                <input type="checkbox"
+                       class="topping-checkbox"
+                       value="1000">
+
+                <span class="topping-name">
+                  어묵 추가
+                </span>
+
+                <span class="topping-price">
+                  +1,000원
+                </span>
+
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <!-- 수량 선택 -->
+
+          <div class="option-card quantity-card">
+
+            <h2 class="option-title">수량</h2>
+
+            <div class="quantity-control">
+
+              <button class="quantity-btn"
+                      id="minusBtn"
+                      type="button"
+                      aria-label="수량 감소"
+                      disabled>
+
+                <i data-lucide="minus"></i>
+
+              </button>
+
+              <span id="quantity" aria-live="polite">1</span>
+
+              <button class="quantity-btn"
+                      id="plusBtn"
+                      type="button"
+                      aria-label="수량 증가">
+
+                <i data-lucide="plus"></i>
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- 총 주문금액 -->
+
+          <div class="option-card total-card">
+
+            <div class="total-price-row">
+
+              <h2 class="option-title">
+                총 주문금액
+              </h2>
+
+              <strong class="total-price"
+                      id="totalPrice"
+                      aria-live="polite">
+
+                11,900원
+
+              </strong>
+
+            </div>
+
+            <p class="price-description" id="priceDescription">
+              (기본 11,900원 + 토핑 0원)
+            </p>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+
+    <!-- ========================================
+         하단 주문하기 버튼
+         결제페이지 연결
+    ========================================= -->
+
+    <div class="order-footer-frame">
+
+      <div class="order-footer">
+
+        <a href="../payment/payment.html"
+           class="order-btn"
+           id="orderBtn">
+
+          <i data-lucide="shopping-cart"></i>
+
+          <span>주문하기</span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================
+       슬라이드 햄버거 메뉴
+  ========================================= -->
+
+  <div class="menu-layer"
+       id="menuLayer"
+       aria-hidden="true"
+       inert>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <aside class="side-menu"
+           id="sideMenu"
+           role="dialog"
+           aria-modal="true"
+           aria-label="페이지 이동 메뉴">
+
+      <div class="side-menu-header">
+
+        <button class="close-btn"
+                id="closeBtn"
+                type="button"
+                aria-label="메뉴 닫기">
+
+          <i data-lucide="x"></i>
+
+        </button>
+
+      </div>
+
+      <nav class="side-menu-nav">
+
+        <a href="#">리스트페이지</a>
+        <a href="#">상세페이지</a>
+        <a href="#">결제페이지</a>
+        <a href="#">결제</a>
+
+      </nav>
+
+    </aside>
+
+  </div>
+
+
+  <!-- ========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    // Lucide 아이콘 실행
+
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
+
+    // ========================================
+    // 메뉴별 데이터
+    // 기존에 입력한 이미지 경로 유지
+    // ========================================
+
+    const menuData = {
+
+      // 입덕 시그니처 떡볶이
+
+      signature: {
+
+        name: '입덕 시그니처 떡볶이',
+
+        price: 9900,
+
+        image: 'img/시그니쳐.png',
+
+        description: '쫄깃한 밀떡과 매콤달콤한 특제 소스가 어우러진 입덕볶이의 대표 시그니처 메뉴!'
+
+      },
+
+
+      // 치즈폭탄 떡볶이
+
+      cheese: {
+
+        name: '치즈폭탄 떡볶이',
+
+        price: 11900,
+
+        image: 'img/치즈폭탄.png',
+
+        description: '매콤한 떡볶이에 고소한 모짜렐라 치즈가 듬뿍 올라간 입덕볶이의 인기 메뉴!'
+
+      },
+
+
+      // 로제 떡볶이
+
+      rose: {
+
+        name: '로제 떡볶이',
+
+        price: 11500,
+
+        image: 'img/로제.png',
+
+        description: '부드럽고 꾸덕한 로제 소스에 매콤함을 더한 떡볶이!'
+
+      },
+
+
+      // 바삭토핑 떡볶이
+
+      crispy: {
+
+        name: '바삭토핑 떡볶이',
+
+        price: 12500,
+
+        image: 'img/바삭토핑.png',
+
+        description: '바삭한 튀김 토핑과 매콤한 떡볶이가 어우러진 메뉴!'
+
+      }
+
+    };
+
+
+    // ========================================
+    // 선택한 메뉴 확인
+    // ========================================
+
+    const params = new URLSearchParams(
+      window.location.search
+    );
+
+    const menuKey = params.get('menu');
+
+
+    // 메뉴 정보가 없으면 치즈폭탄을 기본으로 표시
+
+    const selectedKey = Object.prototype.hasOwnProperty.call(
+      menuData,
+      menuKey
+    ) ? menuKey : 'cheese';
+
+    const selectedMenu = menuData[selectedKey];
+
+
+    // 가격에 쉼표 적용
+
+    function formatPrice(price) {
+
+      return price.toLocaleString('ko-KR') + '원';
+
+    }
+
+
+    // ========================================
+    // 선택한 메뉴 정보 화면에 적용
+    // ========================================
+
+    const productImage = document.getElementById('productImage');
+
+    const productName = document.getElementById('productName');
+
+    const productPrice = document.getElementById('productPrice');
+
+    const productDescription = document.getElementById(
+      'productDescription'
+    );
+
+
+    productName.textContent = selectedMenu.name;
+
+    productPrice.textContent = formatPrice(
+      selectedMenu.price
+    );
+
+    productDescription.textContent = selectedMenu.description;
+
+    productImage.style.backgroundImage =
+      'url("' + selectedMenu.image + '")';
+
+    productImage.setAttribute(
+      'aria-label',
+      selectedMenu.name
+    );
+
+    document.title = '입덕볶이 - ' + selectedMenu.name;
+
+
+    // ========================================
+    // 햄버거 메뉴
+    // ========================================
+
+    const menuBtn = document.getElementById('menuBtn');
+
+    const closeBtn = document.getElementById('closeBtn');
+
+    const menuLayer = document.getElementById('menuLayer');
+
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    const container = document.querySelector('.container');
+
+    const menuLinks = document.querySelectorAll('.side-menu-nav a');
+
+
+    function openMenu() {
+
+      menuLayer.classList.add('active');
+
+      menuLayer.inert = false;
+
+      menuLayer.setAttribute('aria-hidden', 'false');
+
+      menuBtn.setAttribute('aria-expanded', 'true');
+
+      document.body.classList.add('menu-open');
+
+      closeBtn.focus({ preventScroll: true });
+
+      container.inert = true;
+
+    }
+
+
+    function closeMenu() {
+
+      container.inert = false;
+
+      menuBtn.focus({ preventScroll: true });
+
+      menuLayer.classList.remove('active');
+
+      menuLayer.inert = true;
+
+      menuLayer.setAttribute('aria-hidden', 'true');
+
+      menuBtn.setAttribute('aria-expanded', 'false');
+
+      document.body.classList.remove('menu-open');
+
+    }
+
+
+    menuBtn.addEventListener('click', openMenu);
+
+    closeBtn.addEventListener('click', closeMenu);
+
+    menuOverlay.addEventListener('click', closeMenu);
+
+
+    menuLinks.forEach(function(link) {
+
+      link.addEventListener('click', function(event) {
+
+        if (link.getAttribute('href') === '#') {
+
+          event.preventDefault();
+
+        }
+
+        closeMenu();
+
+      });
+
+    });
+
+
+    // ESC 및 Tab 키 처리
+
+    document.addEventListener('keydown', function(event) {
+
+      if (!menuLayer.classList.contains('active')) {
+
+        return;
+
+      }
+
+      if (event.key === 'Escape') {
+
+        closeMenu();
+
+      }
+
+      if (event.key === 'Tab') {
+
+        const lastLink = menuLinks[menuLinks.length - 1];
+
+        if (event.shiftKey && document.activeElement === closeBtn) {
+
+          event.preventDefault();
+
+          lastLink.focus();
+
+        } else if (!event.shiftKey && document.activeElement === lastLink) {
+
+          event.preventDefault();
+
+          closeBtn.focus();
+
+        }
+
+      }
+
+    });
+
+
+    // ========================================
+    // 이전 페이지 슬라이드
+    // ========================================
+
+    const backBtn = document.getElementById('backBtn');
+
+    const pageContent = document.querySelector('.page-content');
+
+    let isMoving = false;
+
+    let moveTimer;
+
+
+    function moveBack() {
+
+      clearTimeout(moveTimer);
+
+      pageContent.removeEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+
+      window.location.href = backBtn.getAttribute('href');
+
+    }
+
+
+    function onTransitionEnd(event) {
+
+      if (
+        event.target === pageContent &&
+        event.propertyName === 'transform'
+      ) {
+
+        moveBack();
+
+      }
+
+    }
+
+
+    backBtn.addEventListener('click', function(event) {
+
+      event.preventDefault();
+
+      if (isMoving) {
+
+        return;
+
+      }
+
+      isMoving = true;
+
+      backBtn.classList.add('active');
+
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+        moveBack();
+
+        return;
+
+      }
+
+
+      pageContent.addEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+
+      document.body.classList.add('page-leaving');
+
+      moveTimer = setTimeout(moveBack, 450);
+
+    });
+
+
+    // 브라우저 뒤로 가기 시 상태 초기화
+
+    window.addEventListener('pageshow', function() {
+
+      clearTimeout(moveTimer);
+
+      pageContent.removeEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+
+      document.body.classList.remove('page-leaving');
+
+      backBtn.classList.remove('active');
+
+      isMoving = false;
+
+      updatePrice();
+
+    });
+
+
+    // ========================================
+    // 찜하기 기능
+    // ========================================
+
+    const favoriteBtn = document.getElementById('favoriteBtn');
+
+
+    favoriteBtn.addEventListener('click', function() {
+
+      const isFavorite = favoriteBtn.classList.toggle('active');
+
+      favoriteBtn.setAttribute(
+        'aria-pressed',
+        String(isFavorite)
+      );
+
+      favoriteBtn.setAttribute(
+        'aria-label',
+        isFavorite ? '찜하기 취소' : '찜하기'
+      );
+
+    });
+
+
+    // ========================================
+    // 주문금액 자동 계산
+    // ========================================
+
+    const basePrice = selectedMenu.price;
+
+    const toppingCheckboxes = document.querySelectorAll(
+      '.topping-checkbox'
+    );
+
+    const minusBtn = document.getElementById('minusBtn');
+
+    const plusBtn = document.getElementById('plusBtn');
+
+    const quantityText = document.getElementById('quantity');
+
+    const totalPrice = document.getElementById('totalPrice');
+
+    const priceDescription = document.getElementById(
+      'priceDescription'
+    );
+
+
+    let quantity = 1;
+
+
+    // 기존 치즈폭탄 메뉴의 기본 토핑 선택 유지
+
+    document.getElementById('cheeseTopping').checked =
+      selectedKey === 'cheese';
+
+
+    // ========================================
+    // 결제페이지에서 돌아왔을 때 주문 옵션 복원
+    // ========================================
+
+    // 수량 복원
+
+    const savedQuantity = Number(params.get('quantity'));
+
+    if (
+      Number.isSafeInteger(savedQuantity) &&
+      savedQuantity > 0 &&
+      savedQuantity <= Math.floor(Number.MAX_SAFE_INTEGER / 20000)
+    ) {
+
+      quantity = savedQuantity;
+
+    }
+
+
+    // 맵기 복원
+
+    if (params.has('spicy')) {
+
+      document.querySelectorAll(
+        'input[name="spicy"]'
+      ).forEach(function(input) {
+
+        if (input.value === params.get('spicy')) {
+
+          input.checked = true;
+
+        }
+
+      });
+
+    }
+
+
+    // 토핑 복원
+
+    if (params.has('toppings')) {
+
+      const savedToppings = params
+        .get('toppings')
+        .split(',');
+
+      toppingCheckboxes.forEach(function(checkbox, index) {
+
+        checkbox.checked = savedToppings.includes(
+          String(index)
+        );
+
+      });
+
+    }
+
+
+    // ========================================
+    // 총 주문금액 계산 함수
+    // ========================================
+
+    function updatePrice() {
+
+      let toppingTotal = 0;
+
+
+      toppingCheckboxes.forEach(function(checkbox) {
+
+        if (checkbox.checked) {
+
+          toppingTotal += Number(checkbox.value);
+
+        }
+
+      });
+
+
+      const total = (basePrice + toppingTotal) * quantity;
+
+
+      quantityText.textContent = quantity;
+
+      totalPrice.textContent = formatPrice(total);
+
+
+      priceDescription.textContent =
+        '(기본 ' + formatPrice(basePrice) +
+        ' + 토핑 ' + formatPrice(toppingTotal) +
+        ')' + (quantity > 1 ? ' × ' + quantity : '');
+
+
+      minusBtn.disabled = quantity <= 1;
+
+    }
+
+
+    // 토핑 선택 시 금액 변경
+
+    toppingCheckboxes.forEach(function(checkbox) {
+
+      checkbox.addEventListener('change', updatePrice);
+
+    });
+
+
+    // 수량 감소
+
+    minusBtn.addEventListener('click', function() {
+
+      if (quantity > 1) {
+
+        quantity--;
+
+        updatePrice();
+
+      }
+
+    });
+
+
+    // 수량 증가
+
+    plusBtn.addEventListener('click', function() {
+
+      if (quantity < Math.floor(Number.MAX_SAFE_INTEGER / 20000)) {
+
+        quantity++;
+
+        updatePrice();
+
+      }
+
+    });
+
+
+    // 초기 주문금액 적용
+
+    updatePrice();
+
+
+    // ========================================
+    // 결제페이지 연결 및 주문 정보 전달
+    // ========================================
+
+    const orderBtn = document.getElementById('orderBtn');
+
+
+    orderBtn.addEventListener('click', function(event) {
+
+      event.preventDefault();
+
+
+      // 선택한 맵기
+
+      const selectedSpicy = document.querySelector(
+        'input[name="spicy"]:checked'
+      ).value;
+
+
+      // 선택한 토핑
+
+      const selectedToppings = [];
+
+      toppingCheckboxes.forEach(function(checkbox, index) {
+
+        if (checkbox.checked) {
+
+          selectedToppings.push(index);
+
+        }
+
+      });
+
+
+      // 결제페이지로 전달할 주문 정보
+
+      const paymentParams = new URLSearchParams({
+
+        menu: selectedKey,
+
+        spicy: selectedSpicy,
+
+        quantity: String(quantity),
+
+        toppings: selectedToppings.join(',')
+
+      });
+
+
+      // 결제페이지 이동
+
+      window.location.href =
+
+        orderBtn.getAttribute('href') +
+
+        '?' +
+
+        paymentParams.toString();
+
+    });
+
+  </script>
+
 </body>
 </html>

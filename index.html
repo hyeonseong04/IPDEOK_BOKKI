@@ -10,8 +10,8 @@
   <!-- Noto Sans KR -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap">
 
-  <!-- 외부 CSS -->
-  <link rel="stylesheet" href="css/styles.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="./CSS/styles.css">
 
   <!-- Lucide 아이콘 -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -21,20 +21,25 @@
 
   <div class="container">
 
-    <!-- HEADER -->
+    <!-- ========================================
+         HEADER
+    ========================================= -->
+
     <header class="header">
 
       <div class="logo">
-        <img src="IMG/ChatGPT 이미지 2026년 11월 24일 오전 11_19_26-1.png" alt="입덕볶이 로고">
+
+        <img src="./IMG/ChatGPT 이미지 2026년 11월 24일 오전 11_19_26-1.png"
+             alt="입덕볶이 로고">
+
       </div>
 
-      <button
-        class="menu-btn"
-        id="menuBtn"
-        type="button"
-        aria-label="메뉴 열기"
-        aria-controls="sideMenu"
-        aria-expanded="false">
+      <button class="menu-btn"
+              id="menuBtn"
+              type="button"
+              aria-label="메뉴 열기"
+              aria-expanded="false"
+              aria-controls="sideMenu">
 
         <i data-lucide="menu"></i>
 
@@ -45,50 +50,79 @@
 
     <main>
 
-      <!-- HERO -->
-      <section class="hero" aria-label="메인 이미지">
+      <!-- ========================================
+           HERO SECTION
+      ========================================= -->
+
+      <section class="hero-section">
+
+        <img class="hero-image"
+             src="./IMG/00_히어로_입덕_시그니처_떡볶이_1200x900.png"
+             alt="입덕 시그니처 떡볶이"
+             onerror="this.onerror=null; this.src='./IMG/윤기 나는 매콤 떡볶이 한 그릇.png';">
+
       </section>
 
 
-      <!-- SECTION 1 : 주문 버튼 -->
+      <!-- ========================================
+           SECTION 1
+           주문 버튼
+      ========================================= -->
+
       <section class="section-1">
 
-        <div class="order-buttons">
+        <a href="./SUB/list/list.html"
+           class="order-button delivery-button">
 
-          <button class="order-btn delivery-btn" type="button">
-            <a href="SUB/list/list.html">배달 주문하기</a>
-          </button>
+          배달 주문하기
 
-          <button class="order-btn phone-btn" type="button">
+        </a>
+
+        <div class="order-button-row">
+
+          <a href="#"
+             class="order-button phone-button">
+
             전화 주문하기
-          </button>
 
-          <button class="order-btn coupon-btn" type="button">
+          </a>
+
+          <a href="#"
+             class="order-button coupon-button">
+
             쿠폰 사용
-          </button>
+
+          </a>
 
         </div>
 
       </section>
 
 
-      <!-- SECTION 2 : 추천 메뉴 -->
+      <!-- ========================================
+           SECTION 2
+           추천 메뉴
+      ========================================= -->
+
       <section class="section-2">
 
-        <h2 class="section-title">추천 메뉴</h2>
+        <h2 class="section-title">
+          추천 메뉴
+        </h2>
 
-        <!-- 해시태그 버튼 -->
-        <div class="category-list">
+        <!-- 해시태그 -->
 
-          <button class="category-btn active" type="button">
+        <div class="tag-list">
+
+          <button type="button" class="tag active">
             #해시태그
           </button>
 
-          <button class="category-btn" type="button">
+          <button type="button" class="tag">
             #해시태그
           </button>
 
-          <button class="category-btn" type="button">
+          <button type="button" class="tag">
             #해시태그
           </button>
 
@@ -96,187 +130,207 @@
 
 
         <!-- 추천 메뉴 카드 -->
-        <div class="recommend-wrap">
+
+        <div class="recommend-area">
 
           <!-- 왼쪽 카드 -->
-          <article class="recommend-card side-card left-card">
-          </article>
+
+          <div class="recommend-side recommend-left"></div>
 
 
           <!-- 중앙 카드 -->
-          <article class="recommend-card main-card">
 
-            <div class="recommend-text">
+          <div class="recommend-card">
 
-              <p class="best-label">BEST 1</p>
+            <p class="recommend-rank">
+              BEST 1
+            </p>
 
-              <h3 class="recommend-name">
-                떡볶이 타이틀 작성
-              </h3>
+            <h3 class="recommend-title">
+              입덕 시그니처 떡볶이
+            </h3>
 
-              <button class="recommend-order-btn" type="button">
-                주문하기
-              </button>
+            <a href="./SUB/detail/detail.html?menu=signature"
+               class="recommend-order">
 
-            </div>
+              주문하기
 
-            <!-- 중앙 카드 이미지 프레임 -->
-            <div class="recommend-food recommend-image-1"
-                 role="img"
-                 aria-label="추천 떡볶이">
-            </div>
+            </a>
 
-          </article>
+            <!-- 추천 메뉴 음식 이미지 -->
+
+            <div class="recommend-food"></div>
+
+          </div>
 
 
           <!-- 오른쪽 카드 -->
-          <article class="recommend-card side-card right-card">
-          </article>
+
+          <div class="recommend-side recommend-right"></div>
 
         </div>
 
       </section>
 
 
-      <!-- SECTION 3 : 메뉴 리스트 -->
+      <!-- ========================================
+           SECTION 3
+           추천 메뉴 리스트
+      ========================================= -->
+
       <section class="section-3">
 
-        <h2 class="section-title">메뉴</h2>
+        <h2 class="section-title">
+          추천 메뉴
+        </h2>
 
-        <!-- 탭메뉴 -->
-        <div class="category-list">
+        <!-- 메뉴 태그 -->
 
-          <button class="category-btn active" type="button">
-            탭메뉴 1
+        <div class="tag-list">
+
+          <button type="button" class="tag active">
+            떡메뉴 1
           </button>
 
-          <button class="category-btn" type="button">
-            탭메뉴 2
+          <button type="button" class="tag">
+            떡메뉴 2
           </button>
 
-          <button class="category-btn" type="button">
-            탭메뉴 3
+          <button type="button" class="tag">
+            떡메뉴 3
           </button>
 
         </div>
 
 
-        <!-- 메뉴 콘텐츠 -->
+        <!-- 음식 카드 2열 -->
+
         <div class="food-grid">
 
-          <!-- 입덕 시그니처 떡볶이 -->
-          <article class="food-item">
+          <!-- 시그니처 -->
 
-            <div class="food-image signature-image"
-                 role="img"
-                 aria-label="입덕 시그니처 떡볶이">
-            </div>
+          <a href="./SUB/detail/detail.html?menu=signature"
+             class="food-item">
+
+            <div class="food-image signature-image"></div>
 
             <h3 class="food-name">
               입덕 시그니처 떡볶이
             </h3>
 
-          </article>
+          </a>
 
 
-          <!-- 치즈폭탄 떡볶이 -->
-          <article class="food-item">
+          <!-- 치즈폭탄 -->
 
-            <div class="food-image cheese-image"
-                 role="img"
-                 aria-label="치즈폭탄 떡볶이">
-            </div>
+          <a href="./SUB/detail/detail.html?menu=cheese"
+             class="food-item">
+
+            <div class="food-image cheese-image"></div>
 
             <h3 class="food-name">
               치즈폭탄 떡볶이
             </h3>
 
-          </article>
+          </a>
 
 
-          <!-- 로제 떡볶이 -->
-          <article class="food-item">
+          <!-- 로제 -->
 
-            <div class="food-image rose-image"
-                 role="img"
-                 aria-label="로제 떡볶이">
-            </div>
+          <a href="./SUB/detail/detail.html?menu=rose"
+             class="food-item">
+
+            <div class="food-image rose-image"></div>
 
             <h3 class="food-name">
               로제 떡볶이
             </h3>
 
-          </article>
+          </a>
 
 
-          <!-- 바삭토핑 떡볶이 -->
-          <article class="food-item">
+          <!-- 바삭토핑 -->
 
-            <div class="food-image crispy-image"
-                 role="img"
-                 aria-label="바삭토핑 떡볶이">
-            </div>
+          <a href="./SUB/detail/detail.html?menu=crispy"
+             class="food-item">
+
+            <div class="food-image crispy-image"></div>
 
             <h3 class="food-name">
               바삭토핑 떡볶이
             </h3>
 
-          </article>
+          </a>
 
         </div>
 
       </section>
 
 
-      <!-- SECTION 4 : 이벤트 -->
+      <!-- ========================================
+           SECTION 4
+           이벤트
+      ========================================= -->
+
       <section class="section-4">
 
-        <h2 class="section-title">이벤트</h2>
+        <h2 class="section-title">
+          이벤트
+        </h2>
 
         <p class="event-subtitle">
           매달 추가되는 입덕볶이의 이벤트를 만나보세요!
         </p>
 
 
-        <!-- 이벤트 탭메뉴 -->
+        <!-- 이벤트 메뉴 -->
+
         <div class="event-tabs">
 
-          <button class="event-tab active" type="button">
+          <button type="button"
+                  class="event-tab active">
             진행중
           </button>
 
-          <button class="event-tab" type="button">
+          <button type="button"
+                  class="event-tab">
             종료
           </button>
 
-          <button class="event-tab" type="button">
+          <button type="button"
+                  class="event-tab">
             당첨자
           </button>
 
         </div>
 
 
-        <!-- 이벤트 콘텐츠 -->
+        <!-- 이벤트 카드 -->
+
         <article class="event-card">
 
-          <div class="event-image"
-               role="img"
-               aria-label="입덕볶이 이벤트 배너">
+          <div class="event-image">
+
+            <img src="./IMG/ChatGPT 이미지 2026년 11월 24일 오전 11_19_27-2.png"
+                 alt="입덕볶이 할인 이벤트">
+
           </div>
 
-          <div class="event-content">
+          <div class="event-info">
 
             <p class="event-category">
               [할인중 이벤트]
             </p>
 
-            <h3 class="event-name">
+            <h3 class="event-title">
+
               매달 추가되는 입덕볶이의 이벤트 내역입니다.
-              자세한 내용은 이벤트를 확인....
+              자세한 내용은 이벤트를 확인해주세요!
+
             </h3>
 
             <p class="event-date">
-              2026.11.23.-2026.12.31
+              2026.11.23 - 2026.12.31
             </p>
 
           </div>
@@ -287,35 +341,108 @@
 
     </main>
 
+
+    <!-- ========================================
+         하단 고정 네비게이션
+    ========================================= -->
+
+    <div class="bottom-nav-frame">
+
+      <nav class="bottom-nav"
+           aria-label="하단 메뉴">
+
+        <!-- 홈 -->
+
+        <a href="./index.html"
+           class="bottom-nav-item active"
+           aria-current="page">
+
+          <i data-lucide="house"></i>
+
+          <span>홈</span>
+
+        </a>
+
+
+        <!-- 메뉴 -->
+
+        <a href="./SUB/list/list.html"
+           class="bottom-nav-item">
+
+          <i data-lucide="utensils"></i>
+
+          <span>메뉴</span>
+
+        </a>
+
+
+        <!-- 쿠폰함 -->
+
+        <a href="#"
+           class="bottom-nav-item">
+
+          <i data-lucide="ticket-percent"></i>
+
+          <span>쿠폰함</span>
+
+        </a>
+
+
+        <!-- 주문 내역 -->
+
+        <a href="#"
+           class="bottom-nav-item">
+
+          <i data-lucide="receipt-text"></i>
+
+          <span>주문 내역</span>
+
+        </a>
+
+
+        <!-- MY 입덕 -->
+
+        <a href="#"
+           class="bottom-nav-item">
+
+          <i data-lucide="user-round"></i>
+
+          <span>MY 입덕</span>
+
+        </a>
+
+      </nav>
+
+    </div>
+
   </div>
 
 
   <!-- ========================================
-       슬라이드 햄버거 메뉴
+       햄버거 슬라이드 메뉴
   ========================================= -->
 
-  <div class="menu-layer" id="menuLayer" aria-hidden="true" inert>
+  <div class="menu-layer"
+       id="menuLayer"
+       aria-hidden="true"
+       inert>
 
-    <!-- 메뉴 바깥 어두운 배경 -->
-    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="menu-overlay"
+         id="menuOverlay">
+    </div>
 
+    <aside class="side-menu"
+           id="sideMenu"
+           role="dialog"
+           aria-modal="true"
+           aria-label="페이지 이동 메뉴">
 
-    <!-- 슬라이드 메뉴 영역 -->
-    <aside
-      class="side-menu"
-      id="sideMenu"
-      role="dialog"
-      aria-modal="true"
-      aria-label="페이지 이동 메뉴">
-
-      <!-- 메뉴 상단 -->
       <div class="side-menu-header">
 
-        <button
-          class="close-btn"
-          id="closeBtn"
-          type="button"
-          aria-label="메뉴 닫기">
+        <button class="close-btn"
+                id="closeBtn"
+                type="button"
+                aria-label="메뉴 닫기">
 
           <i data-lucide="x"></i>
 
@@ -323,17 +450,23 @@
 
       </div>
 
-
-      <!-- 페이지 이동 메뉴 -->
       <nav class="side-menu-nav">
 
-        <a href="SUB/list/list.html">리스트페이지</a>
+        <a href="./SUB/list/list.html">
+          리스트페이지
+        </a>
 
-        <a href="SUB/detail/detail.html">상세페이지</a>
+        <a href="./SUB/detail/detail.html">
+          상세페이지
+        </a>
 
-        <a href="SUB/payment/payment.html">결제페이지</a>
+        <a href="./SUB/payment/payment.html">
+          결제페이지
+        </a>
 
-        <a href="SUB/payment_finish/payment_finish.html">결제</a>
+        <a href="./SUB/payment_finish/payment_finish.html">
+          결제
+        </a>
 
       </nav>
 
@@ -349,19 +482,33 @@
   <script>
 
     // Lucide 아이콘 실행
-    lucide.createIcons();
+
+    if (window.lucide) {
+
+      lucide.createIcons();
+
+    }
 
 
-    // 햄버거 메뉴 요소 가져오기
+    // ========================================
+    // 햄버거 메뉴
+    // ========================================
+
     const menuBtn = document.getElementById('menuBtn');
+
     const closeBtn = document.getElementById('closeBtn');
+
     const menuLayer = document.getElementById('menuLayer');
+
     const menuOverlay = document.getElementById('menuOverlay');
+
     const container = document.querySelector('.container');
+
     const menuLinks = document.querySelectorAll('.side-menu-nav a');
 
 
     // 메뉴 열기
+
     function openMenu() {
 
       menuLayer.classList.add('active');
@@ -382,6 +529,7 @@
 
 
     // 메뉴 닫기
+
     function closeMenu() {
 
       container.inert = false;
@@ -401,27 +549,18 @@
     }
 
 
-    // 햄버거 메뉴 클릭
     menuBtn.addEventListener('click', openMenu);
 
-
-    // X 버튼 클릭
     closeBtn.addEventListener('click', closeMenu);
 
-
-    // 메뉴 바깥 배경 클릭
     menuOverlay.addEventListener('click', closeMenu);
 
 
-    // 메뉴 항목 클릭
+    // 사이드 메뉴 클릭 시 닫기
+
     menuLinks.forEach(function(link) {
 
-      link.addEventListener('click', function(event) {
-
-        // 임시 링크일 경우 페이지 이동 방지
-        if (link.getAttribute('href') === '#') {
-          event.preventDefault();
-        }
+      link.addEventListener('click', function() {
 
         closeMenu();
 
@@ -430,34 +569,127 @@
     });
 
 
-    // 키보드 ESC 및 Tab 처리
+    // ESC 및 Tab 키 처리
+
     document.addEventListener('keydown', function(event) {
 
       if (!menuLayer.classList.contains('active')) {
+
         return;
+
       }
 
       if (event.key === 'Escape') {
+
         closeMenu();
+
       }
 
       if (event.key === 'Tab') {
 
         const lastLink = menuLinks[menuLinks.length - 1];
 
-        if (event.shiftKey && document.activeElement === closeBtn) {
+        if (
+          event.shiftKey &&
+          document.activeElement === closeBtn
+        ) {
 
           event.preventDefault();
+
           lastLink.focus();
 
-        }
-
-        else if (!event.shiftKey && document.activeElement === lastLink) {
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === lastLink
+        ) {
 
           event.preventDefault();
+
           closeBtn.focus();
 
         }
+
+      }
+
+    });
+
+
+    // ========================================
+    // 추천 메뉴 태그 선택
+    // ========================================
+
+    document.querySelectorAll('.tag-list').forEach(function(list) {
+
+      const tags = list.querySelectorAll('.tag');
+
+      tags.forEach(function(tag) {
+
+        tag.addEventListener('click', function() {
+
+          tags.forEach(function(item) {
+
+            item.classList.remove('active');
+
+          });
+
+          tag.classList.add('active');
+
+        });
+
+      });
+
+    });
+
+
+    // ========================================
+    // 이벤트 탭 선택
+    // ========================================
+
+    const eventTabs = document.querySelectorAll('.event-tab');
+
+    const eventCard = document.querySelector('.event-card');
+
+    eventTabs.forEach(function(tab, index) {
+
+      tab.addEventListener('click', function() {
+
+        eventTabs.forEach(function(item) {
+
+          item.classList.remove('active');
+
+        });
+
+        tab.classList.add('active');
+
+        eventCard.hidden = index !== 0;
+
+      });
+
+    });
+
+
+    // ========================================
+    // 아직 연결되지 않은 임시 링크
+    // ========================================
+
+    document.querySelectorAll('a[href="#"]').forEach(function(link) {
+
+      link.addEventListener('click', function(event) {
+
+        event.preventDefault();
+
+      });
+
+    });
+
+
+    // 브라우저 뒤로가기 시 메뉴 상태 초기화
+
+    window.addEventListener('pageshow', function() {
+
+      if (menuLayer.classList.contains('active')) {
+
+        closeMenu();
 
       }
 

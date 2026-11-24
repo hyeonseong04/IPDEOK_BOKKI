@@ -1,12 +1,496 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>음식리스트 페이지</title>
-    <link rel="stylesheet" href="CSS/list.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>입덕볶이 - 메뉴 리스트</title>
+
+  <!-- Noto Sans KR -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./CSS/list.css">
+
+  <!-- Lucide 아이콘 -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
-    
+
+  <div class="container">
+
+    <div class="page-content">
+
+      <!-- HEADER -->
+
+      <header class="header">
+
+        <!-- 뒤로가기 버튼 -->
+
+        <a href="../../index.html"
+           class="back-btn"
+           id="backBtn"
+           aria-label="메인페이지로 돌아가기">
+
+          <i data-lucide="chevron-left"></i>
+
+        </a>
+
+
+        <!-- 중앙 로고 -->
+
+        <div class="logo">
+
+          <img src="./img/ChatGPT 이미지 2026년 11월 24일 오전 11_19_26-1.png"
+               alt="입덕볶이 로고">
+
+        </div>
+
+
+        <!-- 햄버거 메뉴 -->
+
+        <button class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="메뉴 열기"
+                aria-controls="sideMenu"
+                aria-expanded="false">
+
+          <i data-lucide="menu"></i>
+
+        </button>
+
+      </header>
+
+
+      <main>
+
+        <!-- SECTION 1 : 음식 리스트 -->
+
+        <section class="food-section">
+
+          <div class="food-grid">
+
+
+            <!-- 입덕 시그니처 떡볶이 -->
+
+            <a href="../detail/detail.html?menu=signature"
+               class="food-item">
+
+              <div class="food-image signature-image"
+                   role="img"
+                   aria-label="입덕 시그니처 떡볶이">
+              </div>
+
+              <div class="food-info">
+
+                <h2 class="food-name">
+                  입덕 시그니처 떡볶이
+                </h2>
+
+                <p class="food-description">
+                  쫄깃한 밀떡과 매콤달콤한 특제 소스
+                </p>
+
+                <p class="food-price">
+                  9,900원
+                </p>
+
+              </div>
+
+            </a>
+
+
+            <!-- 치즈폭탄 떡볶이 -->
+
+            <a href="../detail/detail.html?menu=cheese"
+               class="food-item">
+
+              <div class="food-image cheese-image"
+                   role="img"
+                   aria-label="치즈폭탄 떡볶이">
+              </div>
+
+              <div class="food-info">
+
+                <h2 class="food-name">
+                  치즈폭탄 떡볶이
+                </h2>
+
+                <p class="food-description">
+                  매콤한 떡볶이에 모짜렐라 치즈 듬뿍
+                </p>
+
+                <p class="food-price">
+                  11,900원
+                </p>
+
+              </div>
+
+            </a>
+
+
+            <!-- 로제 떡볶이 -->
+
+            <a href="../detail/detail.html?menu=rose"
+               class="food-item">
+
+              <div class="food-image rose-image"
+                   role="img"
+                   aria-label="로제 떡볶이">
+              </div>
+
+              <div class="food-info">
+
+                <h2 class="food-name">
+                  로제 떡볶이
+                </h2>
+
+                <p class="food-description">
+                  부드럽고 꾸덕한 매콤 로제 떡볶이
+                </p>
+
+                <p class="food-price">
+                  11,500원
+                </p>
+
+              </div>
+
+            </a>
+
+
+            <!-- 바삭토핑 떡볶이 -->
+
+            <a href="../detail/detail.html?menu=crispy"
+               class="food-item">
+
+              <div class="food-image crispy-image"
+                   role="img"
+                   aria-label="바삭토핑 떡볶이">
+              </div>
+
+              <div class="food-info">
+
+                <h2 class="food-name">
+                  바삭토핑 떡볶이
+                </h2>
+
+                <p class="food-description">
+                  바삭한 튀김 토핑과 매콤한 떡볶이
+                </p>
+
+                <p class="food-price">
+                  12,500원
+                </p>
+
+              </div>
+
+            </a>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================
+       햄버거 슬라이드 메뉴
+  ========================================= -->
+
+  <div class="menu-layer"
+       id="menuLayer"
+       aria-hidden="true"
+       inert>
+
+    <div class="menu-overlay"
+         id="menuOverlay">
+    </div>
+
+    <aside class="side-menu"
+           id="sideMenu"
+           role="dialog"
+           aria-modal="true"
+           aria-label="페이지 이동 메뉴">
+
+      <div class="side-menu-header">
+
+        <button class="close-btn"
+                id="closeBtn"
+                type="button"
+                aria-label="메뉴 닫기">
+
+          <i data-lucide="x"></i>
+
+        </button>
+
+      </div>
+
+      <nav class="side-menu-nav">
+
+        <a href="#">리스트페이지</a>
+
+        <a href="#">상세페이지</a>
+
+        <a href="#">결제페이지</a>
+
+        <a href="#">결제</a>
+
+      </nav>
+
+    </aside>
+
+  </div>
+
+
+  <!-- ========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    // Lucide 아이콘 적용
+
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
+
+    // ========================================
+    // 햄버거 메뉴
+    // ========================================
+
+    const menuBtn = document.getElementById('menuBtn');
+
+    const closeBtn = document.getElementById('closeBtn');
+
+    const menuLayer = document.getElementById('menuLayer');
+
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    const container = document.querySelector('.container');
+
+    const menuLinks = document.querySelectorAll('.side-menu-nav a');
+
+
+    // 메뉴 열기
+
+    function openMenu() {
+
+      menuLayer.classList.add('active');
+
+      menuLayer.inert = false;
+
+      menuLayer.setAttribute('aria-hidden', 'false');
+
+      menuBtn.setAttribute('aria-expanded', 'true');
+
+      document.body.classList.add('menu-open');
+
+      closeBtn.focus({ preventScroll: true });
+
+      container.inert = true;
+
+    }
+
+
+    // 메뉴 닫기
+
+    function closeMenu() {
+
+      container.inert = false;
+
+      menuBtn.focus({ preventScroll: true });
+
+      menuLayer.classList.remove('active');
+
+      menuLayer.inert = true;
+
+      menuLayer.setAttribute('aria-hidden', 'true');
+
+      menuBtn.setAttribute('aria-expanded', 'false');
+
+      document.body.classList.remove('menu-open');
+
+    }
+
+
+    menuBtn.addEventListener('click', openMenu);
+
+    closeBtn.addEventListener('click', closeMenu);
+
+    menuOverlay.addEventListener('click', closeMenu);
+
+
+    // 메뉴 항목 클릭
+
+    menuLinks.forEach(function(link) {
+
+      link.addEventListener('click', function(event) {
+
+        if (link.getAttribute('href') === '#') {
+
+          event.preventDefault();
+
+        }
+
+        closeMenu();
+
+      });
+
+    });
+
+
+    // ESC 및 Tab 키 처리
+
+    document.addEventListener('keydown', function(event) {
+
+      if (!menuLayer.classList.contains('active')) {
+        return;
+      }
+
+      if (event.key === 'Escape') {
+
+        closeMenu();
+
+      }
+
+      if (event.key === 'Tab') {
+
+        const lastLink = menuLinks[menuLinks.length - 1];
+
+        if (
+          event.shiftKey &&
+          document.activeElement === closeBtn
+        ) {
+
+          event.preventDefault();
+
+          lastLink.focus();
+
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === lastLink
+        ) {
+
+          event.preventDefault();
+
+          closeBtn.focus();
+
+        }
+
+      }
+
+    });
+
+
+    // ========================================
+    // 뒤로가기 슬라이드 애니메이션
+    // ========================================
+
+    const backBtn = document.getElementById('backBtn');
+
+    const pageContent = document.querySelector('.page-content');
+
+    let isMoving = false;
+
+    let moveTimer;
+
+
+    // 메인페이지 이동
+
+    function moveBack() {
+
+      clearTimeout(moveTimer);
+
+      pageContent.removeEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+
+      window.location.href = backBtn.href;
+
+    }
+
+
+    function onTransitionEnd(event) {
+
+      if (
+        event.target === pageContent &&
+        event.propertyName === 'transform'
+      ) {
+
+        moveBack();
+
+      }
+
+    }
+
+
+    // 뒤로가기 버튼 클릭
+
+    backBtn.addEventListener('click', function(event) {
+
+      event.preventDefault();
+
+      if (isMoving) return;
+
+      isMoving = true;
+
+      backBtn.classList.add('active');
+
+
+      if (
+        window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches
+      ) {
+
+        moveBack();
+
+        return;
+
+      }
+
+
+      pageContent.addEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+
+      document.body.classList.add('page-leaving');
+
+      moveTimer = setTimeout(moveBack, 450);
+
+    });
+
+
+    // 브라우저 뒤로가기 시 초기화
+
+    window.addEventListener('pageshow', function() {
+
+      clearTimeout(moveTimer);
+
+      pageContent.removeEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+
+      document.body.classList.remove('page-leaving');
+
+      backBtn.classList.remove('active');
+
+      isMoving = false;
+
+    });
+
+  </script>
+
 </body>
 </html>

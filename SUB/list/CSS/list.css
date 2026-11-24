@@ -1,0 +1,509 @@
+
+/* ========================================
+   GLOBAL
+======================================== */
+
+:root {
+  --background-color: #FDF1E1;
+  --primary-color: #E84129;
+  --secondary-color: #FF9D42;
+  --text-color: #000000;
+  --global-padding: 20px;
+  --transition-speed: 0.4s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #FFFFFF;
+  color: var(--text-color);
+}
+
+button {
+  font-family: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* ========================================
+   전체 페이지
+======================================== */
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  background-color: #FFFFFF;
+
+  overflow: hidden;
+}
+
+.page-content {
+  width: 100%;
+  min-height: 100vh;
+
+  background-color: var(--background-color);
+
+  transform: translateX(0);
+
+  transition:
+    transform var(--transition-speed) ease-in-out;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+  position: relative;
+
+  width: 100%;
+  height: 60px;
+
+  padding: 0 var(--global-padding);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--background-color);
+}
+
+
+/* ========================================
+   왼쪽 뒤로가기 버튼
+======================================== */
+
+.back-btn {
+  position: absolute;
+  left: var(--global-padding);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #000000;
+
+  transition: color 0.15s ease;
+}
+
+.back-btn svg {
+  width: 28px;
+  height: 28px;
+
+  stroke-width: 2;
+}
+
+.back-btn:active,
+.back-btn.active {
+  color: var(--primary-color);
+}
+
+
+/* ========================================
+   중앙 로고
+======================================== */
+
+.logo {
+  width: 64px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+/* ========================================
+   오른쪽 햄버거 메뉴
+======================================== */
+
+.menu-btn {
+  position: absolute;
+  right: var(--global-padding);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #000000;
+}
+
+.menu-btn svg {
+  width: 24px;
+  height: 24px;
+
+  stroke-width: 2;
+}
+
+
+/* ========================================
+   SECTION 1
+   음식 리스트
+======================================== */
+
+.food-section {
+  width: 100%;
+
+  padding: 12px var(--global-padding) 30px;
+}
+
+
+/* 음식 리스트 2열 */
+
+.food-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  column-gap: 16px;
+  row-gap: 14px;
+}
+
+
+/* 음식 카드 */
+
+.food-item {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ========================================
+   음식 이미지 공통
+======================================== */
+
+.food-image {
+  width: 100%;
+
+  aspect-ratio: 170 / 200;
+
+  border-radius: 16px;
+
+  background-color: #FDF3E6;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  overflow: hidden;
+}
+
+
+/* ========================================
+   실제 음식 이미지 경로
+
+   list/CSS/list.css 기준
+   list/img 폴더 연결
+======================================== */
+
+
+/* 입덕 시그니처 떡볶이 */
+
+.signature-image {
+  background-image:
+    url("../img/01_입덕_시그니처_떡볶이.png");
+}
+
+
+/* 치즈폭탄 떡볶이 */
+
+.cheese-image {
+  background-image:
+    url("../img/02_치즈폭탄_떡볶이.png");
+}
+
+
+/* 로제 떡볶이 */
+
+.rose-image {
+  background-image:
+    url("../img/03_로제_떡볶이.png");
+}
+
+
+/* 바삭토핑 떡볶이 */
+
+.crispy-image {
+  background-image:
+    url("../img/04_바삭토핑_떡볶이.png");
+}
+
+
+/* ========================================
+   음식 정보
+======================================== */
+
+.food-info {
+  padding-top: 10px;
+}
+
+
+/* 음식 이름 */
+
+.food-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+
+  line-height: 1.5;
+
+  word-break: keep-all;
+}
+
+
+/* 음식 설명 */
+
+.food-description {
+  margin-top: 2px;
+
+  font-size: 10px;
+  font-weight: 500;
+  color: #000000;
+
+  line-height: 1.5;
+
+  word-break: keep-all;
+}
+
+
+/* 음식 가격 */
+
+.food-price {
+  margin-top: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: #000000;
+}
+
+
+/* ========================================
+   햄버거 슬라이드 메뉴
+======================================== */
+
+.menu-layer {
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 500px;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 1000;
+}
+
+
+/* 어두운 배경 */
+
+.menu-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background-color: rgba(0, 0, 0, 0.45);
+
+  opacity: 0;
+
+  transition:
+    opacity var(--transition-speed) ease-in-out;
+}
+
+
+/* 사이드 메뉴 */
+
+.side-menu {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 66.6667%;
+
+  background-color: var(--background-color);
+
+  transform: translateX(100%);
+
+  transition:
+    transform var(--transition-speed) ease-in-out;
+
+  overflow-y: auto;
+}
+
+
+/* 메뉴 활성화 */
+
+.menu-layer.active {
+  pointer-events: auto;
+}
+
+.menu-layer.active .menu-overlay {
+  opacity: 1;
+}
+
+.menu-layer.active .side-menu {
+  transform: translateX(0);
+}
+
+
+/* 사이드 메뉴 헤더 */
+
+.side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 60px;
+
+  padding: 0 var(--global-padding);
+}
+
+
+/* 메뉴 닫기 버튼 */
+
+.close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #000000;
+}
+
+.close-btn svg {
+  width: 28px;
+  height: 28px;
+
+  stroke-width: 2;
+}
+
+
+/* 사이드 메뉴 항목 */
+
+.side-menu-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+
+  padding: 24px var(--global-padding);
+}
+
+.side-menu-nav a {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.side-menu-nav a:active {
+  color: var(--primary-color);
+}
+
+
+/* 메뉴 실행 중 스크롤 방지 */
+
+body.menu-open {
+  overflow: hidden;
+}
+
+
+/* ========================================
+   뒤로가기 슬라이드 애니메이션
+======================================== */
+
+body.page-leaving .page-content {
+  transform: translateX(100%);
+}
+
+body.page-leaving .container {
+  pointer-events: none;
+}
+
+
+/* ========================================
+   작은 모바일 화면 대응
+======================================== */
+
+@media screen and (max-width: 360px) {
+
+  .food-grid {
+    column-gap: 12px;
+    row-gap: 14px;
+  }
+
+  .food-name {
+    font-size: 12px;
+  }
+
+  .food-description {
+    font-size: 9px;
+  }
+
+  .food-price {
+    font-size: 11px;
+  }
+
+}
+
+
+/* ========================================
+   모션 감소 설정
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .page-content,
+  .menu-overlay,
+  .side-menu,
+  .back-btn {
+    transition: none;
+  }
+
+}
