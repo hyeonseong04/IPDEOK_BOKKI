@@ -602,6 +602,56 @@
     };
 
 
+// ========================================
+// 사이드 메뉴 결제 데이터 추가
+// ========================================
+
+Object.assign(menuData, {
+
+  gimmari: {
+
+    name: '바삭 김말이',
+
+    price: 2500,
+
+    image: '../list/img/05_바삭_김말이.png'
+
+  },
+
+  dumpling: {
+
+    name: '바삭 군만두',
+
+    price: 3000,
+
+    image: '../list/img/06_바삭_군만두.png'
+
+  },
+
+  shrimp: {
+
+    name: '통새우 튀김',
+
+    price: 3500,
+
+    image: '../list/img/07_통새우_튀김.png'
+
+  },
+
+  assorted: {
+
+    name: '모둠 튀김',
+
+    price: 5500,
+
+    image: '../list/img/08_모둠_튀김.png'
+
+  }
+
+});
+
+
+
     // ========================================
     // 토핑 정보
     // ========================================
@@ -1398,6 +1448,29 @@
     // 초기 결제금액 표시
 
     updatePayment();
+
+    // 튀김 결제 시 맵기 내역 숨기기
+
+const sideMenuKeys = [
+  'gimmari',
+  'dumpling',
+  'shrimp',
+  'assorted'
+];
+
+if (sideMenuKeys.includes(selectedKey)) {
+
+  const spicyRow = document
+    .getElementById('orderSpicy')
+    ?.closest('.order-option-row');
+
+  if (spicyRow) {
+
+    spicyRow.style.display = 'none';
+
+  }
+
+}
 
   </script>
 

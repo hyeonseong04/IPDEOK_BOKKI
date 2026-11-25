@@ -17,6 +17,10 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
+
+
+
+
 <body>
 
   <div class="container">
@@ -1529,6 +1533,239 @@
     });
 
   </script>
+
+  <!-- ========================================
+     공통 로그인 프로필 및 로그아웃 기능
+========================================= -->
+
+<script>
+
+  (function() {
+
+    const sideNav =
+      document.querySelector('.side-menu-nav');
+
+    if (!sideNav) return;
+
+    if (sideNav.dataset.authReady === 'true') return;
+
+
+    // 로그인 / 회원가입 메뉴 찾기
+
+    const authLink = Array.from(
+      sideNav.querySelectorAll('a')
+    ).find(link => {
+
+      return link.textContent
+        .replace(/\s/g, '')
+        .includes('로그인/회원가입');
+
+    });
+
+    if (!authLink) return;
+
+    sideNav.dataset.authReady = 'true';
+
+
+    // 기존 로그인 메뉴 정보 저장
+
+    const originalHref =
+      authLink.getAttribute('href');
+
+    const originalText =
+      authLink.textContent.trim();
+
+    const originalCurrent =
+      authLink.getAttribute('aria-current');
+
+
+    // ========================================
+    // 사용자 프로필 생성
+    // ========================================
+
+    const profile = document.createElement('div');
+
+    profile.className = 'user-profile';
+
+    profile.hidden = true;
+
+    profile.innerHTML = `
+
+      <div class="profile-icon">
+
+        <i data-lucide="user-round"></i>
+
+      </div>
+
+      <div class="profile-info">
+
+        <p class="profile-name"></p>
+
+        <p class="profile-message">
+          오늘도 환영해요!
+        </p>
+
+      </div>
+
+    `;
+
+
+    // 기존 메뉴 상단에 프로필 삽입
+
+    sideNav.before(profile);
+
+
+    // ========================================
+    // 로그인 상태 확인
+    // ========================================
+
+    function getLoginState() {
+
+      try {
+
+        return sessionStorage.getItem(
+          'demoLogin'
+        ) === 'true';
+
+      } catch (error) {
+
+        return false;
+
+      }
+
+    }
+
+
+    // ========================================
+    // 로그인 사용자 정보 표시
+    // ========================================
+
+    function updateLoginMenu() {
+
+      if (getLoginState()) {
+
+        const username =
+          sessionStorage.getItem('demoUsername')
+          || '입덕이';
+
+
+        // 프로필 표시
+
+        profile.hidden = false;
+
+        profile.querySelector(
+          '.profile-name'
+        ).textContent = username + '님';
+
+
+        // 로그아웃 메뉴 변경
+
+        authLink.textContent = '로그아웃';
+
+        authLink.href = '#';
+
+        authLink.removeAttribute('aria-current');
+
+        authLink.classList.add('logout-link');
+
+      } else {
+
+        // 프로필 숨기기
+
+        profile.hidden = true;
+
+
+        // 기존 로그인 메뉴 복구
+
+        authLink.textContent = originalText;
+
+        authLink.setAttribute(
+          'href',
+          originalHref
+        );
+
+        authLink.classList.remove('logout-link');
+
+        if (originalCurrent !== null) {
+
+          authLink.setAttribute(
+            'aria-current',
+            originalCurrent
+          );
+
+        }
+
+      }
+
+      if (window.lucide) {
+
+        lucide.createIcons();
+
+      }
+
+    }
+
+
+    // ========================================
+    // 로그아웃 기능
+    // ========================================
+
+    authLink.addEventListener('click', event => {
+
+      if (!getLoginState()) return;
+
+      event.preventDefault();
+
+      event.stopImmediatePropagation();
+
+
+      const logoutConfirm =
+        confirm('로그아웃 하시겠습니까?');
+
+      if (!logoutConfirm) return;
+
+
+      // 임시 로그인 정보 삭제
+
+      try {
+
+        sessionStorage.removeItem('demoLogin');
+
+        sessionStorage.removeItem('demoUsername');
+
+      } catch (error) {
+
+        alert('로그아웃 상태 변경에 실패했습니다.');
+
+        return;
+
+      }
+
+
+      // 사용자 정보 및 메뉴 업데이트
+
+      updateLoginMenu();
+
+      alert('로그아웃 되었습니다.');
+
+    }, true);
+
+
+    // 페이지 실행 시 로그인 상태 확인
+
+    updateLoginMenu();
+
+
+    // 브라우저 뒤로가기 시에도 상태 유지
+
+    window.addEventListener(
+      'pageshow',
+      updateLoginMenu
+    );
+
+  })();
+
+</script>
 
 </body>
 </html>

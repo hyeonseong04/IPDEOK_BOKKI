@@ -15,7 +15,6 @@
 
   <!-- Lucide 아이콘 -->
   <script src="https://unpkg.com/lucide@latest"></script>
-
 </head>
 
 <body>
@@ -41,7 +40,6 @@
 
         </a>
 
-
         <!-- 중앙 로고 -->
 
         <div class="logo">
@@ -51,15 +49,14 @@
 
         </div>
 
-
         <!-- 햄버거 메뉴 -->
 
         <button type="button"
                 class="menu-btn"
                 id="menuBtn"
                 aria-label="메뉴 열기"
-                aria-controls="sideMenu"
-                aria-expanded="false">
+                aria-expanded="false"
+                aria-controls="sideMenu">
 
           <i data-lucide="menu"></i>
 
@@ -71,8 +68,7 @@
       <main>
 
         <!-- ========================================
-             SECTION 01
-             로그인 / 회원가입 탭
+             SECTION 01 : 로그인 / 회원가입 탭
         ========================================= -->
 
         <section class="tab-section">
@@ -103,8 +99,7 @@
 
 
         <!-- ========================================
-             SECTION 02
-             캐릭터 및 환영 문구
+             SECTION 02 : 캐릭터 및 환영 문구
         ========================================= -->
 
         <section class="welcome-section">
@@ -176,8 +171,7 @@
 
 
         <!-- ========================================
-             SECTION 03
-             간편 로그인 / 회원가입
+             SECTION 03 : 간편 로그인
         ========================================= -->
 
         <section class="social-section">
@@ -230,7 +224,7 @@
         </section>
 
 
-        <!-- 이메일 로그인 / 회원가입 구분선 -->
+        <!-- 이메일 로그인 구분선 -->
 
         <div class="auth-divider">
 
@@ -246,8 +240,7 @@
 
 
         <!-- ========================================
-             SECTION 04
-             일반 로그인
+             SECTION 04 : 일반 로그인
         ========================================= -->
 
         <section class="form-section"
@@ -257,7 +250,7 @@
                 class="auth-form"
                 novalidate>
 
-            <!-- 이메일 -->
+            <!-- 이메일 / 아이디 -->
 
             <div class="input-wrap">
 
@@ -356,8 +349,7 @@
 
 
         <!-- ========================================
-             SECTION 05
-             일반 회원가입
+             SECTION 05 : 일반 회원가입
         ========================================= -->
 
         <section class="form-section"
@@ -450,7 +442,7 @@
             </div>
 
 
-            <!-- 회원가입 오류 안내 영역 -->
+            <!-- 오류 안내 영역 -->
 
             <p class="form-error"
                id="signupError"
@@ -462,8 +454,6 @@
             ========================================= -->
 
             <div class="agreement-section">
-
-              <!-- 전체 동의 -->
 
               <label class="check-label agree-all">
 
@@ -637,7 +627,6 @@
 
     </div>
 
-
     <div class="notice-body">
 
       <div class="notice-icon">
@@ -693,6 +682,8 @@
       </div>
 
 
+      <!-- 메뉴 목록 -->
+
       <nav class="side-menu-nav">
 
         <a href="../list/list.html">
@@ -728,114 +719,87 @@
   <script>
 
     // ========================================
-    // Lucide 아이콘 적용
+    // Lucide 아이콘
     // ========================================
 
     if (window.lucide) {
-
       lucide.createIcons();
-
     }
 
+    const $ = selector => document.querySelector(selector);
 
-    // ========================================
-    // 로그인 / 회원가입 탭
-    // ========================================
-
-    const loginTab = document.getElementById('loginTab');
-
-    const signupTab = document.getElementById('signupTab');
-
-    const loginSection = document.getElementById('loginSection');
-
-    const signupSection = document.getElementById('signupSection');
-
-    const loginCharacter = document.getElementById('loginCharacter');
-
-    const signupCharacter = document.getElementById('signupCharacter');
-
-    const loginWelcome = document.getElementById('loginWelcome');
-
-    const signupWelcome = document.getElementById('signupWelcome');
-
-    const dividerText = document.getElementById('dividerText');
-
-    const loginForm = document.getElementById('loginForm');
-
-    const signupForm = document.getElementById('signupForm');
-
-    const signupError = document.getElementById('signupError');
-
-
-    // 테스트용 입력 조건 검사 해제
-
-    loginForm.noValidate = true;
-
-    signupForm.noValidate = true;
-
+    const $$ = selector => [
+      ...document.querySelectorAll(selector)
+    ];
 
     const reducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
 
+    // ========================================
+    // 로그인 / 회원가입 탭
+    // ========================================
+
+    const loginTab = $('#loginTab');
+    const signupTab = $('#signupTab');
+
+    const loginSection = $('#loginSection');
+    const signupSection = $('#signupSection');
+
+    const loginCharacter = $('#loginCharacter');
+    const signupCharacter = $('#signupCharacter');
+
+    const loginWelcome = $('#loginWelcome');
+    const signupWelcome = $('#signupWelcome');
+
+    const loginForm = $('#loginForm');
+    const signupForm = $('#signupForm');
+
     let currentMode = 'login';
 
 
-    // ========================================
     // 비밀번호 초기화
-    // ========================================
 
     function resetPasswords() {
 
-      document.querySelectorAll('.password-toggle')
-        .forEach(function(button) {
+      $$('.password-toggle').forEach(button => {
 
-          const input = document.getElementById(
-            button.dataset.target
-          );
+        const input = document.getElementById(
+          button.dataset.target
+        );
 
-          input.value = '';
+        input.value = '';
+        input.type = 'password';
 
-          input.type = 'password';
+        button.innerHTML =
+          '<i data-lucide="eye"></i>';
 
-          button.innerHTML =
-            '<i data-lucide="eye"></i>';
+        button.setAttribute(
+          'aria-label',
+          '비밀번호 보기'
+        );
 
-          button.setAttribute(
-            'aria-label',
-            '비밀번호 보기'
-          );
-
-        });
+      });
 
       if (window.lucide) {
-
         lucide.createIcons();
-
       }
 
     }
 
 
-    // ========================================
-    // 로그인 / 회원가입 화면 변경
-    // ========================================
+    // 로그인 / 회원가입 화면 전환
 
     function setMode(mode, scrollTop = false) {
 
       if (currentMode !== mode) {
-
         resetPasswords();
-
       }
 
       currentMode = mode;
 
       const isLogin = mode === 'login';
-
-
-      // 탭 활성화
 
       loginTab.classList.toggle('active', isLogin);
 
@@ -851,41 +815,25 @@
         String(!isLogin)
       );
 
-
-      // 캐릭터 변경
-
       loginCharacter.hidden = !isLogin;
 
       signupCharacter.hidden = isLogin;
-
-
-      // 환영 문구 변경
 
       loginWelcome.hidden = !isLogin;
 
       signupWelcome.hidden = isLogin;
 
-
-      // 입력 폼 변경
-
       loginSection.hidden = !isLogin;
 
       signupSection.hidden = isLogin;
 
-
-      // 구분선 문구 변경
-
-      dividerText.textContent = isLogin
+      $('#dividerText').textContent = isLogin
 
         ? '또는 이메일로 로그인'
 
         : '또는 이메일로 회원가입';
 
-
-      signupError.textContent = '';
-
-
-      // 화면 위로 이동
+      $('#signupError').textContent = '';
 
       if (scrollTop) {
 
@@ -902,129 +850,97 @@
     }
 
 
-    // 로그인 탭
-
-    loginTab.addEventListener('click', function() {
+    loginTab.addEventListener('click', () => {
 
       setMode('login');
 
     });
 
 
-    // 회원가입 탭
-
-    signupTab.addEventListener('click', function() {
+    signupTab.addEventListener('click', () => {
 
       setMode('signup');
 
     });
 
 
-    // 회원가입하기 버튼
+    $('#goSignup').addEventListener('click', () => {
 
-    document.getElementById('goSignup')
-      .addEventListener('click', function() {
+      setMode('signup', true);
 
-        setMode('signup', true);
-
-      });
+    });
 
 
-    // 로그인하기 버튼
+    $('#goLogin').addEventListener('click', () => {
 
-    document.getElementById('goLogin')
-      .addEventListener('click', function() {
+      setMode('login', true);
 
-        setMode('login', true);
-
-      });
+    });
 
 
     // ========================================
     // 비밀번호 보기 / 숨기기
     // ========================================
 
-    document.querySelectorAll('.password-toggle')
-      .forEach(function(button) {
+    $$('.password-toggle').forEach(button => {
 
-        button.addEventListener('click', function() {
+      button.addEventListener('click', () => {
 
-          const input = document.getElementById(
-            button.dataset.target
-          );
+        const input = document.getElementById(
+          button.dataset.target
+        );
 
-          const isHidden = input.type === 'password';
+        const isHidden = input.type === 'password';
 
-          input.type = isHidden ? 'text' : 'password';
+        input.type = isHidden ? 'text' : 'password';
 
+        button.innerHTML = isHidden
 
-          button.innerHTML = isHidden
+          ? '<i data-lucide="eye-off"></i>'
 
-            ? '<i data-lucide="eye-off"></i>'
+          : '<i data-lucide="eye"></i>';
 
-            : '<i data-lucide="eye"></i>';
+        button.setAttribute(
 
+          'aria-label',
 
-          button.setAttribute(
+          isHidden
+            ? '비밀번호 숨기기'
+            : '비밀번호 보기'
 
-            'aria-label',
+        );
 
-            isHidden
-
-              ? '비밀번호 숨기기'
-
-              : '비밀번호 보기'
-
-          );
-
-
-          if (window.lucide) {
-
-            lucide.createIcons();
-
-          }
-
-        });
+        if (window.lucide) {
+          lucide.createIcons();
+        }
 
       });
+
+    });
 
 
     // ========================================
     // 약관 전체 동의
     // ========================================
 
-    const agreeAll = document.getElementById('agreeAll');
+    const agreeAll = $('#agreeAll');
 
-    const agreementChecks = Array.from(
-
-      document.querySelectorAll('.agreement-check')
-
-    );
+    const agreementChecks = $$('.agreement-check');
 
 
     function updateAgreement() {
 
       const allChecked = agreementChecks.every(
 
-        function(check) {
-
-          return check.checked;
-
-        }
+        check => check.checked
 
       );
-
 
       const someChecked = agreementChecks.some(
 
-        function(check) {
-
-          return check.checked;
-
-        }
+        check => check.checked
 
       );
-
 
       agreeAll.checked = allChecked;
 
@@ -1034,11 +950,9 @@
     }
 
 
-    // 전체 동의 체크
+    agreeAll.addEventListener('change', () => {
 
-    agreeAll.addEventListener('change', function() {
-
-      agreementChecks.forEach(function(check) {
+      agreementChecks.forEach(check => {
 
         check.checked = agreeAll.checked;
 
@@ -1049,9 +963,7 @@
     });
 
 
-    // 개별 약관 체크
-
-    agreementChecks.forEach(function(check) {
+    agreementChecks.forEach(check => {
 
       check.addEventListener(
         'change',
@@ -1065,21 +977,16 @@
     // 안내 팝업
     // ========================================
 
-    const noticeModal = document.getElementById('noticeModal');
-
-    const noticeTitle = document.getElementById('noticeTitle');
-
-    const noticeText = document.getElementById('noticeText');
-
+    const noticeModal = $('#noticeModal');
 
     let afterNotice = null;
 
 
     function showNotice(title, text, callback = null) {
 
-      noticeTitle.textContent = title;
+      $('#noticeTitle').textContent = title;
 
-      noticeText.textContent = text;
+      $('#noticeText').textContent = text;
 
       afterNotice = callback;
 
@@ -1090,39 +997,31 @@
     }
 
 
-    // 팝업 닫기
+    $('#noticeClose').addEventListener('click', () => {
 
-    document.getElementById('noticeClose')
-      .addEventListener('click', function() {
+      afterNotice = null;
 
-        afterNotice = null;
+      noticeModal.close();
 
-        noticeModal.close();
-
-      });
+    });
 
 
-    // 팝업 확인 버튼
+    $('#noticeConfirm').addEventListener('click', () => {
 
-    document.getElementById('noticeConfirm')
-      .addEventListener('click', function() {
+      const callback = afterNotice;
 
-        const callback = afterNotice;
+      afterNotice = null;
 
-        afterNotice = null;
+      noticeModal.close();
 
-        noticeModal.close();
+      if (callback) {
+        callback();
+      }
 
-        if (callback) {
-
-          callback();
-
-        }
-
-      });
+    });
 
 
-    noticeModal.addEventListener('close', function() {
+    noticeModal.addEventListener('close', () => {
 
       document.body.classList.remove('modal-open');
 
@@ -1132,20 +1031,49 @@
 
 
     // ========================================
-    // 테스트용 로그인 상태 저장
+    // 임시 로그인 정보 저장
     //
-    // 실제 이메일과 비밀번호는 저장하지 않음
+    // 사용자 이름과 로그인 상태만 저장
+    // 실제 비밀번호는 저장하지 않음
     // ========================================
 
-    function saveDemoLogin() {
+    function saveDemoLogin(username) {
 
       try {
 
-        sessionStorage.setItem('demoLogin', 'true');
+        sessionStorage.setItem(
+          'demoLogin',
+          'true'
+        );
+
+        sessionStorage.setItem(
+          'demoUsername',
+          username || '입덕이'
+        );
+
+        return true;
 
       } catch (error) {
 
-        console.warn('테스트 로그인 상태 저장 불가');
+        alert(
+          '로그인 상태를 저장할 수 없습니다. ' +
+          'Live Server 환경에서 실행해 주세요.'
+        );
+
+        return false;
+
+      }
+
+    }
+
+
+    // 로그인 완료 후 메인페이지 이동
+
+    function completeLogin(username) {
+
+      if (saveDemoLogin(username)) {
+
+        window.location.href = '../../index.html';
 
       }
 
@@ -1155,32 +1083,31 @@
     // ========================================
     // 일반 로그인
     //
-    // 입력 내용과 상관없이 로그인 가능
+    // 아무렇게나 입력해도 로그인 가능
     // ========================================
 
-    loginForm.addEventListener('submit', function(event) {
+    loginForm.addEventListener('submit', event => {
 
       event.preventDefault();
+
+      const username = $('#loginEmail')
+        .value
+        .trim()
+        .split('@')[0]
+        .slice(0, 20) || '입덕이';
 
       loginForm.reset();
 
       resetPasswords();
 
-
       showNotice(
 
         '로그인 완료!',
 
-        '입덕볶이에 오신 것을 환영합니다!\n' +
-        '테스트 로그인이 완료되었습니다.',
+        username +
+        '님, 입덕볶이에 오신 것을 환영합니다!',
 
-        function() {
-
-          saveDemoLogin();
-
-          window.location.href = '../../index.html';
-
-        }
+        () => completeLogin(username)
 
       );
 
@@ -1190,15 +1117,12 @@
     // ========================================
     // 일반 회원가입
     //
-    // 이메일 형식, 비밀번호, 약관 검사 생략
+    // 모든 입력 조건 검사 생략
     // ========================================
 
-    signupForm.addEventListener('submit', function(event) {
+    signupForm.addEventListener('submit', event => {
 
       event.preventDefault();
-
-
-      // 회원가입 입력 내용 초기화
 
       signupForm.reset();
 
@@ -1206,10 +1130,7 @@
 
       updateAgreement();
 
-      signupError.textContent = '';
-
-
-      // 회원가입 완료 팝업
+      $('#signupError').textContent = '';
 
       showNotice(
 
@@ -1218,11 +1139,7 @@
         '입덕볶이의 새로운 회원이 되신 것을 환영합니다!\n' +
         '테스트 회원가입이 완료되었습니다.',
 
-        function() {
-
-          setMode('login', true);
-
-        }
+        () => setMode('login', true)
 
       );
 
@@ -1230,98 +1147,78 @@
 
 
     // ========================================
-    // 카카오 / 구글 / 애플
-    // 간편 로그인 및 회원가입 테스트
+    // 카카오 / 구글 / 애플 간편 로그인
     // ========================================
 
-    document.querySelectorAll('.social-btn')
-      .forEach(function(button) {
+    $$('.social-btn').forEach(button => {
 
-        button.addEventListener('click', function() {
+      button.addEventListener('click', () => {
 
-          const provider = button.dataset.provider;
+        const provider = button.dataset.provider;
 
-          const isSignup = currentMode === 'signup';
+        const username = provider + ' 회원';
 
+        if (currentMode === 'signup') {
 
-          // 간편 회원가입
+          signupForm.reset();
 
-          if (isSignup) {
+          resetPasswords();
 
-            signupForm.reset();
+          updateAgreement();
 
-            resetPasswords();
+          showNotice(
 
-            updateAgreement();
+            provider + ' 회원가입 완료!',
 
-            showNotice(
+            '간편 회원가입 테스트가 완료되었습니다.',
 
-              provider + ' 회원가입 완료!',
+            () => setMode('login', true)
 
-              '간편 회원가입 테스트가 완료되었습니다.\n' +
-              '실제 외부 계정 인증은 진행되지 않습니다.',
+          );
 
-              function() {
+        } else {
 
-                setMode('login', true);
+          loginForm.reset();
 
-              }
+          resetPasswords();
 
-            );
+          showNotice(
 
-          } else {
+            provider + ' 로그인 완료!',
 
-            // 간편 로그인
+            '간편 로그인 테스트가 완료되었습니다.',
 
-            loginForm.reset();
+            () => completeLogin(username)
 
-            resetPasswords();
+          );
 
-            showNotice(
-
-              provider + ' 로그인 완료!',
-
-              '간편 로그인 테스트가 완료되었습니다.\n' +
-              '실제 외부 계정 인증은 진행되지 않습니다.',
-
-              function() {
-
-                saveDemoLogin();
-
-                window.location.href = '../../index.html';
-
-              }
-
-            );
-
-          }
-
-        });
+        }
 
       });
+
+    });
 
 
     // ========================================
     // 비밀번호 찾기
     // ========================================
 
-    document.getElementById('findPassword')
-      .addEventListener('click', function() {
+    $('#findPassword').addEventListener('click', () => {
 
-        showNotice(
+      showNotice(
 
-          '비밀번호 찾기',
+        '비밀번호 찾기',
 
-          '현재는 테스트 페이지입니다.\n' +
-          '실제 비밀번호 재설정 메일은 발송되지 않습니다.'
+        '현재는 테스트 페이지입니다.\n' +
+        '실제 비밀번호 재설정 메일은 발송되지 않습니다.'
 
-        );
+      );
 
-      });
+    });
 
 
     // ========================================
-    // 약관 내용 보기
+    // 약관 안내
     // ========================================
 
     const termsData = {
@@ -1330,8 +1227,7 @@
 
         title: '이용약관',
 
-        text: '입덕볶이 수업용 웹사이트의 예시 이용약관입니다.\n' +
-              '실제 서비스 이용 계약은 체결되지 않습니다.'
+        text: '입덕볶이 수업용 웹사이트의 예시 이용약관입니다.'
 
       },
 
@@ -1339,8 +1235,8 @@
 
         title: '개인정보처리방침',
 
-        text: '현재 입력한 개인정보와 비밀번호는 저장하거나 전송하지 않습니다.\n' +
-              '실제 개인정보를 입력하지 마세요.'
+        text: '테스트용 사용자 이름과 로그인 상태만 저장합니다.\n' +
+              '실제 개인정보나 비밀번호를 입력하지 마세요.'
 
       },
 
@@ -1349,53 +1245,42 @@
         title: '마케팅 정보 수신 동의',
 
         text: '이벤트 및 신메뉴 소식을 받는 선택 항목입니다.\n' +
-              '테스트 페이지에서는 실제 메시지를 발송하지 않습니다.'
+              '실제 메시지는 발송되지 않습니다.'
 
       }
 
     };
 
 
-    document.querySelectorAll('.terms-btn')
-      .forEach(function(button) {
+    $$('.terms-btn').forEach(button => {
 
-        button.addEventListener('click', function() {
+      button.addEventListener('click', () => {
 
-          const terms = termsData[button.dataset.terms];
+        const terms = termsData[button.dataset.terms];
 
-          showNotice(
-
-            terms.title,
-
-            terms.text
-
-          );
-
-        });
+        showNotice(terms.title, terms.text);
 
       });
 
+    });
+
 
     // ========================================
-    // 햄버거 메뉴
+    // 햄버거 슬라이드 메뉴
     // ========================================
 
-    const menuBtn = document.getElementById('menuBtn');
+    const menuBtn = $('#menuBtn');
 
-    const closeBtn = document.getElementById('closeBtn');
+    const closeBtn = $('#closeBtn');
 
-    const menuLayer = document.getElementById('menuLayer');
+    const menuLayer = $('#menuLayer');
 
-    const menuOverlay = document.getElementById('menuOverlay');
+    const menuOverlay = $('#menuOverlay');
 
-    const container = document.querySelector('.container');
+    const container = $('.container');
 
-    const menuLinks = document.querySelectorAll(
-      '.side-menu-nav a'
-    );
+    const menuLinks = $$('.side-menu-nav a');
 
-
-    // 메뉴 열기
 
     function openMenu() {
 
@@ -1403,54 +1288,32 @@
 
       menuLayer.classList.add('active');
 
-      menuLayer.setAttribute(
-        'aria-hidden',
-        'false'
-      );
+      menuLayer.setAttribute('aria-hidden', 'false');
 
-      menuBtn.setAttribute(
-        'aria-expanded',
-        'true'
-      );
+      menuBtn.setAttribute('aria-expanded', 'true');
 
       document.body.classList.add('menu-open');
 
-      closeBtn.focus({
-
-        preventScroll: true
-
-      });
+      closeBtn.focus({ preventScroll: true });
 
       container.inert = true;
 
     }
 
 
-    // 메뉴 닫기
-
     function closeMenu() {
 
       container.inert = false;
 
-      menuBtn.focus({
-
-        preventScroll: true
-
-      });
+      menuBtn.focus({ preventScroll: true });
 
       menuLayer.classList.remove('active');
 
       menuLayer.inert = true;
 
-      menuLayer.setAttribute(
-        'aria-hidden',
-        'true'
-      );
+      menuLayer.setAttribute('aria-hidden', 'true');
 
-      menuBtn.setAttribute(
-        'aria-expanded',
-        'false'
-      );
+      menuBtn.setAttribute('aria-expanded', 'false');
 
       document.body.classList.remove('menu-open');
 
@@ -1464,15 +1327,11 @@
     menuOverlay.addEventListener('click', closeMenu);
 
 
-    // 메뉴 클릭
+    menuLinks.forEach(link => {
 
-    menuLinks.forEach(function(link) {
+      link.addEventListener('click', event => {
 
-      link.addEventListener('click', function(event) {
-
-        if (
-          link.getAttribute('aria-current') === 'page'
-        ) {
+        if (link.getAttribute('aria-current') === 'page') {
 
           event.preventDefault();
 
@@ -1485,14 +1344,11 @@
     });
 
 
-    // ========================================
-    // ESC 및 Tab 키 처리
-    // ========================================
+    // ESC 및 키보드 처리
 
-    document.addEventListener('keydown', function(event) {
+    document.addEventListener('keydown', event => {
 
       if (!menuLayer.classList.contains('active')) return;
-
 
       if (event.key === 'Escape') {
 
@@ -1500,18 +1356,13 @@
 
       }
 
-
       if (event.key === 'Tab') {
 
         const lastLink = menuLinks[menuLinks.length - 1];
 
-
         if (
-
           event.shiftKey &&
-
           document.activeElement === closeBtn
-
         ) {
 
           event.preventDefault();
@@ -1519,11 +1370,8 @@
           lastLink.focus();
 
         } else if (
-
           !event.shiftKey &&
-
           document.activeElement === lastLink
-
         ) {
 
           event.preventDefault();
@@ -1541,9 +1389,9 @@
     // 뒤로가기 슬라이드 애니메이션
     // ========================================
 
-    const backBtn = document.getElementById('backBtn');
+    const backBtn = $('#backBtn');
 
-    const pageContent = document.querySelector('.page-content');
+    const pageContent = $('.page-content');
 
     let isMoving = false;
 
@@ -1555,11 +1403,8 @@
       clearTimeout(moveTimer);
 
       pageContent.removeEventListener(
-
         'transitionend',
-
         onTransitionEnd
-
       );
 
       window.location.href = backBtn.href;
@@ -1570,11 +1415,8 @@
     function onTransitionEnd(event) {
 
       if (
-
         event.target === pageContent &&
-
         event.propertyName === 'transform'
-
       ) {
 
         moveBack();
@@ -1584,7 +1426,7 @@
     }
 
 
-    backBtn.addEventListener('click', function(event) {
+    backBtn.addEventListener('click', event => {
 
       event.preventDefault();
 
@@ -1594,7 +1436,6 @@
 
       backBtn.classList.add('active');
 
-
       if (reducedMotion) {
 
         moveBack();
@@ -1603,13 +1444,9 @@
 
       }
 
-
       pageContent.addEventListener(
-
         'transitionend',
-
         onTransitionEnd
-
       );
 
       document.body.classList.add('page-leaving');
@@ -1623,16 +1460,13 @@
     // 브라우저 뒤로가기 시 초기화
     // ========================================
 
-    window.addEventListener('pageshow', function() {
+    window.addEventListener('pageshow', () => {
 
       clearTimeout(moveTimer);
 
       pageContent.removeEventListener(
-
         'transitionend',
-
         onTransitionEnd
-
       );
 
       document.body.classList.remove('page-leaving');
@@ -1641,20 +1475,17 @@
 
       isMoving = false;
 
-
       if (menuLayer.classList.contains('active')) {
 
         closeMenu();
 
       }
 
-
       if (noticeModal.open) {
 
         noticeModal.close();
 
       }
-
 
       document.body.classList.remove('modal-open');
 
@@ -1663,6 +1494,202 @@
       updateAgreement();
 
     });
+
+  </script>
+
+
+  <!-- ========================================
+       공통 로그인 프로필 및 로그아웃 기능
+  ========================================= -->
+
+  <script>
+
+    (function() {
+
+      const sideNav =
+        document.querySelector('.side-menu-nav');
+
+      if (!sideNav) return;
+
+      if (sideNav.dataset.authReady === 'true') return;
+
+
+      // 기존 로그인 / 회원가입 메뉴 찾기
+
+      const authLink = Array.from(
+        sideNav.querySelectorAll('a')
+      ).find(link => {
+
+        return link.textContent
+          .replace(/\s/g, '')
+          .includes('로그인/회원가입');
+
+      });
+
+      if (!authLink) return;
+
+      sideNav.dataset.authReady = 'true';
+
+
+      // 기존 링크 정보 저장
+
+      const originalHref =
+        authLink.getAttribute('href');
+
+      const originalText =
+        authLink.textContent.trim();
+
+      const originalCurrent =
+        authLink.getAttribute('aria-current');
+
+
+      // 사용자 프로필 생성
+
+      const profile = document.createElement('div');
+
+      profile.className = 'user-profile';
+
+      profile.hidden = true;
+
+      profile.innerHTML = `
+
+        <div class="profile-icon">
+
+          <i data-lucide="user-round"></i>
+
+        </div>
+
+        <div class="profile-info">
+
+          <p class="profile-name"></p>
+
+          <p class="profile-message">
+            오늘도 환영해요!
+          </p>
+
+        </div>
+
+      `;
+
+      sideNav.before(profile);
+
+
+      // 로그인 상태 확인
+
+      function getLoginState() {
+
+        try {
+
+          return sessionStorage.getItem(
+            'demoLogin'
+          ) === 'true';
+
+        } catch (error) {
+
+          return false;
+
+        }
+
+      }
+
+
+      // 메뉴 업데이트
+
+      function updateLoginMenu() {
+
+        if (getLoginState()) {
+
+          const username =
+            sessionStorage.getItem('demoUsername')
+            || '입덕이';
+
+          profile.hidden = false;
+
+          profile.querySelector(
+            '.profile-name'
+          ).textContent = username + '님';
+
+          authLink.textContent = '로그아웃';
+
+          authLink.href = '#';
+
+          authLink.removeAttribute('aria-current');
+
+          authLink.classList.add('logout-link');
+
+        } else {
+
+          profile.hidden = true;
+
+          authLink.textContent = originalText;
+
+          authLink.setAttribute('href', originalHref);
+
+          authLink.classList.remove('logout-link');
+
+          if (originalCurrent !== null) {
+
+            authLink.setAttribute(
+              'aria-current',
+              originalCurrent
+            );
+
+          }
+
+        }
+
+        if (window.lucide) {
+
+          lucide.createIcons();
+
+        }
+
+      }
+
+
+      // 로그아웃
+
+      authLink.addEventListener('click', event => {
+
+        if (!getLoginState()) return;
+
+        event.preventDefault();
+
+        event.stopImmediatePropagation();
+
+        if (!confirm('로그아웃 하시겠습니까?')) return;
+
+        try {
+
+          sessionStorage.removeItem('demoLogin');
+
+          sessionStorage.removeItem('demoUsername');
+
+        } catch (error) {
+
+          alert('로그아웃 상태 변경에 실패했습니다.');
+
+          return;
+
+        }
+
+        updateLoginMenu();
+
+        alert('로그아웃 되었습니다.');
+
+      }, true);
+
+
+      // 페이지 실행 시 사용자 정보 반영
+
+      updateLoginMenu();
+
+      window.addEventListener(
+        'pageshow',
+        updateLoginMenu
+      );
+
+    })();
 
   </script>
 

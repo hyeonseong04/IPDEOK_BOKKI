@@ -1001,3 +1001,129 @@ body.menu-open {
   }
 
 }
+
+
+/* ========================================
+   로그인 사용자 프로필
+======================================== */
+
+.side-menu .user-profile {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 20px 20px 0;
+  padding-bottom: 24px;
+
+  border-bottom: 1px solid #E5D8C8;
+}
+
+
+/* 비로그인 상태 숨기기 */
+
+.side-menu .user-profile[hidden] {
+  display: none !important;
+}
+
+
+/* 프로필 원형 아이콘 */
+
+.side-menu .profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  background-color: #FFE0C6;
+  border-radius: 50%;
+
+  color: #E84129;
+}
+
+.side-menu .profile-icon svg {
+  width: 26px;
+  height: 26px;
+
+  stroke-width: 1.8;
+}
+
+
+/* 사용자 정보 */
+
+.side-menu .profile-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  flex: 1;
+  min-width: 0;
+}
+
+
+/* 사용자 이름 */
+
+.side-menu .profile-name {
+  margin: 0;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  color: #000000;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* 환영 문구 */
+
+.side-menu .profile-message {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  color: #777777;
+}
+
+
+/* 로그아웃 메뉴 */
+
+.side-menu .side-menu-nav a.logout-link {
+  color: #E84129;
+}
+
+
+/* 작은 모바일 화면 대응 */
+
+@media screen and (max-width: 360px) {
+
+  .side-menu .profile-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .side-menu .profile-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .side-menu .profile-name {
+    font-size: 17px;
+  }
+
+  .side-menu .profile-message {
+    font-size: 11px;
+  }
+
+}
+
