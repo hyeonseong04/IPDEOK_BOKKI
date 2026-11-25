@@ -1,0 +1,1534 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>입덕볶이 - 커뮤니티</title>
+
+  <!-- Noto Sans KR -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap">
+
+  <!-- 외부 CSS -->
+  <link rel="stylesheet" href="CSS/community.css">
+
+  <!-- Lucide 아이콘 -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="page-content">
+
+      <!-- HEADER -->
+
+      <header class="header">
+
+        <a href="../../index.html"
+           id="backBtn"
+           class="icon-btn back-btn"
+           aria-label="메인으로 돌아가기">
+
+          <i data-lucide="chevron-left"></i>
+          <span class="icon-fallback" aria-hidden="true">‹</span>
+
+        </a>
+
+        <a href="../../index.html" class="logo">
+          <img src="img/logo.png" alt="입덕볶이 홈">
+        </a>
+
+        <button type="button"
+                id="menuBtn"
+                class="icon-btn menu-btn"
+                aria-label="메뉴 열기"
+                aria-expanded="false"
+                aria-controls="sideMenu">
+
+          <i data-lucide="menu"></i>
+          <span class="icon-fallback" aria-hidden="true">☰</span>
+
+        </button>
+
+      </header>
+
+
+      <main>
+
+        <!-- ========================================
+             SECTION 01 : 커뮤니티 히어로
+        ========================================= -->
+
+        <section class="hero-section">
+
+          <div class="hero-copy">
+
+            <p class="section-label">COMMUNITY</p>
+
+            <h1>
+              함께 나누는<br>
+              <span class="accent">떡볶이</span> 이야기
+            </h1>
+
+            <p class="description">
+              입덕볶이를 좋아하는 사람들이 모여<br>
+              메뉴 후기, 꿀조합, 일상 속 떡볶이<br>
+              이야기를 나눠요.
+            </p>
+
+            <a href="#communityBoard" class="black-btn">
+              커뮤니티 둘러보기
+              <i data-lucide="arrow-right"></i>
+            </a>
+
+          </div>
+
+
+          <!-- 히어로 이미지 콜라주 -->
+
+          <div class="hero-collage">
+
+            <div class="hero-shape" aria-hidden="true"></div>
+
+            <!-- 대표 떡볶이 -->
+
+            <div class="hero-photo photo-main">
+
+              <img src="img/01_hero_tteokbokki.png"
+                   alt="매콤한 시그니처 떡볶이"
+                   width="768"
+                   height="512">
+
+            </div>
+
+            <!-- 치즈 떡볶이 -->
+
+            <div class="hero-photo photo-top">
+
+              <img src="img/02_hero_cheese.png"
+                   alt="치즈가 늘어나는 떡볶이"
+                   width="768"
+                   height="512">
+
+            </div>
+
+            <!-- 모둠 튀김 -->
+
+            <div class="hero-photo photo-bottom">
+
+              <img src="img/03_hero_fried.png"
+                   alt="노릇노릇한 모둠 튀김"
+                   width="768"
+                   height="512">
+
+            </div>
+
+            <div class="spark" aria-hidden="true">
+              <b></b>
+              <b></b>
+              <b></b>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ========================================
+             SECTION 02 : 커뮤니티 공간 소개
+        ========================================= -->
+
+        <section class="space-section reveal">
+
+          <p class="section-label">
+            COMMUNITY SPACE
+          </p>
+
+          <h2>
+
+            먹고, 나누고,<br>
+
+            <span class="underline">
+              추천하는 공간.
+            </span>
+
+          </h2>
+
+          <p class="description">
+            메뉴 후기부터 나만의 꿀조합,<br>
+            떡볶이와 함께하는 일상까지<br>
+            자유롭게 이야기해 보세요.
+          </p>
+
+          <!-- 떡볶이와 튀김 대화 캐릭터 -->
+
+          <div class="space-image">
+
+            <img src="img/04_community_space.png"
+                 alt="하트와 말풍선을 주고받으며 대화하는 떡볶이와 새우튀김 캐릭터"
+                 width="768"
+                 height="512"
+                 loading="lazy">
+
+          </div>
+
+        </section>
+
+
+        <!-- ========================================
+             SECTION 03 : 커뮤니티 게시판
+        ========================================= -->
+
+        <section class="board-section reveal"
+                 id="communityBoard">
+
+          <div class="board-heading">
+
+            <p class="section-label">
+              COMMUNITY BOARD
+            </p>
+
+            <h2>
+              지금,<br>
+              커뮤니티에서
+            </h2>
+
+            <div class="board-top">
+
+              <p id="postCount" aria-live="polite">
+                게시글 4개
+              </p>
+
+              <button type="button"
+                      class="outline-btn"
+                      id="viewAllBtn"
+                      aria-pressed="false">
+
+                <span id="viewAllText">전체보기</span>
+                <i data-lucide="arrow-right"></i>
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- 게시글 카테고리 -->
+
+          <div class="category-list"
+               aria-label="게시글 카테고리">
+
+            <button type="button"
+                    class="category-btn active"
+                    data-category="all"
+                    aria-pressed="true">
+
+              전체
+
+            </button>
+
+            <button type="button"
+                    class="category-btn"
+                    data-category="review"
+                    aria-pressed="false">
+
+              메뉴 후기
+
+            </button>
+
+            <button type="button"
+                    class="category-btn"
+                    data-category="recommend"
+                    aria-pressed="false">
+
+              꿀조합 추천
+
+            </button>
+
+            <button type="button"
+                    class="category-btn"
+                    data-category="free"
+                    aria-pressed="false">
+
+              자유게시판
+
+            </button>
+
+            <button type="button"
+                    class="category-btn"
+                    data-category="event"
+                    aria-pressed="false">
+
+              이벤트/소식
+
+            </button>
+
+          </div>
+
+
+          <!-- 게시글 목록 -->
+
+          <div class="post-list" id="postList">
+
+
+            <!-- 게시글 01 : 메뉴 후기 -->
+
+            <article class="post-card"
+                     data-category="review">
+
+              <button type="button" class="post-open">
+
+                <img class="post-image"
+                     src="img/05_review_cheese.png"
+                     alt="치즈폭탄 떡볶이"
+                     width="768"
+                     height="512"
+                     loading="lazy">
+
+                <span class="post-info">
+
+                  <span class="post-tag review-tag">
+                    메뉴 후기
+                  </span>
+
+                  <strong class="post-title">
+                    치즈폭탄 떡볶이 진짜 맛있어요!
+                  </strong>
+
+                  <span class="post-description">
+                    치즈가 정말 듬뿍 들어있어서
+                    마지막까지 맛있게 먹었어요.
+                    다음에도 주문하고 싶어요!
+                  </span>
+
+                </span>
+
+              </button>
+
+              <div class="post-bottom">
+
+                <button type="button"
+                        class="like-btn"
+                        aria-label="좋아요"
+                        aria-pressed="false">
+
+                  <i data-lucide="heart"></i>
+                  <span class="like-count">128</span>
+
+                </button>
+
+                <button type="button"
+                        class="comment-btn"
+                        aria-label="댓글 보기">
+
+                  <i data-lucide="message-circle"></i>
+                  <span class="comment-count">24</span>
+
+                </button>
+
+              </div>
+
+            </article>
+
+
+            <!-- 게시글 02 : 꿀조합 추천 -->
+
+            <article class="post-card"
+                     data-category="recommend">
+
+              <button type="button" class="post-open">
+
+                <img class="post-image"
+                     src="img/06_recommend_combo.png"
+                     alt="로제 떡볶이와 모둠 튀김"
+                     width="768"
+                     height="512"
+                     loading="lazy">
+
+                <span class="post-info">
+
+                  <span class="post-tag recommend-tag">
+                    꿀조합 추천
+                  </span>
+
+                  <strong class="post-title">
+                    이 조합 꼭 드셔보세요!
+                  </strong>
+
+                  <span class="post-description">
+                    로제 떡볶이에 바삭한 튀김을
+                    추가해서 먹으면 정말 맛있어요.
+                    여러분도 한번 드셔보세요!
+                  </span>
+
+                </span>
+
+              </button>
+
+              <div class="post-bottom">
+
+                <button type="button"
+                        class="like-btn"
+                        aria-label="좋아요"
+                        aria-pressed="false">
+
+                  <i data-lucide="heart"></i>
+                  <span class="like-count">97</span>
+
+                </button>
+
+                <button type="button"
+                        class="comment-btn"
+                        aria-label="댓글 보기">
+
+                  <i data-lucide="message-circle"></i>
+                  <span class="comment-count">18</span>
+
+                </button>
+
+              </div>
+
+            </article>
+
+
+            <!-- 게시글 03 : 자유게시판 -->
+
+            <article class="post-card"
+                     data-category="free">
+
+              <button type="button" class="post-open">
+
+                <img class="post-image"
+                     src="img/07_package.png"
+                     alt="떡볶이 캐릭터가 그려진 포장 패키지"
+                     width="768"
+                     height="512"
+                     loading="lazy">
+
+                <span class="post-info">
+
+                  <span class="post-tag free-tag">
+                    자유게시판
+                  </span>
+
+                  <strong class="post-title">
+                    여러분은 어떤 메뉴가 최애인가요?
+                  </strong>
+
+                  <span class="post-description">
+                    저는 아직도 시그니처 떡볶이가
+                    가장 좋아요.
+                    여러분의 최애 메뉴도 알려주세요!
+                  </span>
+
+                </span>
+
+              </button>
+
+              <div class="post-bottom">
+
+                <button type="button"
+                        class="like-btn"
+                        aria-label="좋아요"
+                        aria-pressed="false">
+
+                  <i data-lucide="heart"></i>
+                  <span class="like-count">56</span>
+
+                </button>
+
+                <button type="button"
+                        class="comment-btn"
+                        aria-label="댓글 보기">
+
+                  <i data-lucide="message-circle"></i>
+                  <span class="comment-count">42</span>
+
+                </button>
+
+              </div>
+
+            </article>
+
+
+            <!-- 게시글 04 : 이벤트 및 소식 -->
+
+            <article class="post-card"
+                     data-category="event">
+
+              <button type="button" class="post-open">
+
+                <img class="post-image event-image"
+                     src="img/08_event.png"
+                     alt="커뮤니티 OPEN 이벤트"
+                     width="768"
+                     height="512"
+                     loading="lazy">
+
+                <span class="post-info">
+
+                  <span class="post-tag event-tag">
+                    이벤트/소식
+                  </span>
+
+                  <strong class="post-title">
+                    입덕볶이 커뮤니티 OPEN!
+                  </strong>
+
+                  <span class="post-description">
+                    입덕볶이 커뮤니티가 열렸어요.
+                    맛있는 이야기와 즐거운 일상을
+                    함께 나눠보세요!
+                  </span>
+
+                </span>
+
+              </button>
+
+              <div class="post-bottom">
+
+                <button type="button"
+                        class="like-btn"
+                        aria-label="좋아요"
+                        aria-pressed="false">
+
+                  <i data-lucide="heart"></i>
+                  <span class="like-count">85</span>
+
+                </button>
+
+                <button type="button"
+                        class="comment-btn"
+                        aria-label="댓글 보기">
+
+                  <i data-lucide="message-circle"></i>
+                  <span class="comment-count">12</span>
+
+                </button>
+
+              </div>
+
+            </article>
+
+          </div>
+
+
+          <!-- 슬라이드 위치 표시 -->
+
+          <div class="slider-dots"
+               id="sliderDots"
+               aria-label="게시글 슬라이드">
+          </div>
+
+          <p class="demo-guide">
+
+            테스트용 게시글입니다.
+            좋아요 및 댓글은 새로고침하면 초기화됩니다.
+
+          </p>
+
+        </section>
+
+
+        <!-- ========================================
+             SECTION 04 : 커뮤니티 소식 구독
+        ========================================= -->
+
+        <section class="subscribe-section reveal">
+
+          <div class="subscribe-card">
+
+            <div class="subscribe-heading">
+
+              <div class="subscribe-icon">
+                <i data-lucide="mail"></i>
+              </div>
+
+              <h2>
+                커뮤니티 소식,<br>
+                놓치지 마세요!
+              </h2>
+
+            </div>
+
+            <p class="description">
+              신메뉴, 이벤트, 인기 게시글을<br>
+              이메일로 가장 먼저 만나보세요.
+            </p>
+
+            <form id="subscribeForm">
+
+              <div class="subscribe-input">
+
+                <input type="email"
+                       id="subscribeEmail"
+                       aria-label="구독 이메일"
+                       placeholder="이메일을 입력하세요"
+                       required>
+
+                <button type="submit">
+                  구독하기
+                </button>
+
+              </div>
+
+            </form>
+
+            <p class="subscribe-message"
+               id="subscribeMessage"
+               aria-live="polite">
+            </p>
+
+            <p class="subscribe-guide">
+
+              테스트용 기능입니다.
+              이메일은 저장하거나 전송하지 않습니다.
+
+            </p>
+
+          </div>
+
+        </section>
+
+      </main>
+
+
+      <!-- ========================================
+           FOOTER
+      ========================================= -->
+
+      <footer class="footer">
+
+        <a href="../../index.html" class="footer-logo">
+
+          <img src="img/logo.png"
+               alt="입덕볶이 홈">
+
+        </a>
+
+        <nav class="footer-links" aria-label="하단 안내">
+
+          <a href="#">이용약관</a>
+
+          <a href="#">개인정보처리방침</a>
+
+          <a href="#">고객센터</a>
+
+        </nav>
+
+        <p class="copyright">
+
+          © IPDEOK BOKKI. All Rights Reserved.
+
+        </p>
+
+      </footer>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================
+       게시글 상세 및 댓글 모달
+  ========================================= -->
+
+  <dialog class="post-modal"
+          id="postModal"
+          aria-labelledby="modalTitle">
+
+    <div class="modal-header">
+
+      <h2>커뮤니티 이야기</h2>
+
+      <button type="button"
+              id="modalClose"
+              class="icon-btn"
+              aria-label="닫기">
+
+        <i data-lucide="x"></i>
+        <span class="icon-fallback" aria-hidden="true">×</span>
+
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <img id="modalImage"
+           class="modal-image"
+           alt="">
+
+      <span id="modalCategory"
+            class="post-tag">
+      </span>
+
+      <h3 id="modalTitle"></h3>
+
+      <p id="modalDescription"></p>
+
+      <h4 class="comment-title">
+        댓글
+      </h4>
+
+      <p class="comment-guide">
+        기존 댓글 수는 예시입니다.
+        아래에서 테스트 댓글을 작성할 수 있어요.
+      </p>
+
+      <div id="commentList"
+           class="comment-list"
+           aria-live="polite">
+      </div>
+
+      <form id="commentForm">
+
+        <textarea id="commentInput"
+                  aria-label="댓글 내용"
+                  placeholder="댓글을 입력해 주세요."
+                  maxlength="300"
+                  required></textarea>
+
+        <button type="submit" class="black-btn">
+
+          댓글 등록
+
+          <i data-lucide="send"></i>
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- ========================================
+       햄버거 슬라이드 메뉴
+  ========================================= -->
+
+  <div class="menu-layer"
+       id="menuLayer"
+       aria-hidden="true"
+       inert>
+
+    <div class="menu-overlay"
+         id="menuOverlay">
+    </div>
+
+    <aside class="side-menu"
+           id="sideMenu"
+           role="dialog"
+           aria-modal="true"
+           aria-label="페이지 이동 메뉴">
+
+      <div class="side-menu-header">
+
+        <button type="button"
+                id="closeBtn"
+                class="icon-btn"
+                aria-label="메뉴 닫기">
+
+          <i data-lucide="x"></i>
+          <span class="icon-fallback" aria-hidden="true">×</span>
+
+        </button>
+
+      </div>
+
+      <nav class="side-menu-nav">
+
+        <a href="../list/list.html">
+          떡볶이 메뉴
+        </a>
+
+        <a href="../about/about.html">
+          기업 소개
+        </a>
+
+        <a href="../community/community.html"
+           aria-current="page">
+
+          커뮤니티
+
+        </a>
+
+        <a href="../login/login.html">
+          로그인 / 회원가입
+        </a>
+
+      </nav>
+
+    </aside>
+
+  </div>
+
+
+  <!-- ========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    // Lucide 아이콘
+
+    if (window.lucide) {
+      lucide.createIcons();
+      document.body.classList.add('icons-ready');
+    }
+
+    const $ = selector => document.querySelector(selector);
+
+    const $$ = selector => [
+      ...document.querySelectorAll(selector)
+    ];
+
+    const reducedMotion = matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+
+    // ========================================
+    // 햄버거 메뉴
+    // ========================================
+
+    const menuLayer = $('#menuLayer');
+    const menuBtn = $('#menuBtn');
+    const closeBtn = $('#closeBtn');
+
+    const container = $('.container');
+    const menuLinks = $$('.side-menu-nav a');
+
+
+    function openMenu() {
+
+      menuLayer.inert = false;
+
+      menuLayer.classList.add('active');
+
+      menuLayer.setAttribute('aria-hidden', 'false');
+
+      menuBtn.setAttribute('aria-expanded', 'true');
+
+      document.body.classList.add('menu-open');
+
+      closeBtn.focus({ preventScroll: true });
+
+      container.inert = true;
+
+    }
+
+
+    function closeMenu() {
+
+      container.inert = false;
+
+      menuBtn.focus({ preventScroll: true });
+
+      menuLayer.classList.remove('active');
+
+      menuLayer.inert = true;
+
+      menuLayer.setAttribute('aria-hidden', 'true');
+
+      menuBtn.setAttribute('aria-expanded', 'false');
+
+      document.body.classList.remove('menu-open');
+
+    }
+
+
+    menuBtn.addEventListener('click', openMenu);
+
+    closeBtn.addEventListener('click', closeMenu);
+
+    $('#menuOverlay').addEventListener('click', closeMenu);
+
+
+    menuLinks.forEach(link => {
+
+      link.addEventListener('click', event => {
+
+        if (link.getAttribute('aria-current') === 'page') {
+
+          event.preventDefault();
+
+        }
+
+        closeMenu();
+
+      });
+
+    });
+
+
+    // 키보드 처리
+
+    document.addEventListener('keydown', event => {
+
+      if (!menuLayer.classList.contains('active')) return;
+
+      if (event.key === 'Escape') {
+
+        closeMenu();
+
+      }
+
+      if (event.key === 'Tab') {
+
+        const last = menuLinks.at(-1);
+
+        if (
+          event.shiftKey &&
+          document.activeElement === closeBtn
+        ) {
+
+          event.preventDefault();
+          last.focus();
+
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === last
+        ) {
+
+          event.preventDefault();
+          closeBtn.focus();
+
+        }
+
+      }
+
+    });
+
+
+    // ========================================
+    // 뒤로가기 슬라이드
+    // ========================================
+
+    const backBtn = $('#backBtn');
+
+    const pageContent = $('.page-content');
+
+    let leaving = false;
+
+    let moveTimer;
+
+
+    function moveBack() {
+
+      clearTimeout(moveTimer);
+
+      pageContent.removeEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+
+      location.href = backBtn.href;
+
+    }
+
+
+    function onTransitionEnd(event) {
+
+      if (
+        event.target === pageContent &&
+        event.propertyName === 'transform'
+      ) {
+
+        moveBack();
+
+      }
+
+    }
+
+
+    backBtn.addEventListener('click', event => {
+
+      if (
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) return;
+
+      event.preventDefault();
+
+      if (leaving) return;
+
+      leaving = true;
+
+      if (reducedMotion) {
+
+        moveBack();
+        return;
+
+      }
+
+      pageContent.addEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+
+      document.body.classList.add('page-leaving');
+
+      moveTimer = setTimeout(moveBack, 450);
+
+    });
+
+
+    // 커뮤니티 둘러보기 버튼
+
+    $('a[href="#communityBoard"]')
+      .addEventListener('click', event => {
+
+        event.preventDefault();
+
+        $('#communityBoard').scrollIntoView({
+
+          behavior: reducedMotion ? 'auto' : 'smooth'
+
+        });
+
+      });
+
+
+    // ========================================
+    // 카테고리 및 게시글 슬라이드
+    // ========================================
+
+    const cards = $$('.post-card');
+
+    const categories = $$('.category-btn');
+
+    const postList = $('#postList');
+
+    const sliderDots = $('#sliderDots');
+
+    const viewAllBtn = $('#viewAllBtn');
+
+    let category = 'all';
+
+    let expanded = false;
+
+
+    const visibleCards = () => {
+
+      return cards.filter(card => !card.hidden);
+
+    };
+
+
+    // 슬라이드 위치 계산
+
+    function slidePosition(card) {
+
+      const padding = parseFloat(
+        getComputedStyle(postList).paddingLeft
+      ) || 0;
+
+      const x =
+        card.getBoundingClientRect().left -
+        postList.getBoundingClientRect().left +
+        postList.scrollLeft -
+        padding;
+
+      return Math.max(
+
+        0,
+
+        Math.min(
+          x,
+          postList.scrollWidth - postList.clientWidth
+        )
+
+      );
+
+    }
+
+
+    // 슬라이드 위치 표시
+
+    function updateDots() {
+
+      const visible = visibleCards();
+
+      const max =
+        postList.scrollWidth - postList.clientWidth;
+
+      sliderDots.hidden =
+        expanded ||
+        visible.length < 2 ||
+        max <= 1;
+
+      if (sliderDots.hidden) return;
+
+      let active = 0;
+
+      let distance = Infinity;
+
+
+      visible.forEach((card, index) => {
+
+        const d = Math.abs(
+          slidePosition(card) - postList.scrollLeft
+        );
+
+        if (d < distance) {
+
+          distance = d;
+          active = index;
+
+        }
+
+      });
+
+
+      if (postList.scrollLeft >= max - 2) {
+
+        active = visible.length - 1;
+
+      }
+
+
+      [...sliderDots.children].forEach((dot, index) => {
+
+        dot.classList.toggle(
+          'active',
+          index === active
+        );
+
+        dot.setAttribute(
+          'aria-pressed',
+          String(index === active)
+        );
+
+      });
+
+    }
+
+
+    // 슬라이드 점 생성
+
+    function createDots() {
+
+      sliderDots.replaceChildren();
+
+      visibleCards().forEach((card, index) => {
+
+        const dot = document.createElement('button');
+
+        dot.type = 'button';
+
+        dot.className = 'dot';
+
+        dot.setAttribute(
+          'aria-label',
+          '게시글 ' + (index + 1)
+        );
+
+        dot.addEventListener('click', () => {
+
+          postList.scrollTo({
+
+            left: slidePosition(card),
+
+            behavior: reducedMotion ? 'auto' : 'smooth'
+
+          });
+
+        });
+
+        sliderDots.append(dot);
+
+      });
+
+      updateDots();
+
+    }
+
+
+    // 게시글 필터링
+
+    function filterPosts() {
+
+      cards.forEach(card => {
+
+        card.hidden =
+          category !== 'all' &&
+          card.dataset.category !== category;
+
+      });
+
+      $('#postCount').textContent =
+        '게시글 ' + visibleCards().length + '개';
+
+      postList.scrollLeft = 0;
+
+      createDots();
+
+    }
+
+
+    categories.forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        categories.forEach(item => {
+
+          item.classList.toggle(
+            'active',
+            item === button
+          );
+
+          item.setAttribute(
+            'aria-pressed',
+            String(item === button)
+          );
+
+        });
+
+        category = button.dataset.category;
+
+        filterPosts();
+
+      });
+
+    });
+
+
+    // 전체보기 / 슬라이드 보기 전환
+
+    viewAllBtn.addEventListener('click', () => {
+
+      expanded = !expanded;
+
+      postList.classList.toggle('expanded', expanded);
+
+      viewAllBtn.setAttribute(
+        'aria-pressed',
+        String(expanded)
+      );
+
+      $('#viewAllText').textContent =
+        expanded ? '슬라이드 보기' : '전체보기';
+
+      postList.scrollLeft = 0;
+
+      createDots();
+
+    });
+
+
+    postList.addEventListener(
+      'scroll',
+      updateDots,
+      { passive: true }
+    );
+
+    window.addEventListener('resize', updateDots);
+
+    filterPosts();
+
+
+    // ========================================
+    // 좋아요
+    // ========================================
+
+    $$('.like-btn').forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        const liked = button.classList.toggle('liked');
+
+        const count = button.querySelector('.like-count');
+
+        count.textContent =
+          Number(count.textContent) + (liked ? 1 : -1);
+
+        button.setAttribute(
+          'aria-pressed',
+          String(liked)
+        );
+
+      });
+
+    });
+
+
+    // ========================================
+    // 게시글 상세 및 댓글
+    // ========================================
+
+    const postModal = $('#postModal');
+
+    const commentList = $('#commentList');
+
+    const commentInput = $('#commentInput');
+
+    const comments = new Map();
+
+    let currentPost = null;
+
+    let modalTrigger = null;
+
+
+    // 댓글 표시
+
+    function renderComments() {
+
+      commentList.replaceChildren();
+
+      const items = comments.get(currentPost) || [];
+
+      if (!items.length) {
+
+        const empty = document.createElement('p');
+
+        empty.className = 'empty-comment';
+
+        empty.textContent = '새로운 댓글을 남겨보세요.';
+
+        commentList.append(empty);
+
+      }
+
+
+      items.forEach(text => {
+
+        const item = document.createElement('div');
+
+        const name = document.createElement('strong');
+
+        const content = document.createElement('p');
+
+        item.className = 'comment-item';
+
+        name.textContent = '나';
+
+        content.textContent = text;
+
+        item.append(name, content);
+
+        commentList.append(item);
+
+      });
+
+    }
+
+
+    // 게시글 열기
+
+    function openPost(card, trigger) {
+
+      currentPost = card;
+
+      modalTrigger = trigger;
+
+      const tag = card.querySelector('.post-tag');
+
+      const image = card.querySelector('.post-image');
+
+
+      $('#modalCategory').className = tag.className;
+
+      $('#modalCategory').textContent = tag.textContent;
+
+      $('#modalTitle').textContent =
+        card.querySelector('.post-title').textContent;
+
+      $('#modalDescription').textContent =
+        card.querySelector('.post-description').textContent;
+
+
+      $('#modalImage').src = image.src;
+
+      $('#modalImage').alt = image.alt;
+
+      commentInput.value = '';
+
+      renderComments();
+
+      postModal.showModal();
+
+      document.body.classList.add('modal-open');
+
+      $('#modalClose').focus();
+
+    }
+
+
+    cards.forEach(card => {
+
+      ['.post-open', '.comment-btn'].forEach(selector => {
+
+        const button = card.querySelector(selector);
+
+        button.addEventListener('click', () => {
+
+          openPost(card, button);
+
+        });
+
+      });
+
+    });
+
+
+    // 게시글 닫기
+
+    $('#modalClose').addEventListener('click', () => {
+
+      postModal.close();
+
+    });
+
+
+    postModal.addEventListener('close', () => {
+
+      document.body.classList.remove('modal-open');
+
+      modalTrigger?.focus({ preventScroll: true });
+
+      currentPost = null;
+
+    });
+
+
+    // 댓글 등록
+
+    $('#commentForm').addEventListener('submit', event => {
+
+      event.preventDefault();
+
+      const text = commentInput.value.trim();
+
+      if (!text || !currentPost) return;
+
+      const items = comments.get(currentPost) || [];
+
+      items.push(text);
+
+      comments.set(currentPost, items);
+
+      const count = currentPost.querySelector('.comment-count');
+
+      count.textContent = Number(count.textContent) + 1;
+
+      commentInput.value = '';
+
+      renderComments();
+
+    });
+
+
+    // ========================================
+    // 이메일 구독 테스트
+    // ========================================
+
+    $('#subscribeForm').addEventListener('submit', event => {
+
+      event.preventDefault();
+
+      $('#subscribeMessage').textContent =
+        '구독 화면 테스트가 완료되었습니다!';
+
+      event.currentTarget.reset();
+
+    });
+
+
+    // 아직 연결되지 않은 푸터 링크
+
+    $$('.footer-links a').forEach(link => {
+
+      link.addEventListener('click', event => {
+
+        event.preventDefault();
+
+        alert('아직 준비 중인 페이지입니다.');
+
+      });
+
+    });
+
+
+    // ========================================
+    // 스크롤 등장 애니메이션
+    // ========================================
+
+    if ('IntersectionObserver' in window && !reducedMotion) {
+
+      const observer = new IntersectionObserver(
+
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add('visible');
+
+              observer.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+
+        { threshold: 0.06 }
+
+      );
+
+
+      $$('.reveal').forEach(element => {
+
+        element.classList.add('reveal-ready');
+
+        observer.observe(element);
+
+      });
+
+    }
+
+
+    // 브라우저 뒤로가기 시 초기화
+
+    window.addEventListener('pageshow', () => {
+
+      clearTimeout(moveTimer);
+
+      pageContent.removeEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+
+      document.body.classList.remove('page-leaving');
+
+      leaving = false;
+
+      if (menuLayer.classList.contains('active')) {
+
+        closeMenu();
+
+      }
+
+      if (postModal.open) {
+
+        postModal.close();
+
+      }
+
+      document.body.classList.remove('modal-open');
+
+    });
+
+  </script>
+
+</body>
+</html>

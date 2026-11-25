@@ -1,0 +1,1310 @@
+
+/* ========================================
+   GLOBAL
+======================================== */
+
+:root {
+  --background-color: #FDF1E1;
+  --primary-color: #E84129;
+  --secondary-color: #FF9D42;
+  --card-color: #FFF9F3;
+  --text-color: #000000;
+  --border-color: #E5D8C8;
+  --global-padding: 20px;
+  --transition-speed: 0.4s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+
+  background-color: #FFFFFF;
+
+  color: var(--text-color);
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+
+/* ========================================
+   전체 페이지
+======================================== */
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  background-color: #FFFFFF;
+
+  overflow: hidden;
+}
+
+.page-content {
+  width: 100%;
+  min-height: 100vh;
+
+  background-color: var(--background-color);
+
+  transform: translateX(0);
+
+  transition:
+    transform var(--transition-speed) ease-in-out;
+}
+
+main {
+  width: 100%;
+
+  padding: 0 var(--global-padding) 40px;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 60px;
+
+  padding: 0 var(--global-padding);
+
+  background-color: var(--background-color);
+}
+
+
+/* 뒤로가기 버튼 */
+
+.back-btn {
+  position: absolute;
+
+  left: var(--global-padding);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #000000;
+}
+
+.back-btn svg {
+  width: 28px;
+  height: 28px;
+
+  stroke-width: 2;
+}
+
+.back-btn.active,
+.back-btn:active {
+  color: var(--primary-color);
+}
+
+
+/* 중앙 로고 */
+
+.logo {
+  width: 64px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+/* 햄버거 메뉴 */
+
+.menu-btn {
+  position: absolute;
+
+  right: var(--global-padding);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #000000;
+}
+
+.menu-btn svg {
+  width: 24px;
+  height: 24px;
+
+  stroke-width: 2;
+}
+
+
+/* ========================================
+   SECTION 1
+   로그인 / 회원가입 탭
+======================================== */
+
+.tab-section {
+  padding-top: 26px;
+}
+
+
+/* 탭 전체 영역 */
+
+.auth-tabs {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  width: 100%;
+  height: 52px;
+
+  padding: 2px;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 30px;
+}
+
+
+/* 개별 탭 */
+
+.auth-tab {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 30px;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #000000;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+
+/* 선택된 탭 */
+
+.auth-tab.active {
+  background-color: var(--primary-color);
+
+  color: #FFFFFF;
+}
+
+
+/* ========================================
+   SECTION 2
+   캐릭터 및 환영 문구
+======================================== */
+
+.welcome-section {
+  position: relative;
+
+  width: 100%;
+
+  padding-top: 18px;
+
+  text-align: center;
+}
+
+
+/* ========================================
+   캐릭터 이미지 영역
+
+   캐릭터 크기는 아래 max-width와
+   height에서 수정하면 됨
+======================================== */
+
+.character-area {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 230px;
+}
+
+
+/* 캐릭터 이미지 */
+
+.character-image {
+  position: relative;
+
+  width: 100%;
+  max-width: 300px;
+  height: 230px;
+
+  object-fit: contain;
+
+  animation:
+    characterAppear 0.4s ease-out both;
+
+  z-index: 1;
+}
+
+
+/* 캐릭터 등장 애니메이션 */
+
+@keyframes characterAppear {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0) scale(1);
+  }
+
+}
+
+
+/* 환영 문구 */
+
+.welcome-text {
+  margin-top: 6px;
+
+  animation:
+    textAppear 0.3s ease-out both;
+}
+
+@keyframes textAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* 환영 타이틀 */
+
+.welcome-title {
+  font-size: 30px;
+  font-weight: 800;
+
+  line-height: 1.4;
+
+  letter-spacing: -1px;
+
+  word-break: keep-all;
+
+  color: #000000;
+}
+
+
+/* 입덕볶이 강조 색상 */
+
+.welcome-title span {
+  color: var(--primary-color);
+}
+
+
+/* 환영 설명 */
+
+.welcome-description {
+  margin-top: 12px;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  line-height: 1.7;
+
+  color: #666666;
+
+  word-break: keep-all;
+}
+
+
+/* ========================================
+   SECTION 3
+   간편 로그인
+======================================== */
+
+.social-section {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  width: 100%;
+
+  margin-top: 32px;
+}
+
+
+/* 간편 로그인 버튼 공통 */
+
+.social-btn {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  width: 100%;
+  height: 54px;
+
+  border-radius: 14px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.social-btn:active {
+  opacity: 0.85;
+
+  transform: scale(0.98);
+}
+
+.social-btn svg {
+  width: 24px;
+  height: 24px;
+
+  flex-shrink: 0;
+}
+
+
+/* ========================================
+   카카오로 시작하기
+======================================== */
+
+.kakao-btn {
+  background-color: #FEE500;
+
+  color: #000000;
+}
+
+.kakao-btn svg {
+  fill: #000000;
+  stroke: #000000;
+}
+
+
+/* ========================================
+   구글로 시작하기
+======================================== */
+
+.google-btn {
+  background-color: #FFFFFF;
+
+  border: 1px solid #D5D5D5;
+
+  color: #000000;
+}
+
+.google-icon {
+  font-family: Arial, sans-serif;
+
+  font-size: 26px;
+  font-weight: 900;
+
+  line-height: 1;
+
+  background: conic-gradient(
+    #4285F4 0deg 90deg,
+    #34A853 90deg 180deg,
+    #FBBC05 180deg 240deg,
+    #EA4335 240deg 310deg,
+    #4285F4 310deg 360deg
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  flex-shrink: 0;
+}
+
+
+/* ========================================
+   애플로 시작하기
+======================================== */
+
+.apple-btn {
+  background-color: #000000;
+
+  color: #FFFFFF;
+}
+
+.apple-btn svg {
+  fill: #FFFFFF;
+  stroke: #FFFFFF;
+}
+
+
+/* 간편 로그인 테스트 안내 */
+
+.social-guide {
+  margin-top: 2px;
+
+  font-size: 11px;
+
+  color: #838383;
+
+  text-align: center;
+}
+
+
+/* ========================================
+   이메일 로그인 / 회원가입 구분선
+======================================== */
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  width: 100%;
+
+  margin: 28px 0 24px;
+}
+
+.auth-divider span {
+  flex: 1;
+
+  height: 1px;
+
+  background-color: #D5D5D5;
+}
+
+.auth-divider p {
+  flex-shrink: 0;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #666666;
+
+  white-space: nowrap;
+}
+
+
+/* ========================================
+   SECTION 4 / 5
+   로그인 및 회원가입 입력창
+======================================== */
+
+.form-section {
+  width: 100%;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  width: 100%;
+}
+
+
+/* 입력창 전체 영역 */
+
+.input-wrap {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 54px;
+
+  background-color: #FFFFFF;
+
+  border: 1px solid #D5D5D5;
+  border-radius: 12px;
+
+  transition:
+    border-color 0.2s ease;
+}
+
+.input-wrap:focus-within {
+  border-color: var(--primary-color);
+}
+
+
+/* 입력창 왼쪽 아이콘 */
+
+.input-wrap > .input-icon {
+  position: absolute;
+
+  top: 50%;
+  left: 14px;
+
+  width: 21px;
+  height: 21px;
+
+  transform: translateY(-50%);
+
+  color: #666666;
+
+  stroke-width: 1.8;
+
+  pointer-events: none;
+}
+
+
+/* 실제 입력창 */
+
+.input-wrap input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+
+  padding: 0 14px 0 46px;
+
+  background-color: transparent;
+
+  border: none;
+  border-radius: 12px;
+
+  outline: none;
+
+  font-size: 14px;
+
+  color: #000000;
+}
+
+.input-wrap input::placeholder {
+  color: #999999;
+}
+
+
+/* ========================================
+   비밀번호 보기 / 숨기기
+======================================== */
+
+.password-wrap input {
+  padding-right: 44px;
+}
+
+.password-toggle {
+  position: absolute;
+
+  top: 50%;
+  right: 10px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #666666;
+}
+
+.password-toggle svg {
+  width: 21px;
+  height: 21px;
+
+  stroke-width: 1.8;
+}
+
+
+/* ========================================
+   로그인 상태 유지 / 비밀번호 찾기
+======================================== */
+
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+
+/* 공통 체크박스 라벨 */
+
+.check-label {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #333333;
+
+  cursor: pointer;
+}
+
+
+/* 체크박스 */
+
+.check-label input {
+  width: 18px;
+  height: 18px;
+
+  flex-shrink: 0;
+
+  accent-color: var(--primary-color);
+
+  cursor: pointer;
+}
+
+
+/* 비밀번호 찾기 */
+
+.find-password {
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #666666;
+
+  white-space: nowrap;
+}
+
+.find-password:active {
+  color: var(--primary-color);
+}
+
+
+/* ========================================
+   로그인 / 회원가입 메인 버튼
+======================================== */
+
+.primary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 56px;
+
+  padding: 12px;
+
+  background-color: var(--primary-color);
+
+  border-radius: 14px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #FFFFFF;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.primary-btn:active {
+  background-color: #C9311E;
+
+  transform: scale(0.98);
+}
+
+
+/* ========================================
+   로그인 / 회원가입 전환 문구
+======================================== */
+
+.auth-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 18px;
+
+  font-size: 13px;
+
+  color: #666666;
+
+  text-align: center;
+}
+
+
+/* 하단 전환 버튼 */
+
+.text-btn {
+  display: flex;
+  align-items: center;
+
+  gap: 2px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  color: var(--primary-color);
+}
+
+.text-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* ========================================
+   회원가입 약관 동의
+======================================== */
+
+.agreement-section {
+  margin-top: 14px;
+  margin-bottom: 16px;
+}
+
+
+/* 전체 동의 */
+
+.agree-all {
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid var(--border-color);
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #000000;
+}
+
+.agree-all input {
+  width: 21px;
+  height: 21px;
+}
+
+
+/* 세부 동의 항목 */
+
+.agreement-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  padding-top: 16px;
+  padding-left: 8px;
+}
+
+
+/* 개별 약관 */
+
+.agreement-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.agreement-row .check-label {
+  flex: 1;
+
+  min-width: 0;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.6;
+}
+
+.agreement-row .check-label span {
+  word-break: keep-all;
+}
+
+
+/* 약관 보기 버튼 */
+
+.terms-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  flex-shrink: 0;
+
+  color: #666666;
+}
+
+.terms-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/* ========================================
+   회원가입 오류 안내
+======================================== */
+
+.form-error {
+  font-size: 12px;
+  font-weight: 500;
+
+  color: var(--primary-color);
+
+  line-height: 1.6;
+}
+
+.form-error:empty {
+  display: none;
+}
+
+
+/* 테스트 안내 */
+
+.demo-guide {
+  margin-top: 30px;
+
+  font-size: 11px;
+
+  line-height: 1.8;
+
+  color: #838383;
+
+  text-align: center;
+}
+
+
+/* ========================================
+   안내 팝업
+======================================== */
+
+.notice-modal {
+  position: fixed;
+
+  inset: 0;
+
+  width: calc(100% - 40px);
+  max-width: 400px;
+
+  max-height: 85vh;
+
+  margin: auto;
+
+  padding: 0;
+
+  background-color: var(--card-color);
+
+  border: none;
+  border-radius: 20px;
+
+  color: #000000;
+
+  overflow-y: auto;
+}
+
+.notice-modal::backdrop {
+  background-color:
+    rgba(0, 0, 0, 0.5);
+}
+
+
+/* 팝업 헤더 */
+
+.notice-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 20px;
+
+  border-bottom: 1px solid var(--border-color);
+}
+
+.notice-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+/* 팝업 닫기 */
+
+.notice-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  color: #000000;
+}
+
+.notice-close svg {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* 팝업 내용 */
+
+.notice-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 24px 20px;
+
+  text-align: center;
+}
+
+.notice-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+
+  background-color: #FFE0CB;
+
+  color: var(--primary-color);
+}
+
+.notice-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+#noticeText {
+  margin-top: 20px;
+
+  font-size: 14px;
+
+  line-height: 1.8;
+
+  color: #555555;
+
+  white-space: pre-line;
+
+  word-break: keep-all;
+}
+
+.notice-body .primary-btn {
+  margin-top: 24px;
+
+  font-size: 16px;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+
+/* ========================================
+   햄버거 슬라이드 메뉴
+======================================== */
+
+.menu-layer {
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 500px;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 1000;
+}
+
+
+/* 어두운 배경 */
+
+.menu-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background-color:
+    rgba(0, 0, 0, 0.45);
+
+  opacity: 0;
+
+  transition:
+    opacity var(--transition-speed) ease-in-out;
+}
+
+
+/* 사이드 메뉴 */
+
+.side-menu {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 66.6667%;
+
+  background-color: var(--background-color);
+
+  transform: translateX(100%);
+
+  transition:
+    transform var(--transition-speed) ease-in-out;
+
+  overflow-y: auto;
+}
+
+
+/* 메뉴 활성화 */
+
+.menu-layer.active {
+  pointer-events: auto;
+}
+
+.menu-layer.active .menu-overlay {
+  opacity: 1;
+}
+
+.menu-layer.active .side-menu {
+  transform: translateX(0);
+}
+
+
+/* 사이드 메뉴 헤더 */
+
+.side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 60px;
+
+  padding: 0 var(--global-padding);
+}
+
+
+/* X 닫기 버튼 */
+
+.close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #000000;
+}
+
+.close-btn svg {
+  width: 28px;
+  height: 28px;
+
+  stroke-width: 2;
+}
+
+
+/* 햄버거 메뉴 항목 */
+
+.side-menu-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+
+  padding: 24px var(--global-padding);
+}
+
+.side-menu-nav a {
+  font-size: 18px;
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  color: #000000;
+
+  word-break: keep-all;
+}
+
+.side-menu-nav a:active {
+  color: var(--primary-color);
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+
+/* ========================================
+   뒤로가기 슬라이드
+======================================== */
+
+body.page-leaving .page-content {
+  transform: translateX(100%);
+}
+
+body.page-leaving .container {
+  pointer-events: none;
+}
+
+
+/* ========================================
+   키보드 접근성
+======================================== */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 3px;
+}
+
+
+/* ========================================
+   작은 모바일 화면 대응
+======================================== */
+
+@media screen and (max-width: 360px) {
+
+  .auth-tab {
+    font-size: 15px;
+  }
+
+  .character-area,
+  .character-image {
+    height: 200px;
+  }
+
+  .character-image {
+    max-width: 260px;
+  }
+
+  .welcome-title {
+    font-size: 26px;
+  }
+
+  .welcome-description {
+    font-size: 12px;
+  }
+
+  .social-btn {
+    font-size: 14px;
+  }
+
+  .input-wrap input {
+    font-size: 12px;
+  }
+
+  .check-label,
+  .find-password {
+    font-size: 11px;
+  }
+
+  .agreement-row .check-label {
+    font-size: 11px;
+  }
+
+  .auth-bottom,
+  .text-btn {
+    font-size: 12px;
+  }
+
+  .side-menu-nav a {
+    font-size: 16px;
+  }
+
+}
+
+
+/* ========================================
+   모션 감소 설정
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .page-content,
+  .menu-overlay,
+  .side-menu,
+  .auth-tab,
+  .social-btn,
+  .primary-btn {
+    transition: none;
+  }
+
+  .character-image,
+  .welcome-text {
+    animation: none;
+  }
+
+}

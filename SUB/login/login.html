@@ -1,0 +1,1670 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>입덕볶이 - 로그인 / 회원가입</title>
+
+  <!-- Noto Sans KR -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap">
+
+  <!-- 외부 CSS -->
+  <link rel="stylesheet" href="CSS/login.css">
+
+  <!-- Lucide 아이콘 -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="page-content">
+
+      <!-- ========================================
+           HEADER
+      ========================================= -->
+
+      <header class="header">
+
+        <!-- 뒤로가기 -->
+
+        <a href="../../index.html"
+           class="back-btn"
+           id="backBtn"
+           aria-label="뒤로가기">
+
+          <i data-lucide="chevron-left"></i>
+
+        </a>
+
+
+        <!-- 중앙 로고 -->
+
+        <div class="logo">
+
+          <img src="img/logo.png"
+               alt="입덕볶이 로고">
+
+        </div>
+
+
+        <!-- 햄버거 메뉴 -->
+
+        <button type="button"
+                class="menu-btn"
+                id="menuBtn"
+                aria-label="메뉴 열기"
+                aria-controls="sideMenu"
+                aria-expanded="false">
+
+          <i data-lucide="menu"></i>
+
+        </button>
+
+      </header>
+
+
+      <main>
+
+        <!-- ========================================
+             SECTION 01
+             로그인 / 회원가입 탭
+        ========================================= -->
+
+        <section class="tab-section">
+
+          <div class="auth-tabs">
+
+            <button type="button"
+                    class="auth-tab active"
+                    id="loginTab"
+                    aria-pressed="true">
+
+              로그인
+
+            </button>
+
+            <button type="button"
+                    class="auth-tab"
+                    id="signupTab"
+                    aria-pressed="false">
+
+              회원가입
+
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- ========================================
+             SECTION 02
+             캐릭터 및 환영 문구
+        ========================================= -->
+
+        <section class="welcome-section">
+
+          <div class="character-area">
+
+            <!-- 로그인 캐릭터 -->
+
+            <img src="img/login_character.png"
+                 class="character-image"
+                 id="loginCharacter"
+                 alt="윙크하는 입덕볶이 캐릭터">
+
+
+            <!-- 회원가입 캐릭터 -->
+
+            <img src="img/signup_character.png"
+                 class="character-image"
+                 id="signupCharacter"
+                 alt="환영하는 입덕볶이 캐릭터"
+                 hidden>
+
+          </div>
+
+
+          <!-- 로그인 환영 문구 -->
+
+          <div class="welcome-text"
+               id="loginWelcome">
+
+            <h1 class="welcome-title">
+
+              <span>입덕볶이</span>에 오신 것을<br>
+              환영해요 :)
+
+            </h1>
+
+            <p class="welcome-description">
+
+              매콤한 즐거움을 지금 바로 시작해보세요!
+
+            </p>
+
+          </div>
+
+
+          <!-- 회원가입 환영 문구 -->
+
+          <div class="welcome-text"
+               id="signupWelcome"
+               hidden>
+
+            <h1 class="welcome-title">
+
+              <span>입덕볶이</span>와<br>
+              함께해요!
+
+            </h1>
+
+            <p class="welcome-description">
+
+              회원가입하고 더 많은 혜택을 만나보세요.
+
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ========================================
+             SECTION 03
+             간편 로그인 / 회원가입
+        ========================================= -->
+
+        <section class="social-section">
+
+          <!-- 카카오 -->
+
+          <button type="button"
+                  class="social-btn kakao-btn"
+                  data-provider="카카오">
+
+            <i data-lucide="message-circle"></i>
+
+            <span>카카오로 시작하기</span>
+
+          </button>
+
+
+          <!-- 구글 -->
+
+          <button type="button"
+                  class="social-btn google-btn"
+                  data-provider="구글">
+
+            <span class="google-icon"
+                  aria-hidden="true">G</span>
+
+            <span>구글로 시작하기</span>
+
+          </button>
+
+
+          <!-- 애플 -->
+
+          <button type="button"
+                  class="social-btn apple-btn"
+                  data-provider="애플">
+
+            <i data-lucide="apple"></i>
+
+            <span>애플로 시작하기</span>
+
+          </button>
+
+          <p class="social-guide">
+
+            간편 로그인은 테스트용 기능입니다.
+
+          </p>
+
+        </section>
+
+
+        <!-- 이메일 로그인 / 회원가입 구분선 -->
+
+        <div class="auth-divider">
+
+          <span></span>
+
+          <p id="dividerText">
+            또는 이메일로 로그인
+          </p>
+
+          <span></span>
+
+        </div>
+
+
+        <!-- ========================================
+             SECTION 04
+             일반 로그인
+        ========================================= -->
+
+        <section class="form-section"
+                 id="loginSection">
+
+          <form id="loginForm"
+                class="auth-form"
+                novalidate>
+
+            <!-- 이메일 -->
+
+            <div class="input-wrap">
+
+              <i data-lucide="mail"
+                 class="input-icon"></i>
+
+              <input type="text"
+                     id="loginEmail"
+                     placeholder="이메일을 입력하세요"
+                     aria-label="이메일"
+                     autocomplete="off">
+
+            </div>
+
+
+            <!-- 비밀번호 -->
+
+            <div class="input-wrap password-wrap">
+
+              <i data-lucide="lock-keyhole"
+                 class="input-icon"></i>
+
+              <input type="password"
+                     id="loginPassword"
+                     placeholder="비밀번호를 입력하세요"
+                     aria-label="비밀번호"
+                     autocomplete="off">
+
+              <button type="button"
+                      class="password-toggle"
+                      data-target="loginPassword"
+                      aria-label="비밀번호 보기">
+
+                <i data-lucide="eye"></i>
+
+              </button>
+
+            </div>
+
+
+            <!-- 로그인 상태 유지 / 비밀번호 찾기 -->
+
+            <div class="login-options">
+
+              <label class="check-label">
+
+                <input type="checkbox"
+                       id="rememberLogin">
+
+                <span>로그인 상태 유지</span>
+
+              </label>
+
+              <button type="button"
+                      class="find-password"
+                      id="findPassword">
+
+                비밀번호 찾기
+
+              </button>
+
+            </div>
+
+
+            <!-- 로그인 버튼 -->
+
+            <button type="submit"
+                    class="primary-btn">
+
+              로그인
+
+            </button>
+
+
+            <!-- 회원가입 전환 -->
+
+            <div class="auth-bottom">
+
+              <span>아직 계정이 없으신가요?</span>
+
+              <button type="button"
+                      id="goSignup"
+                      class="text-btn">
+
+                회원가입하기
+
+                <i data-lucide="chevron-right"></i>
+
+              </button>
+
+            </div>
+
+          </form>
+
+        </section>
+
+
+        <!-- ========================================
+             SECTION 05
+             일반 회원가입
+        ========================================= -->
+
+        <section class="form-section"
+                 id="signupSection"
+                 hidden>
+
+          <form id="signupForm"
+                class="auth-form"
+                novalidate>
+
+            <!-- 이메일 -->
+
+            <div class="input-wrap">
+
+              <i data-lucide="mail"
+                 class="input-icon"></i>
+
+              <input type="text"
+                     id="signupEmail"
+                     placeholder="이메일을 입력하세요"
+                     aria-label="이메일"
+                     autocomplete="off">
+
+            </div>
+
+
+            <!-- 비밀번호 -->
+
+            <div class="input-wrap password-wrap">
+
+              <i data-lucide="lock-keyhole"
+                 class="input-icon"></i>
+
+              <input type="password"
+                     id="signupPassword"
+                     placeholder="비밀번호를 입력하세요"
+                     aria-label="비밀번호"
+                     autocomplete="off">
+
+              <button type="button"
+                      class="password-toggle"
+                      data-target="signupPassword"
+                      aria-label="비밀번호 보기">
+
+                <i data-lucide="eye"></i>
+
+              </button>
+
+            </div>
+
+
+            <!-- 비밀번호 확인 -->
+
+            <div class="input-wrap password-wrap">
+
+              <i data-lucide="lock-keyhole"
+                 class="input-icon"></i>
+
+              <input type="password"
+                     id="confirmPassword"
+                     placeholder="비밀번호를 다시 입력하세요"
+                     aria-label="비밀번호 확인"
+                     autocomplete="off">
+
+              <button type="button"
+                      class="password-toggle"
+                      data-target="confirmPassword"
+                      aria-label="비밀번호 보기">
+
+                <i data-lucide="eye"></i>
+
+              </button>
+
+            </div>
+
+
+            <!-- 닉네임 -->
+
+            <div class="input-wrap">
+
+              <i data-lucide="user-round"
+                 class="input-icon"></i>
+
+              <input type="text"
+                     id="signupNickname"
+                     placeholder="닉네임을 입력하세요"
+                     aria-label="닉네임"
+                     autocomplete="off">
+
+            </div>
+
+
+            <!-- 회원가입 오류 안내 영역 -->
+
+            <p class="form-error"
+               id="signupError"
+               aria-live="polite"></p>
+
+
+            <!-- ========================================
+                 약관 동의
+            ========================================= -->
+
+            <div class="agreement-section">
+
+              <!-- 전체 동의 -->
+
+              <label class="check-label agree-all">
+
+                <input type="checkbox"
+                       id="agreeAll">
+
+                <span>모두 동의합니다.</span>
+
+              </label>
+
+
+              <div class="agreement-list">
+
+                <!-- 이용약관 -->
+
+                <div class="agreement-row">
+
+                  <label class="check-label">
+
+                    <input type="checkbox"
+                           class="agreement-check"
+                           id="agreeTerms">
+
+                    <span>
+                      이용약관에 동의합니다. (필수)
+                    </span>
+
+                  </label>
+
+                  <button type="button"
+                          class="terms-btn"
+                          data-terms="terms"
+                          aria-label="이용약관 보기">
+
+                    <i data-lucide="chevron-right"></i>
+
+                  </button>
+
+                </div>
+
+
+                <!-- 개인정보처리방침 -->
+
+                <div class="agreement-row">
+
+                  <label class="check-label">
+
+                    <input type="checkbox"
+                           class="agreement-check"
+                           id="agreePrivacy">
+
+                    <span>
+                      개인정보처리방침에 동의합니다. (필수)
+                    </span>
+
+                  </label>
+
+                  <button type="button"
+                          class="terms-btn"
+                          data-terms="privacy"
+                          aria-label="개인정보처리방침 보기">
+
+                    <i data-lucide="chevron-right"></i>
+
+                  </button>
+
+                </div>
+
+
+                <!-- 마케팅 동의 -->
+
+                <div class="agreement-row">
+
+                  <label class="check-label">
+
+                    <input type="checkbox"
+                           class="agreement-check"
+                           id="agreeMarketing">
+
+                    <span>
+                      이벤트 및 마케팅 정보 수신 동의 (선택)
+                    </span>
+
+                  </label>
+
+                  <button type="button"
+                          class="terms-btn"
+                          data-terms="marketing"
+                          aria-label="마케팅 정보 수신 안내">
+
+                    <i data-lucide="chevron-right"></i>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- 회원가입 버튼 -->
+
+            <button type="submit"
+                    class="primary-btn">
+
+              회원가입
+
+            </button>
+
+
+            <!-- 로그인 전환 -->
+
+            <div class="auth-bottom">
+
+              <span>이미 계정이 있으신가요?</span>
+
+              <button type="button"
+                      class="text-btn"
+                      id="goLogin">
+
+                로그인하기
+
+                <i data-lucide="chevron-right"></i>
+
+              </button>
+
+            </div>
+
+          </form>
+
+        </section>
+
+
+        <!-- 테스트 안내 -->
+
+        <p class="demo-guide">
+
+          수업용 테스트 페이지입니다.<br>
+          실제 개인정보나 사용 중인 비밀번호를 입력하지 마세요.
+
+        </p>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================
+       안내 팝업
+  ========================================= -->
+
+  <dialog class="notice-modal"
+          id="noticeModal"
+          aria-labelledby="noticeTitle">
+
+    <div class="notice-header">
+
+      <h2 id="noticeTitle">안내</h2>
+
+      <button type="button"
+              class="notice-close"
+              id="noticeClose"
+              aria-label="팝업 닫기">
+
+        <i data-lucide="x"></i>
+
+      </button>
+
+    </div>
+
+
+    <div class="notice-body">
+
+      <div class="notice-icon">
+
+        <i data-lucide="info"></i>
+
+      </div>
+
+      <p id="noticeText"></p>
+
+      <button type="button"
+              class="primary-btn"
+              id="noticeConfirm">
+
+        확인
+
+      </button>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- ========================================
+       햄버거 슬라이드 메뉴
+  ========================================= -->
+
+  <div class="menu-layer"
+       id="menuLayer"
+       aria-hidden="true"
+       inert>
+
+    <div class="menu-overlay"
+         id="menuOverlay"></div>
+
+    <aside class="side-menu"
+           id="sideMenu"
+           role="dialog"
+           aria-modal="true"
+           aria-label="페이지 이동 메뉴">
+
+      <div class="side-menu-header">
+
+        <button type="button"
+                class="close-btn"
+                id="closeBtn"
+                aria-label="메뉴 닫기">
+
+          <i data-lucide="x"></i>
+
+        </button>
+
+      </div>
+
+
+      <nav class="side-menu-nav">
+
+        <a href="../list/list.html">
+          떡볶이 메뉴
+        </a>
+
+        <a href="../about/about.html">
+          기업 소개
+        </a>
+
+        <a href="../community/community.html">
+          커뮤니티
+        </a>
+
+        <a href="../login/login.html"
+           aria-current="page">
+
+          로그인 / 회원가입
+
+        </a>
+
+      </nav>
+
+    </aside>
+
+  </div>
+
+
+  <!-- ========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    // ========================================
+    // Lucide 아이콘 적용
+    // ========================================
+
+    if (window.lucide) {
+
+      lucide.createIcons();
+
+    }
+
+
+    // ========================================
+    // 로그인 / 회원가입 탭
+    // ========================================
+
+    const loginTab = document.getElementById('loginTab');
+
+    const signupTab = document.getElementById('signupTab');
+
+    const loginSection = document.getElementById('loginSection');
+
+    const signupSection = document.getElementById('signupSection');
+
+    const loginCharacter = document.getElementById('loginCharacter');
+
+    const signupCharacter = document.getElementById('signupCharacter');
+
+    const loginWelcome = document.getElementById('loginWelcome');
+
+    const signupWelcome = document.getElementById('signupWelcome');
+
+    const dividerText = document.getElementById('dividerText');
+
+    const loginForm = document.getElementById('loginForm');
+
+    const signupForm = document.getElementById('signupForm');
+
+    const signupError = document.getElementById('signupError');
+
+
+    // 테스트용 입력 조건 검사 해제
+
+    loginForm.noValidate = true;
+
+    signupForm.noValidate = true;
+
+
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+
+    let currentMode = 'login';
+
+
+    // ========================================
+    // 비밀번호 초기화
+    // ========================================
+
+    function resetPasswords() {
+
+      document.querySelectorAll('.password-toggle')
+        .forEach(function(button) {
+
+          const input = document.getElementById(
+            button.dataset.target
+          );
+
+          input.value = '';
+
+          input.type = 'password';
+
+          button.innerHTML =
+            '<i data-lucide="eye"></i>';
+
+          button.setAttribute(
+            'aria-label',
+            '비밀번호 보기'
+          );
+
+        });
+
+      if (window.lucide) {
+
+        lucide.createIcons();
+
+      }
+
+    }
+
+
+    // ========================================
+    // 로그인 / 회원가입 화면 변경
+    // ========================================
+
+    function setMode(mode, scrollTop = false) {
+
+      if (currentMode !== mode) {
+
+        resetPasswords();
+
+      }
+
+      currentMode = mode;
+
+      const isLogin = mode === 'login';
+
+
+      // 탭 활성화
+
+      loginTab.classList.toggle('active', isLogin);
+
+      signupTab.classList.toggle('active', !isLogin);
+
+      loginTab.setAttribute(
+        'aria-pressed',
+        String(isLogin)
+      );
+
+      signupTab.setAttribute(
+        'aria-pressed',
+        String(!isLogin)
+      );
+
+
+      // 캐릭터 변경
+
+      loginCharacter.hidden = !isLogin;
+
+      signupCharacter.hidden = isLogin;
+
+
+      // 환영 문구 변경
+
+      loginWelcome.hidden = !isLogin;
+
+      signupWelcome.hidden = isLogin;
+
+
+      // 입력 폼 변경
+
+      loginSection.hidden = !isLogin;
+
+      signupSection.hidden = isLogin;
+
+
+      // 구분선 문구 변경
+
+      dividerText.textContent = isLogin
+
+        ? '또는 이메일로 로그인'
+
+        : '또는 이메일로 회원가입';
+
+
+      signupError.textContent = '';
+
+
+      // 화면 위로 이동
+
+      if (scrollTop) {
+
+        window.scrollTo({
+
+          top: 0,
+
+          behavior: reducedMotion ? 'auto' : 'smooth'
+
+        });
+
+      }
+
+    }
+
+
+    // 로그인 탭
+
+    loginTab.addEventListener('click', function() {
+
+      setMode('login');
+
+    });
+
+
+    // 회원가입 탭
+
+    signupTab.addEventListener('click', function() {
+
+      setMode('signup');
+
+    });
+
+
+    // 회원가입하기 버튼
+
+    document.getElementById('goSignup')
+      .addEventListener('click', function() {
+
+        setMode('signup', true);
+
+      });
+
+
+    // 로그인하기 버튼
+
+    document.getElementById('goLogin')
+      .addEventListener('click', function() {
+
+        setMode('login', true);
+
+      });
+
+
+    // ========================================
+    // 비밀번호 보기 / 숨기기
+    // ========================================
+
+    document.querySelectorAll('.password-toggle')
+      .forEach(function(button) {
+
+        button.addEventListener('click', function() {
+
+          const input = document.getElementById(
+            button.dataset.target
+          );
+
+          const isHidden = input.type === 'password';
+
+          input.type = isHidden ? 'text' : 'password';
+
+
+          button.innerHTML = isHidden
+
+            ? '<i data-lucide="eye-off"></i>'
+
+            : '<i data-lucide="eye"></i>';
+
+
+          button.setAttribute(
+
+            'aria-label',
+
+            isHidden
+
+              ? '비밀번호 숨기기'
+
+              : '비밀번호 보기'
+
+          );
+
+
+          if (window.lucide) {
+
+            lucide.createIcons();
+
+          }
+
+        });
+
+      });
+
+
+    // ========================================
+    // 약관 전체 동의
+    // ========================================
+
+    const agreeAll = document.getElementById('agreeAll');
+
+    const agreementChecks = Array.from(
+
+      document.querySelectorAll('.agreement-check')
+
+    );
+
+
+    function updateAgreement() {
+
+      const allChecked = agreementChecks.every(
+
+        function(check) {
+
+          return check.checked;
+
+        }
+
+      );
+
+
+      const someChecked = agreementChecks.some(
+
+        function(check) {
+
+          return check.checked;
+
+        }
+
+      );
+
+
+      agreeAll.checked = allChecked;
+
+      agreeAll.indeterminate =
+        someChecked && !allChecked;
+
+    }
+
+
+    // 전체 동의 체크
+
+    agreeAll.addEventListener('change', function() {
+
+      agreementChecks.forEach(function(check) {
+
+        check.checked = agreeAll.checked;
+
+      });
+
+      updateAgreement();
+
+    });
+
+
+    // 개별 약관 체크
+
+    agreementChecks.forEach(function(check) {
+
+      check.addEventListener(
+        'change',
+        updateAgreement
+      );
+
+    });
+
+
+    // ========================================
+    // 안내 팝업
+    // ========================================
+
+    const noticeModal = document.getElementById('noticeModal');
+
+    const noticeTitle = document.getElementById('noticeTitle');
+
+    const noticeText = document.getElementById('noticeText');
+
+
+    let afterNotice = null;
+
+
+    function showNotice(title, text, callback = null) {
+
+      noticeTitle.textContent = title;
+
+      noticeText.textContent = text;
+
+      afterNotice = callback;
+
+      noticeModal.showModal();
+
+      document.body.classList.add('modal-open');
+
+    }
+
+
+    // 팝업 닫기
+
+    document.getElementById('noticeClose')
+      .addEventListener('click', function() {
+
+        afterNotice = null;
+
+        noticeModal.close();
+
+      });
+
+
+    // 팝업 확인 버튼
+
+    document.getElementById('noticeConfirm')
+      .addEventListener('click', function() {
+
+        const callback = afterNotice;
+
+        afterNotice = null;
+
+        noticeModal.close();
+
+        if (callback) {
+
+          callback();
+
+        }
+
+      });
+
+
+    noticeModal.addEventListener('close', function() {
+
+      document.body.classList.remove('modal-open');
+
+      afterNotice = null;
+
+    });
+
+
+    // ========================================
+    // 테스트용 로그인 상태 저장
+    //
+    // 실제 이메일과 비밀번호는 저장하지 않음
+    // ========================================
+
+    function saveDemoLogin() {
+
+      try {
+
+        sessionStorage.setItem('demoLogin', 'true');
+
+      } catch (error) {
+
+        console.warn('테스트 로그인 상태 저장 불가');
+
+      }
+
+    }
+
+
+    // ========================================
+    // 일반 로그인
+    //
+    // 입력 내용과 상관없이 로그인 가능
+    // ========================================
+
+    loginForm.addEventListener('submit', function(event) {
+
+      event.preventDefault();
+
+      loginForm.reset();
+
+      resetPasswords();
+
+
+      showNotice(
+
+        '로그인 완료!',
+
+        '입덕볶이에 오신 것을 환영합니다!\n' +
+        '테스트 로그인이 완료되었습니다.',
+
+        function() {
+
+          saveDemoLogin();
+
+          window.location.href = '../../index.html';
+
+        }
+
+      );
+
+    });
+
+
+    // ========================================
+    // 일반 회원가입
+    //
+    // 이메일 형식, 비밀번호, 약관 검사 생략
+    // ========================================
+
+    signupForm.addEventListener('submit', function(event) {
+
+      event.preventDefault();
+
+
+      // 회원가입 입력 내용 초기화
+
+      signupForm.reset();
+
+      resetPasswords();
+
+      updateAgreement();
+
+      signupError.textContent = '';
+
+
+      // 회원가입 완료 팝업
+
+      showNotice(
+
+        '회원가입 완료!',
+
+        '입덕볶이의 새로운 회원이 되신 것을 환영합니다!\n' +
+        '테스트 회원가입이 완료되었습니다.',
+
+        function() {
+
+          setMode('login', true);
+
+        }
+
+      );
+
+    });
+
+
+    // ========================================
+    // 카카오 / 구글 / 애플
+    // 간편 로그인 및 회원가입 테스트
+    // ========================================
+
+    document.querySelectorAll('.social-btn')
+      .forEach(function(button) {
+
+        button.addEventListener('click', function() {
+
+          const provider = button.dataset.provider;
+
+          const isSignup = currentMode === 'signup';
+
+
+          // 간편 회원가입
+
+          if (isSignup) {
+
+            signupForm.reset();
+
+            resetPasswords();
+
+            updateAgreement();
+
+            showNotice(
+
+              provider + ' 회원가입 완료!',
+
+              '간편 회원가입 테스트가 완료되었습니다.\n' +
+              '실제 외부 계정 인증은 진행되지 않습니다.',
+
+              function() {
+
+                setMode('login', true);
+
+              }
+
+            );
+
+          } else {
+
+            // 간편 로그인
+
+            loginForm.reset();
+
+            resetPasswords();
+
+            showNotice(
+
+              provider + ' 로그인 완료!',
+
+              '간편 로그인 테스트가 완료되었습니다.\n' +
+              '실제 외부 계정 인증은 진행되지 않습니다.',
+
+              function() {
+
+                saveDemoLogin();
+
+                window.location.href = '../../index.html';
+
+              }
+
+            );
+
+          }
+
+        });
+
+      });
+
+
+    // ========================================
+    // 비밀번호 찾기
+    // ========================================
+
+    document.getElementById('findPassword')
+      .addEventListener('click', function() {
+
+        showNotice(
+
+          '비밀번호 찾기',
+
+          '현재는 테스트 페이지입니다.\n' +
+          '실제 비밀번호 재설정 메일은 발송되지 않습니다.'
+
+        );
+
+      });
+
+
+    // ========================================
+    // 약관 내용 보기
+    // ========================================
+
+    const termsData = {
+
+      terms: {
+
+        title: '이용약관',
+
+        text: '입덕볶이 수업용 웹사이트의 예시 이용약관입니다.\n' +
+              '실제 서비스 이용 계약은 체결되지 않습니다.'
+
+      },
+
+      privacy: {
+
+        title: '개인정보처리방침',
+
+        text: '현재 입력한 개인정보와 비밀번호는 저장하거나 전송하지 않습니다.\n' +
+              '실제 개인정보를 입력하지 마세요.'
+
+      },
+
+      marketing: {
+
+        title: '마케팅 정보 수신 동의',
+
+        text: '이벤트 및 신메뉴 소식을 받는 선택 항목입니다.\n' +
+              '테스트 페이지에서는 실제 메시지를 발송하지 않습니다.'
+
+      }
+
+    };
+
+
+    document.querySelectorAll('.terms-btn')
+      .forEach(function(button) {
+
+        button.addEventListener('click', function() {
+
+          const terms = termsData[button.dataset.terms];
+
+          showNotice(
+
+            terms.title,
+
+            terms.text
+
+          );
+
+        });
+
+      });
+
+
+    // ========================================
+    // 햄버거 메뉴
+    // ========================================
+
+    const menuBtn = document.getElementById('menuBtn');
+
+    const closeBtn = document.getElementById('closeBtn');
+
+    const menuLayer = document.getElementById('menuLayer');
+
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    const container = document.querySelector('.container');
+
+    const menuLinks = document.querySelectorAll(
+      '.side-menu-nav a'
+    );
+
+
+    // 메뉴 열기
+
+    function openMenu() {
+
+      menuLayer.inert = false;
+
+      menuLayer.classList.add('active');
+
+      menuLayer.setAttribute(
+        'aria-hidden',
+        'false'
+      );
+
+      menuBtn.setAttribute(
+        'aria-expanded',
+        'true'
+      );
+
+      document.body.classList.add('menu-open');
+
+      closeBtn.focus({
+
+        preventScroll: true
+
+      });
+
+      container.inert = true;
+
+    }
+
+
+    // 메뉴 닫기
+
+    function closeMenu() {
+
+      container.inert = false;
+
+      menuBtn.focus({
+
+        preventScroll: true
+
+      });
+
+      menuLayer.classList.remove('active');
+
+      menuLayer.inert = true;
+
+      menuLayer.setAttribute(
+        'aria-hidden',
+        'true'
+      );
+
+      menuBtn.setAttribute(
+        'aria-expanded',
+        'false'
+      );
+
+      document.body.classList.remove('menu-open');
+
+    }
+
+
+    menuBtn.addEventListener('click', openMenu);
+
+    closeBtn.addEventListener('click', closeMenu);
+
+    menuOverlay.addEventListener('click', closeMenu);
+
+
+    // 메뉴 클릭
+
+    menuLinks.forEach(function(link) {
+
+      link.addEventListener('click', function(event) {
+
+        if (
+          link.getAttribute('aria-current') === 'page'
+        ) {
+
+          event.preventDefault();
+
+        }
+
+        closeMenu();
+
+      });
+
+    });
+
+
+    // ========================================
+    // ESC 및 Tab 키 처리
+    // ========================================
+
+    document.addEventListener('keydown', function(event) {
+
+      if (!menuLayer.classList.contains('active')) return;
+
+
+      if (event.key === 'Escape') {
+
+        closeMenu();
+
+      }
+
+
+      if (event.key === 'Tab') {
+
+        const lastLink = menuLinks[menuLinks.length - 1];
+
+
+        if (
+
+          event.shiftKey &&
+
+          document.activeElement === closeBtn
+
+        ) {
+
+          event.preventDefault();
+
+          lastLink.focus();
+
+        } else if (
+
+          !event.shiftKey &&
+
+          document.activeElement === lastLink
+
+        ) {
+
+          event.preventDefault();
+
+          closeBtn.focus();
+
+        }
+
+      }
+
+    });
+
+
+    // ========================================
+    // 뒤로가기 슬라이드 애니메이션
+    // ========================================
+
+    const backBtn = document.getElementById('backBtn');
+
+    const pageContent = document.querySelector('.page-content');
+
+    let isMoving = false;
+
+    let moveTimer;
+
+
+    function moveBack() {
+
+      clearTimeout(moveTimer);
+
+      pageContent.removeEventListener(
+
+        'transitionend',
+
+        onTransitionEnd
+
+      );
+
+      window.location.href = backBtn.href;
+
+    }
+
+
+    function onTransitionEnd(event) {
+
+      if (
+
+        event.target === pageContent &&
+
+        event.propertyName === 'transform'
+
+      ) {
+
+        moveBack();
+
+      }
+
+    }
+
+
+    backBtn.addEventListener('click', function(event) {
+
+      event.preventDefault();
+
+      if (isMoving) return;
+
+      isMoving = true;
+
+      backBtn.classList.add('active');
+
+
+      if (reducedMotion) {
+
+        moveBack();
+
+        return;
+
+      }
+
+
+      pageContent.addEventListener(
+
+        'transitionend',
+
+        onTransitionEnd
+
+      );
+
+      document.body.classList.add('page-leaving');
+
+      moveTimer = setTimeout(moveBack, 450);
+
+    });
+
+
+    // ========================================
+    // 브라우저 뒤로가기 시 초기화
+    // ========================================
+
+    window.addEventListener('pageshow', function() {
+
+      clearTimeout(moveTimer);
+
+      pageContent.removeEventListener(
+
+        'transitionend',
+
+        onTransitionEnd
+
+      );
+
+      document.body.classList.remove('page-leaving');
+
+      backBtn.classList.remove('active');
+
+      isMoving = false;
+
+
+      if (menuLayer.classList.contains('active')) {
+
+        closeMenu();
+
+      }
+
+
+      if (noticeModal.open) {
+
+        noticeModal.close();
+
+      }
+
+
+      document.body.classList.remove('modal-open');
+
+      resetPasswords();
+
+      updateAgreement();
+
+    });
+
+  </script>
+
+</body>
+</html>
