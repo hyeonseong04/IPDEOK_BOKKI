@@ -1,0 +1,350 @@
+
+/* ========================================
+   입덕볶이 - 공통 회원 UI 디자인
+======================================== */
+
+
+/* ========================================
+   헤더 위치 기준
+======================================== */
+
+.header.ip-auth-position {
+  position: relative;
+}
+
+
+/* ========================================
+   헤더 로그인 사용자 정보
+======================================== */
+
+.header .ip-header-profile {
+  position: absolute;
+
+  top: 50%;
+  right: 104px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  width: 68px;
+  height: 50px;
+
+  color: #000000;
+
+  font-family: 'Noto Sans KR', sans-serif;
+
+  text-align: center;
+}
+
+
+/* ========================================
+   비로그인 상태 프로필 숨기기
+======================================== */
+
+.header .ip-header-profile[hidden] {
+  display: none !important;
+}
+
+
+/* ========================================
+   사용자 아이콘
+======================================== */
+
+.ip-header-profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 26px;
+  height: 26px;
+
+  flex-shrink: 0;
+}
+
+.ip-header-profile-icon svg {
+  width: 24px;
+  height: 24px;
+
+  stroke-width: 1.8;
+
+  color: #000000;
+}
+
+
+/* ========================================
+   사용자 닉네임
+======================================== */
+
+.ip-header-profile-name {
+  display: block;
+
+  width: 100%;
+
+  margin: 0;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  color: #000000;
+
+  text-align: center;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+/* ========================================
+   기존 햄버거 메뉴 사용자 프로필 숨기기
+======================================== */
+
+body.ip-auth-ui .side-menu .user-profile {
+  display: none !important;
+}
+
+
+/* ========================================
+   햄버거 메뉴 로그아웃
+======================================== */
+
+.side-menu .side-menu-nav a.logout-link {
+  color: #E84129;
+
+  font-weight: 600;
+}
+
+.side-menu .side-menu-nav a.logout-link:active {
+  color: #C9311E;
+}
+
+
+/* ========================================
+   로그인 필요 안내 팝업
+======================================== */
+
+.auth-required-modal {
+  position: fixed;
+
+  inset: 0;
+
+  width: calc(100% - 40px);
+  max-width: 340px;
+
+  margin: auto;
+  padding: 28px 24px;
+
+  box-sizing: border-box;
+
+  background-color: #FDF1E1;
+
+  border: none;
+  border-radius: 20px;
+
+  font-family: 'Noto Sans KR', sans-serif;
+
+  color: #000000;
+
+  text-align: center;
+}
+
+
+/* 팝업 어두운 배경 */
+
+.auth-required-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+
+/* ========================================
+   로그인 안내 아이콘
+======================================== */
+
+.auth-required-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
+
+  margin: 0 auto 20px;
+
+  background-color: #FFE0C6;
+
+  border-radius: 50%;
+
+  color: #E84129;
+}
+
+.auth-required-icon svg {
+  width: 30px;
+  height: 30px;
+
+  stroke-width: 1.8;
+}
+
+
+/* ========================================
+   로그인 안내 문구
+======================================== */
+
+.auth-required-title {
+  margin: 0 0 14px;
+
+  font-size: 22px;
+  font-weight: 800;
+
+  color: #000000;
+}
+
+.auth-required-description {
+  margin: 0 0 24px;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  line-height: 1.8;
+
+  color: #666666;
+
+  word-break: keep-all;
+}
+
+
+/* ========================================
+   로그인하기 버튼
+======================================== */
+
+.auth-required-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 52px;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  background-color: #E84129;
+
+  border: none;
+  border-radius: 12px;
+
+  font-family: inherit;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #FFFFFF;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+
+/* ========================================
+   취소 버튼
+======================================== */
+
+.auth-required-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 48px;
+
+  margin-top: 10px;
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  background-color: transparent;
+
+  border: 1px solid #E5D8C8;
+  border-radius: 12px;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #666666;
+
+  cursor: pointer;
+}
+
+
+/* ========================================
+   좁은 모바일 화면 대응
+======================================== */
+
+@media screen and (max-width: 420px) {
+
+  .header .ip-header-profile {
+    width: 60px;
+  }
+
+  .ip-header-profile-name {
+    font-size: 10px;
+  }
+
+  /* 서브페이지 로고와 프로필 겹침 방지 */
+
+  .header.ip-auth-logged-in:has(> .back-btn) > .logo {
+    position: absolute;
+
+    top: 50%;
+    left: 29%;
+    right: auto;
+
+    transform: translate(-50%, -50%);
+
+    margin: 0;
+
+    max-width: 64px;
+  }
+
+}
+
+
+/* ========================================
+   작은 모바일 화면 대응
+======================================== */
+
+@media screen and (max-width: 360px) {
+
+  .header .ip-header-profile {
+    right: 100px;
+
+    width: 56px;
+  }
+
+  .ip-header-profile-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .ip-header-profile-name {
+    font-size: 9px;
+  }
+
+  .auth-required-title {
+    font-size: 20px;
+  }
+
+}

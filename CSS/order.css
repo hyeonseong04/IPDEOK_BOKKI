@@ -1,0 +1,1388 @@
+
+/* ========================================
+   입덕볶이 - 공통 주문 디자인
+======================================== */
+
+:root {
+  --order-cream: #FDF1E1;
+  --order-red: #E84129;
+  --order-orange: #FF9D42;
+  --order-card: #FFF9F3;
+  --order-border: #E5D8C8;
+  --order-text: #000000;
+  --order-gray: #777777;
+}
+
+
+/* ========================================
+   신규 주문 페이지 기본 설정
+======================================== */
+
+body.order-page {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Noto Sans KR', sans-serif;
+
+  background-color: #FFFFFF;
+
+  color: var(--order-text);
+}
+
+.order-page *,
+.order-page *::before,
+.order-page *::after {
+  box-sizing: border-box;
+}
+
+.order-page h1,
+.order-page h2,
+.order-page h3,
+.order-page p {
+  margin: 0;
+}
+
+.order-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.order-page button,
+.order-page input,
+.order-page textarea,
+.order-page select {
+  font-family: inherit;
+}
+
+.order-page button {
+  border: none;
+  cursor: pointer;
+}
+
+.order-page button:disabled {
+  cursor: default;
+}
+
+.order-page img {
+  display: block;
+  max-width: 100%;
+}
+
+.order-page [hidden] {
+  display: none !important;
+}
+
+
+/* ========================================
+   전체 화면 영역
+======================================== */
+
+.order-shell {
+  position: relative;
+
+  width: 100%;
+  max-width: 500px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  background-color: var(--order-cream);
+}
+
+.order-main {
+  width: 100%;
+
+  padding: 24px 20px 160px;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.order-shell .header {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 60px;
+
+  padding: 0 20px;
+
+  background-color: var(--order-cream);
+}
+
+
+/* 중앙 로고 */
+
+.order-shell .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 54px;
+}
+
+.order-shell .logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+/* 뒤로가기 버튼 */
+
+.order-shell .back-btn {
+  position: absolute;
+  left: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  background: transparent;
+
+  color: #000000;
+}
+
+.order-shell .back-btn svg {
+  width: 28px;
+  height: 28px;
+}
+
+
+/* 햄버거 메뉴 버튼 */
+
+.order-shell .menu-btn {
+  position: absolute;
+  right: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  background: transparent;
+
+  color: #000000;
+}
+
+.order-shell .menu-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* ========================================
+   헤더 장바구니 아이콘
+======================================== */
+
+.header .ip-cart-link {
+  position: absolute;
+
+  top: 50%;
+  right: 64px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #000000;
+
+  text-decoration: none;
+}
+
+.ip-cart-link svg {
+  width: 24px;
+  height: 24px;
+
+  stroke-width: 1.8;
+}
+
+
+/* 장바구니 수량 표시 */
+
+.ip-cart-count {
+  position: absolute;
+
+  top: -5px;
+  right: -6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 19px;
+  height: 19px;
+
+  padding: 0 4px;
+
+  background-color: var(--order-red);
+
+  border-radius: 20px;
+
+  color: #FFFFFF;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.ip-cart-count[hidden] {
+  display: none !important;
+}
+
+
+/* ========================================
+   페이지 타이틀
+======================================== */
+
+.order-page-title {
+  margin-bottom: 24px;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  letter-spacing: -1px;
+
+  color: #000000;
+}
+
+.order-section-title {
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #000000;
+}
+
+
+/* ========================================
+   장바구니 상단 정보
+======================================== */
+
+.cart-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 16px;
+}
+
+.cart-count-text {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.cart-clear {
+  padding: 4px;
+
+  background: transparent;
+
+  font-size: 12px;
+
+  color: var(--order-gray);
+
+  text-decoration: underline;
+}
+
+
+/* ========================================
+   장바구니 메뉴 리스트
+======================================== */
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+
+/* 메뉴 카드 */
+
+.cart-item {
+  width: 100%;
+
+  padding: 16px;
+
+  background-color: var(--order-card);
+
+  border: 1px solid var(--order-border);
+
+  border-radius: 16px;
+}
+
+
+/* 카드 상단 */
+
+.cart-item-top {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+}
+
+
+/* 음식 이미지 */
+
+.cart-image {
+  display: block;
+
+  width: 86px;
+  height: 86px;
+
+  flex-shrink: 0;
+
+  padding: 4px;
+
+  background-color: var(--order-cream);
+
+  border-radius: 12px;
+
+  object-fit: contain;
+}
+
+
+/* 음식 정보 */
+
+.cart-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+.cart-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  word-break: keep-all;
+}
+
+
+/* 선택 옵션 */
+
+.cart-options {
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  color: var(--order-gray);
+
+  overflow-wrap: anywhere;
+}
+
+
+/* 메뉴 기본 가격 */
+
+.cart-unit {
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #333333;
+}
+
+
+/* 메뉴 삭제 버튼 */
+
+.cart-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  flex-shrink: 0;
+
+  background-color: transparent;
+
+  font-size: 26px;
+
+  color: #777777;
+
+  line-height: 1;
+}
+
+.cart-remove:active {
+  color: var(--order-red);
+}
+
+
+/* ========================================
+   메뉴 카드 하단
+======================================== */
+
+.cart-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 16px;
+  padding-top: 16px;
+
+  border-top: 1px solid var(--order-border);
+}
+
+
+/* 수량 선택 영역 */
+
+.cart-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 108px;
+  height: 36px;
+
+  background-color: #FFFFFF;
+
+  border: 1px solid var(--order-border);
+
+  border-radius: 30px;
+
+  overflow: hidden;
+}
+
+.cart-step button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  background-color: transparent;
+
+  font-size: 20px;
+
+  color: #000000;
+}
+
+.cart-step button:active {
+  background-color: var(--order-cream);
+
+  color: var(--order-red);
+}
+
+.cart-step button:disabled {
+  color: #CCCCCC;
+}
+
+.cart-step span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* 음식별 주문금액 */
+
+.cart-line-price {
+  font-size: 17px;
+  font-weight: 700;
+
+  color: var(--order-red);
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   장바구니가 비었을 때
+======================================== */
+
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+
+  min-height: 240px;
+
+  padding: 32px 20px;
+
+  background-color: var(--order-card);
+
+  border-radius: 16px;
+
+  text-align: center;
+}
+
+.cart-empty svg {
+  width: 56px;
+  height: 56px;
+
+  color: #C3AD99;
+
+  stroke-width: 1.5;
+}
+
+.cart-empty h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.cart-empty p {
+  font-size: 13px;
+
+  color: var(--order-gray);
+
+  line-height: 1.7;
+}
+
+
+/* ========================================
+   메뉴 더 담기 버튼
+======================================== */
+
+.add-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  width: 100%;
+  min-height: 52px;
+
+  margin-top: 20px;
+  padding: 12px;
+
+  background-color: transparent;
+
+  border: 1px solid var(--order-red);
+
+  border-radius: 12px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: var(--order-red) !important;
+}
+
+.add-more-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.add-more-btn:active {
+  background-color: #FFE0C6;
+}
+
+
+/* ========================================
+   주문 정보 카드
+======================================== */
+
+.order-card {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+
+  width: 100%;
+
+  margin-top: 24px;
+  padding: 20px;
+
+  background-color: var(--order-card);
+
+  border: 1px solid var(--order-border);
+
+  border-radius: 16px;
+}
+
+
+/* 주문금액 항목 */
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  font-size: 14px;
+
+  color: #555555;
+}
+
+.summary-row strong {
+  color: #000000;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* 할인 금액 */
+
+.summary-row.discount strong {
+  color: var(--order-red);
+}
+
+
+/* 총 주문금액 */
+
+.summary-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid var(--order-border);
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.summary-total strong {
+  font-size: 24px;
+  font-weight: 800;
+
+  color: var(--order-red);
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   결제페이지 입력창
+======================================== */
+
+.order-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.order-field label {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #000000;
+}
+
+.order-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+
+  padding: 12px;
+
+  background-color: #FFFFFF;
+
+  border: 1px solid var(--order-border);
+
+  border-radius: 10px;
+
+  outline: none;
+
+  font-size: 14px;
+
+  color: #000000;
+}
+
+.order-input:focus {
+  border-color: var(--order-red);
+}
+
+textarea.order-input {
+  min-height: 90px;
+
+  resize: vertical;
+}
+
+
+/* 입력창 + 적용 버튼 */
+
+.order-input-row {
+  display: flex;
+
+  gap: 8px;
+}
+
+.order-input-row .order-input {
+  flex: 1;
+}
+
+
+/* 쿠폰 및 포인트 적용 버튼 */
+
+.order-small-btn {
+  min-height: 48px;
+
+  padding: 0 16px;
+
+  background-color: var(--order-red);
+
+  border-radius: 10px;
+
+  color: #FFFFFF;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* ========================================
+   결제수단 선택
+======================================== */
+
+.order-radio {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 14px;
+
+  background-color: #FFFFFF;
+
+  border: 1px solid var(--order-border);
+
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.order-radio input {
+  width: 18px;
+  height: 18px;
+
+  accent-color: var(--order-red);
+}
+
+.order-radio:has(input:checked) {
+  border-color: var(--order-red);
+}
+
+
+/* 보조 안내 문구 */
+
+.order-guide {
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  color: var(--order-gray);
+}
+
+
+/* ========================================
+   공통 주문 버튼
+======================================== */
+
+.order-primary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  width: 100%;
+  min-height: 56px;
+
+  padding: 12px 16px;
+
+  background-color: var(--order-red);
+
+  border-radius: 14px;
+
+  color: #FFFFFF !important;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  text-align: center;
+
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.order-primary-btn:active {
+  background-color: #C9311E;
+}
+
+.order-primary-btn:disabled {
+  background-color: #BBBBBB;
+
+  color: #FFFFFF;
+}
+
+
+/* 테두리형 버튼 */
+
+.order-outline-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  width: 100%;
+  min-height: 56px;
+
+  padding: 12px;
+
+  background-color: var(--order-card);
+
+  border: 1px solid var(--order-red) !important;
+
+  border-radius: 14px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: var(--order-red) !important;
+
+  text-align: center;
+}
+
+
+/* ========================================
+   상세페이지 장바구니 버튼 영역
+======================================== */
+
+.detail-order-actions {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+
+  width: 100%;
+}
+
+.detail-order-actions svg {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+}
+
+
+/* ========================================
+   하단 고정 결제 영역
+======================================== */
+
+.order-fixed-footer {
+  position: fixed;
+
+  bottom: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 500px;
+
+  padding: 16px 20px;
+
+  padding-bottom:
+    calc(16px + env(safe-area-inset-bottom, 0px));
+
+  background-color: var(--order-cream);
+
+  border-top: 1px solid var(--order-border);
+
+  box-shadow:
+    0 -4px 16px rgba(0, 0, 0, 0.04);
+
+  z-index: 100;
+}
+
+.order-footer-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-footer-total strong {
+  font-size: 24px;
+  font-weight: 800;
+
+  color: var(--order-red);
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   결제 완료 화면
+======================================== */
+
+.finish-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 32px 0;
+
+  text-align: center;
+}
+
+.finish-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 88px;
+  height: 88px;
+
+  background-color: #FFE0C6;
+
+  border-radius: 50%;
+
+  color: var(--order-red);
+}
+
+.finish-icon svg {
+  width: 44px;
+  height: 44px;
+
+  stroke-width: 2;
+}
+
+.finish-hero h1 {
+  font-size: 28px;
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+.finish-hero p {
+  font-size: 14px;
+
+  line-height: 1.8;
+
+  color: #666666;
+}
+
+.finish-actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: 24px;
+}
+
+
+/* ========================================
+   신규 페이지 햄버거 슬라이드 메뉴
+======================================== */
+
+.order-menu-layer {
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 500px;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 1000;
+}
+
+.order-menu-layer.active {
+  pointer-events: auto;
+}
+
+
+/* 어두운 배경 */
+
+.order-menu-layer .menu-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background-color: rgba(0, 0, 0, 0.45);
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease-in-out;
+}
+
+.order-menu-layer.active .menu-overlay {
+  opacity: 1;
+}
+
+
+/* 슬라이드 메뉴 영역 */
+
+.order-menu-layer .side-menu {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 66.6667%;
+
+  background-color: var(--order-cream);
+
+  transform: translateX(100%);
+
+  transition: transform 0.4s ease-in-out;
+
+  overflow-y: auto;
+}
+
+.order-menu-layer.active .side-menu {
+  transform: translateX(0);
+}
+
+
+/* 메뉴 헤더 */
+
+.order-menu-layer .side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 60px;
+
+  padding: 0 20px;
+}
+
+
+/* X 버튼 */
+
+.order-menu-layer .close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  background: transparent;
+
+  color: #000000;
+}
+
+.order-menu-layer .close-btn svg {
+  width: 28px;
+  height: 28px;
+}
+
+
+/* 메뉴 항목 */
+
+.order-menu-layer .side-menu-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+
+  padding: 24px 20px;
+}
+
+.order-menu-layer .side-menu-nav a {
+  font-size: 18px;
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  color: #000000;
+
+  text-decoration: none;
+
+  word-break: keep-all;
+}
+
+body.order-menu-open {
+  overflow: hidden;
+}
+
+
+/* ========================================
+   로그인 사용자 프로필
+======================================== */
+
+.side-menu .user-profile {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 20px 20px 0;
+  padding-bottom: 24px;
+
+  border-bottom: 1px solid var(--order-border);
+}
+
+.side-menu .user-profile[hidden] {
+  display: none !important;
+}
+
+
+/* 프로필 아이콘 */
+
+.side-menu .profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  background-color: #FFE0C6;
+
+  border-radius: 50%;
+
+  color: var(--order-red);
+}
+
+.side-menu .profile-icon svg {
+  width: 26px;
+  height: 26px;
+
+  stroke-width: 1.8;
+}
+
+
+/* 프로필 이름 및 설명 */
+
+.side-menu .profile-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+.side-menu .profile-name {
+  margin: 0;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  color: #000000;
+
+  overflow-wrap: anywhere;
+}
+
+.side-menu .profile-message {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  color: #777777;
+}
+
+
+/* 로그아웃 */
+
+.side-menu .side-menu-nav a.logout-link {
+  color: var(--order-red);
+}
+
+
+/* ========================================
+   키보드 접근성
+======================================== */
+
+.order-page button:focus-visible,
+.order-page a:focus-visible,
+.ip-cart-link:focus-visible {
+  outline: 2px solid var(--order-red);
+
+  outline-offset: 3px;
+}
+
+
+/* ========================================
+   작은 모바일 화면 대응
+======================================== */
+
+@media screen and (max-width: 360px) {
+
+  .order-page-title {
+    font-size: 24px;
+  }
+
+  .cart-item {
+    padding: 12px;
+  }
+
+  .cart-image {
+    width: 68px;
+    height: 68px;
+  }
+
+  .cart-info h3 {
+    font-size: 14px;
+  }
+
+  .cart-options {
+    font-size: 11px;
+  }
+
+  .cart-line-price {
+    font-size: 15px;
+  }
+
+  .cart-step {
+    width: 94px;
+  }
+
+  .cart-step button {
+    width: 30px;
+  }
+
+  .summary-total strong,
+  .order-footer-total strong {
+    font-size: 20px;
+  }
+
+  .detail-order-actions a,
+  .detail-order-actions button {
+    font-size: 13px;
+  }
+
+  .side-menu .profile-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .side-menu .profile-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .side-menu .profile-name {
+    font-size: 16px;
+  }
+
+  .side-menu .profile-message {
+    font-size: 11px;
+  }
+
+  .order-menu-layer .side-menu-nav a {
+    font-size: 16px;
+  }
+
+}
+
+
+/* ========================================
+   모션 감소 설정
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .order-menu-layer .side-menu,
+  .order-menu-layer .menu-overlay,
+  .order-primary-btn {
+    transition: none;
+  }
+
+}
+
+/* ========================================
+   장바구니 아이콘 위치 수정
+======================================== */
+
+.container > .header {
+  position: relative;
+}
+
+.header .ip-cart-link {
+  position: absolute;
+
+  top: 50%;
+  right: 64px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #000000;
+}
+
+.header .ip-cart-link svg {
+  width: 24px;
+  height: 24px;
+
+  stroke-width: 1.8;
+}
+
+.header .ip-cart-count {
+  position: absolute;
+
+  top: -5px;
+  right: -6px;
+}

@@ -1,0 +1,894 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>입덕볶이 - 장바구니</title>
+
+
+  <!-- Noto Sans KR -->
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap">
+
+
+  <!-- 기존 장바구니 CSS -->
+
+  <link rel="stylesheet" href="CSS/cart.css">
+
+
+  <!-- 공통 회원 CSS -->
+
+  <link rel="stylesheet" href="../../CSS/auth.css">
+
+
+  <!-- Lucide 아이콘 -->
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+
+  <!-- 공통 회원 관리 기능 -->
+
+  <script src="../../auth.js" defer></script>
+
+
+  <!-- 공통 장바구니 기능 -->
+
+  <script src="../../order.js" defer></script>
+
+</head>
+
+
+<body class="order-page" data-order-page="cart">
+
+
+  <div class="order-shell">
+
+
+    <!-- ========================================
+         HEADER
+    ========================================= -->
+
+    <header class="header">
+
+
+      <!-- 뒤로가기 버튼 -->
+
+      <a href="../list/list.html"
+         class="back-btn"
+         aria-label="뒤로가기">
+
+        <i data-lucide="chevron-left"></i>
+
+      </a>
+
+
+      <!-- 중앙 로고 -->
+
+      <div class="logo">
+
+        <img src="../../IMG/ChatGPT 이미지 2026년 11월 24일 오전 11_19_26-1.png"
+             alt="입덕볶이 로고">
+
+      </div>
+
+
+      <!-- 햄버거 메뉴 -->
+
+      <button type="button"
+              class="menu-btn"
+              id="menuBtn"
+              aria-label="메뉴 열기"
+              aria-expanded="false"
+              aria-controls="sideMenu">
+
+        <i data-lucide="menu"></i>
+
+      </button>
+
+
+    </header>
+
+
+    <!-- ========================================
+         장바구니 메인 영역
+    ========================================= -->
+
+    <main class="order-main">
+
+
+      <!-- 페이지 타이틀 -->
+
+      <h1 class="order-page-title">
+
+        장바구니
+
+      </h1>
+
+
+      <!-- ========================================
+           SECTION 01 : 장바구니 상단
+      ========================================= -->
+
+      <section class="cart-heading">
+
+
+        <!-- 담은 메뉴 개수 -->
+
+        <p class="cart-count-text"
+           id="cartCount">
+
+          담은 메뉴 0개
+
+        </p>
+
+
+        <!-- 전체 삭제 버튼 -->
+
+        <button type="button"
+                class="cart-clear"
+                id="clearCart">
+
+          전체 삭제
+
+        </button>
+
+
+      </section>
+
+
+      <!-- ========================================
+           SECTION 02 : 장바구니 메뉴 목록
+      ========================================= -->
+
+      <section class="cart-list"
+               id="cartList"
+               aria-label="장바구니 메뉴 목록">
+
+        <!--
+          order.js에서 저장된 음식을 가져와
+          자동으로 메뉴 카드를 생성합니다.
+        -->
+
+      </section>
+
+
+      <!-- ========================================
+           장바구니가 비어 있을 때
+      ========================================= -->
+
+      <section class="cart-empty"
+               id="cartEmpty"
+               hidden>
+
+        <i data-lucide="shopping-cart"></i>
+
+        <h2>
+
+          장바구니가 비어 있어요.
+
+        </h2>
+
+        <p>
+
+          맛있는 떡볶이와 튀김을<br>
+          장바구니에 담아보세요!
+
+        </p>
+
+      </section>
+
+
+      <!-- ========================================
+           SECTION 03 : 메뉴 더 담기
+      ========================================= -->
+
+      <a href="../list/list.html"
+         class="add-more-btn">
+
+        <i data-lucide="plus"></i>
+
+        <span>
+
+          메뉴 더 담기
+
+        </span>
+
+      </a>
+
+
+      <!-- ========================================
+           SECTION 04 : 주문금액
+      ========================================= -->
+
+      <section class="order-card"
+               id="orderSummary"
+               hidden>
+
+
+        <h2 class="order-section-title">
+
+          주문금액
+
+        </h2>
+
+
+        <!-- 상품금액 -->
+
+        <div class="summary-row">
+
+          <span>
+
+            상품금액
+
+          </span>
+
+          <strong id="productTotal">
+
+            0원
+
+          </strong>
+
+        </div>
+
+
+        <!-- 배달비 -->
+
+        <div class="summary-row">
+
+          <span>
+
+            배달비
+
+          </span>
+
+          <strong id="deliveryFee">
+
+            0원
+
+          </strong>
+
+        </div>
+
+
+        <!-- 총 주문금액 -->
+
+        <div class="summary-total">
+
+          <span>
+
+            총 주문금액
+
+          </span>
+
+          <strong id="summaryTotal"
+                  aria-live="polite">
+
+            0원
+
+          </strong>
+
+        </div>
+
+
+        <p class="order-guide">
+
+          할인 및 쿠폰은 결제페이지에서
+          적용할 수 있습니다.
+
+        </p>
+
+
+      </section>
+
+
+    </main>
+
+
+    <!-- ========================================
+         하단 고정 결제 버튼
+    ========================================= -->
+
+    <footer class="order-fixed-footer">
+
+
+      <div class="order-footer-total">
+
+        <span>
+
+          총 주문금액
+
+        </span>
+
+        <strong id="footerTotal">
+
+          0원
+
+        </strong>
+
+      </div>
+
+
+      <!-- 결제하기 버튼 -->
+
+      <button type="button"
+              class="order-primary-btn"
+              id="checkoutBtn"
+              disabled>
+
+        <i data-lucide="credit-card"></i>
+
+        <span id="checkoutText">
+
+          0원 결제하기
+
+        </span>
+
+      </button>
+
+
+    </footer>
+
+
+  </div>
+
+
+  <!-- ========================================
+       로그인 필요 안내 팝업
+       비로그인 사용자가 결제 시도 시 표시
+  ========================================= -->
+
+  <dialog class="auth-required-modal"
+          id="loginRequiredModal"
+          aria-labelledby="loginRequiredTitle">
+
+
+    <!-- 사용자 아이콘 -->
+
+    <div class="auth-required-icon">
+
+      <i data-lucide="user-round"></i>
+
+    </div>
+
+
+    <!-- 팝업 제목 -->
+
+    <h2 class="auth-required-title"
+        id="loginRequiredTitle">
+
+      로그인이 필요해요!
+
+    </h2>
+
+
+    <!-- 안내 문구 -->
+
+    <p class="auth-required-description">
+
+      주문 및 결제를 진행하려면<br>
+      먼저 로그인해 주세요.<br><br>
+
+      장바구니에 담은 메뉴는 유지됩니다.
+
+    </p>
+
+
+    <!-- 로그인 페이지 이동 -->
+
+    <a href="../login/login.html?next=payment"
+       class="auth-required-login">
+
+      로그인하기
+
+    </a>
+
+
+    <!-- 팝업 취소 버튼 -->
+
+    <button type="button"
+            class="auth-required-cancel"
+            id="cancelLoginBtn">
+
+      취소
+
+    </button>
+
+
+  </dialog>
+
+
+  <!-- ========================================
+       햄버거 슬라이드 메뉴
+  ========================================= -->
+
+  <div class="order-menu-layer"
+       id="menuLayer"
+       aria-hidden="true"
+       inert>
+
+
+    <!-- 어두운 배경 -->
+
+    <div class="menu-overlay"
+         id="menuOverlay">
+
+    </div>
+
+
+    <!-- 사이드 메뉴 -->
+
+    <aside class="side-menu"
+           id="sideMenu"
+           role="dialog"
+           aria-modal="true"
+           aria-label="페이지 이동 메뉴">
+
+
+      <!-- 닫기 버튼 -->
+
+      <div class="side-menu-header">
+
+        <button type="button"
+                class="close-btn"
+                id="closeBtn"
+                aria-label="메뉴 닫기">
+
+          <i data-lucide="x"></i>
+
+        </button>
+
+      </div>
+
+
+      <!-- 메뉴 목록 -->
+
+      <nav class="side-menu-nav">
+
+        <a href="../list/list.html">
+
+          떡볶이 메뉴
+
+        </a>
+
+        <a href="../about/about.html">
+
+          기업 소개
+
+        </a>
+
+        <a href="../community/community.html">
+
+          커뮤니티
+
+        </a>
+
+        <a href="../login/login.html">
+
+          로그인 / 회원가입
+
+        </a>
+
+      </nav>
+
+
+    </aside>
+
+
+  </div>
+
+
+  <!-- ========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+
+      // ========================================
+      // 공통 장바구니 기능 확인
+      // ========================================
+
+      const order = window.IpOrder;
+
+      if (!order) {
+
+        alert(
+          'order.js를 불러오지 못했습니다. ' +
+          '파일 위치를 확인해 주세요.'
+        );
+
+        return;
+
+      }
+
+
+      // ========================================
+      // HTML 요소 가져오기
+      // ========================================
+
+      const cartList =
+        document.getElementById('cartList');
+
+      const cartCount =
+        document.getElementById('cartCount');
+
+      const cartEmpty =
+        document.getElementById('cartEmpty');
+
+      const clearCart =
+        document.getElementById('clearCart');
+
+      const orderSummary =
+        document.getElementById('orderSummary');
+
+      const productTotal =
+        document.getElementById('productTotal');
+
+      const deliveryFee =
+        document.getElementById('deliveryFee');
+
+      const summaryTotal =
+        document.getElementById('summaryTotal');
+
+      const footerTotal =
+        document.getElementById('footerTotal');
+
+      const checkoutBtn =
+        document.getElementById('checkoutBtn');
+
+      const checkoutText =
+        document.getElementById('checkoutText');
+
+
+      // 로그인 안내 팝업
+
+      const loginRequiredModal =
+        document.getElementById('loginRequiredModal');
+
+      const cancelLoginBtn =
+        document.getElementById('cancelLoginBtn');
+
+
+      // ========================================
+      // 장바구니 화면 업데이트
+      // ========================================
+
+      function renderCart() {
+
+
+        // 저장된 장바구니 불러오기
+
+        const rows = order.read();
+
+
+        // 장바구니에 담긴 전체 수량
+
+        const count = rows.reduce(
+
+          (sum, row) => sum + row.quantity,
+
+          0
+
+        );
+
+
+        // 전체 상품금액
+
+        const subtotal = order.total(rows);
+
+
+        // 테스트용 배달비
+
+        const delivery = 0;
+
+
+        // 최종 주문금액
+
+        const total = subtotal + delivery;
+
+
+        // 장바구니 비어 있는지 확인
+
+        const isEmpty = rows.length === 0;
+
+
+        // 담은 메뉴 개수 표시
+
+        cartCount.textContent =
+
+          '담은 메뉴 ' + count + '개';
+
+
+        // 메뉴 카드 자동 생성
+
+        order.renderRows(cartList, rows, true);
+
+
+        // 장바구니 상태에 따른 화면 변경
+
+        cartList.hidden = isEmpty;
+
+        cartEmpty.hidden = !isEmpty;
+
+        clearCart.hidden = isEmpty;
+
+        orderSummary.hidden = isEmpty;
+
+
+        // 상품금액 표시
+
+        productTotal.textContent =
+
+          order.money(subtotal);
+
+
+        // 배달비 표시
+
+        deliveryFee.textContent =
+
+          order.money(delivery);
+
+
+        // 총 주문금액 표시
+
+        summaryTotal.textContent =
+
+          order.money(total);
+
+
+        // 하단 주문금액 표시
+
+        footerTotal.textContent =
+
+          order.money(total);
+
+
+        // 결제 버튼 문구 변경
+
+        checkoutText.textContent =
+
+          order.money(total) + ' 결제하기';
+
+
+        // 메뉴가 없으면 결제 버튼 비활성화
+
+        checkoutBtn.disabled = isEmpty;
+
+
+        // Lucide 아이콘 실행
+
+        if (window.lucide) {
+
+          lucide.createIcons();
+
+        }
+
+      }
+
+
+      // ========================================
+      // 장바구니 전체 삭제
+      // ========================================
+
+      clearCart.addEventListener('click', () => {
+
+        if (order.read().length === 0) return;
+
+
+        const result = confirm(
+
+          '장바구니에 담긴 모든 메뉴를 삭제하시겠습니까?'
+
+        );
+
+
+        if (result) {
+
+          order.write([]);
+
+        }
+
+      });
+
+
+      // ========================================
+      // 로그인 안내 팝업 열기
+      // ========================================
+
+      function openLoginModal() {
+
+        if (loginRequiredModal.open) return;
+
+
+        loginRequiredModal.showModal();
+
+
+        if (window.lucide) {
+
+          lucide.createIcons();
+
+        }
+
+      }
+
+
+      // ========================================
+      // 로그인 안내 팝업 닫기
+      // ========================================
+
+      cancelLoginBtn.addEventListener('click', () => {
+
+        loginRequiredModal.close();
+
+      });
+
+
+      // ========================================
+      // 결제하기 버튼
+      //
+      // 로그인 여부 확인 기능 추가
+      // ========================================
+
+      checkoutBtn.addEventListener('click', () => {
+
+
+        // 현재 장바구니 정보 가져오기
+
+        const rows = order.read();
+
+
+        // 장바구니가 비어 있으면 결제 제한
+
+        if (rows.length === 0) {
+
+          alert('장바구니에 메뉴를 담아 주세요.');
+
+          return;
+
+        }
+
+
+        // ========================================
+        // 회원 관리 기능 연결 확인
+        // ========================================
+
+        const auth = window.IpAuth;
+
+
+        if (
+
+          !auth ||
+
+          typeof auth.isLoggedIn !== 'function'
+
+        ) {
+
+          alert(
+
+            'auth.js 파일 연결을 확인해 주세요.'
+
+          );
+
+          return;
+
+        }
+
+
+        // ========================================
+        // 비로그인 사용자 결제 제한
+        // ========================================
+
+        if (!auth.isLoggedIn()) {
+
+
+          // 로그인 필요 안내 팝업 표시
+
+          openLoginModal();
+
+
+          // 결제페이지 이동 중단
+
+          return;
+
+        }
+
+
+        // ========================================
+        // 로그인 사용자만 결제페이지 이동
+        // ========================================
+
+        window.location.href =
+
+          '../payment/payment.html?source=cart';
+
+      });
+
+
+      // ========================================
+      // 장바구니 데이터 변경 감지
+      // ========================================
+
+      window.addEventListener(
+
+        'ipdeok-cart',
+
+        renderCart
+
+      );
+
+
+      // ========================================
+      // 로그인 상태 변경 감지
+      // ========================================
+
+      window.addEventListener('ipdeok-auth', () => {
+
+        if (
+
+          window.IpAuth?.isLoggedIn() &&
+
+          loginRequiredModal.open
+
+        ) {
+
+          loginRequiredModal.close();
+
+        }
+
+      });
+
+
+      // ========================================
+      // 다른 페이지에서 돌아왔을 때 갱신
+      // ========================================
+
+      window.addEventListener('pageshow', () => {
+
+        if (loginRequiredModal.open) {
+
+          loginRequiredModal.close();
+
+        }
+
+        renderCart();
+
+      });
+
+
+      // ========================================
+      // 다른 브라우저 탭에서 변경했을 때 갱신
+      // ========================================
+
+      window.addEventListener(
+
+        'storage',
+
+        renderCart
+
+      );
+
+
+      // ========================================
+      // 최초 화면 실행
+      // ========================================
+
+      renderCart();
+
+
+    });
+
+  </script>
+
+
+</body>
+
+</html>

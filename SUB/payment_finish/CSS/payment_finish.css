@@ -1,716 +1,202 @@
 
 /* ========================================
-   GLOBAL
+   입덕볶이 - 결제완료 페이지
 ======================================== */
 
-:root {
-  --background-color: #FDF1E1;
-  --primary-color: #E84129;
-  --secondary-color: #FF9D42;
-  --text-color: #000000;
-  --card-color: #FFF9F3;
-  --border-color: #E5D8C8;
-  --global-padding: 20px;
-}
+@import url("../../../CSS/order.css");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #FFFFFF;
-  color: var(--text-color);
-}
+/* ========================================
+   페이지 전체 여백
+======================================== */
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  border: none;
-  cursor: pointer;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-[hidden] {
-  display: none !important;
+.order-main {
+  padding-bottom: 40px;
 }
 
 
 /* ========================================
-   전체 페이지
+   주문 완료 안내
 ======================================== */
 
-.container {
-  width: 100%;
-  max-width: 500px;
-  min-height: 100vh;
-
-  margin: 0 auto;
-
-  background-color: var(--background-color);
-
-  overflow: hidden;
-}
-
-main {
-  padding: 0 var(--global-padding) 32px;
-
-  padding-bottom: calc(
-    32px + env(safe-area-inset-bottom, 0px)
-  );
+.finish-hero {
+  padding-top: 36px;
+  padding-bottom: 24px;
 }
 
 
-/* ========================================
-   HEADER
-======================================== */
+/* 주문 완료 아이콘 */
 
-.header {
-  width: 100%;
-  height: 60px;
+.finish-icon {
+  width: 96px;
+  height: 96px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  animation: finishAppear 0.5s ease-out both;
+}
 
-  padding: 0 var(--global-padding);
-
-  border-bottom: 1px solid var(--border-color);
+.finish-icon svg {
+  width: 50px;
+  height: 50px;
 }
 
 
-/* 로고 */
+/* 등장 애니메이션 */
 
-.logo {
-  width: 64px;
-  height: 54px;
-}
+@keyframes finishAppear {
 
-.logo img {
-  width: 100%;
-  height: 100%;
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
 
-  object-fit: contain;
-}
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-
-/* ========================================
-   SECTION 1
-   결제완료 안내
-======================================== */
-
-.complete-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding: 40px 0 32px;
-
-  text-align: center;
 }
 
 
-/* 체크 아이콘 외부 원 */
+/* 완료 제목 */
 
-.complete-icon-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 112px;
-  height: 112px;
-
-  margin-bottom: 24px;
-
-  background-color: #FFE0CB;
-
-  border-radius: 50%;
-}
-
-
-/* 체크 아이콘 내부 원 */
-
-.complete-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 82px;
-  height: 82px;
-
-  background-color: var(--primary-color);
-
-  border-radius: 50%;
-
-  color: #FFFFFF;
-
-  animation: completePop 0.5s ease-out both;
-}
-
-
-/* 체크 아이콘 크기 */
-
-.complete-icon svg {
-  width: 46px;
-  height: 46px;
-
-  stroke-width: 3;
-}
-
-
-/* 주문완료 타이틀 */
-
-.complete-title {
+.finish-hero h1 {
   font-size: 28px;
   font-weight: 800;
-  color: #000000;
 
   line-height: 1.4;
+
+  letter-spacing: -1px;
+
+  word-break: keep-all;
 }
 
 
-/* 브랜드 슬로건 */
+/* 완료 설명 */
 
-.complete-slogan {
-  margin-top: 10px;
-
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-
-/* 주문완료 설명 */
-
-.complete-description {
-  margin-top: 12px;
-
+.finish-hero p {
   font-size: 14px;
-  font-weight: 400;
-  color: #666666;
 
   line-height: 1.8;
-}
 
-
-/* 체크 아이콘 등장 애니메이션 */
-
-@keyframes completePop {
-
-  0% {
-    transform: scale(0.6);
-    opacity: 0;
-  }
-
-  70% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-}
-
-
-/* ========================================
-   SECTION 2
-   예상 배달시간
-======================================== */
-
-.delivery-section {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  width: 100%;
-
-  padding: 20px;
-  margin-bottom: 16px;
-
-  background-color: #FFE4C8;
-
-  border-radius: 16px;
-}
-
-
-/* 배달 아이콘 */
-
-.delivery-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 60px;
-  height: 60px;
-
-  flex-shrink: 0;
-
-  background-color: #FFF9F3;
-
-  border-radius: 50%;
-
-  color: var(--primary-color);
-}
-
-.delivery-icon svg {
-  width: 32px;
-  height: 32px;
-
-  stroke-width: 2;
-}
-
-
-/* 배달 정보 */
-
-.delivery-info {
-  flex: 1;
-  min-width: 0;
-}
-
-
-/* 예상 배달시간 라벨 */
-
-.delivery-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #666666;
-}
-
-
-/* 예상 배달시간 */
-
-.delivery-time {
-  margin-top: 4px;
-
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--primary-color);
-}
-
-
-/* ========================================
-   SECTION 3
-   주문 정보
-======================================== */
-
-.order-section {
-  width: 100%;
-
-  padding: 20px;
-  margin-bottom: 16px;
-
-  background-color: var(--card-color);
-
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-}
-
-
-/* 공통 섹션 타이틀 */
-
-.section-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #000000;
-
-  padding-bottom: 16px;
-
-  border-bottom: 1px solid var(--border-color);
-}
-
-
-/* 주문번호 */
-
-.order-number-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  padding: 16px 0;
-
-  font-size: 13px;
-  color: #666666;
-}
-
-.order-number-row strong {
-  font-weight: 500;
-  color: #333333;
-
-  overflow-wrap: anywhere;
-  text-align: right;
-}
-
-
-/* 주문한 음식 영역 */
-
-.order-product {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  padding: 16px 0;
-
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-
-/* ========================================
-   음식 이미지 크기 수정 영역
-
-   이미지 경로는 payment_finish.html 내부의
-   const menuData에서 수정
-======================================== */
-
-.order-image {
-  width: 100px;
-  height: 100px;
-
-  flex-shrink: 0;
-
-  background-color: transparent;
-
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-
-  border-radius: 12px;
-}
-
-
-/* 음식 정보 */
-
-.order-product-info {
-  flex: 1;
-  min-width: 0;
-}
-
-
-/* 음식 이름 */
-
-.order-product-info h3 {
-  font-size: 17px;
-  font-weight: 700;
-  color: #000000;
-
-  line-height: 1.5;
-}
-
-
-/* 음식 수량 */
-
-.order-product-info p {
-  margin-top: 4px;
-
-  font-size: 13px;
   color: #777777;
 }
 
 
-/* 음식 가격 */
+/* ========================================
+   테스트 주문 표시
+======================================== */
 
-.order-product-info strong {
-  display: block;
+.finish-demo-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  margin-top: 6px;
+  padding: 6px 12px;
 
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--primary-color);
+  background-color: #FFE0C6;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #E84129;
 }
 
 
 /* ========================================
-   주문 옵션
+   주문 상태
 ======================================== */
 
-.order-options {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.summary-row .finish-status {
+  color: #E84129;
 
-  padding: 16px 0;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 
-/* 공통 정보 행 */
+/* 주문 정보 줄바꿈 대응 */
 
-.info-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  font-size: 14px;
-  font-weight: 400;
-  color: #666666;
-}
-
-.info-row strong {
-  min-width: 0;
-
-  font-size: 14px;
-  font-weight: 600;
-  color: #333333;
-
-  text-align: right;
-
-  overflow-wrap: anywhere;
-}
-
-
-/* 추가 토핑 */
-
-.topping-row {
-  align-items: flex-start;
-}
-
-.topping-row > span {
+.summary-row span {
   flex-shrink: 0;
 }
 
-#orderToppings {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  min-width: 0;
-
-  font-size: 13px;
-  font-weight: 500;
-  color: #333333;
-
+.summary-row strong {
   text-align: right;
-
-  overflow-wrap: anywhere;
-}
-
-
-/* 결제수단 */
-
-.payment-method-area {
-  padding-top: 16px;
-
-  border-top: 1px solid var(--border-color);
 }
 
 
 /* ========================================
-   SECTION 4
-   결제 정보
+   주문 메뉴
 ======================================== */
 
-.price-section {
-  width: 100%;
+#receiptList .cart-item {
+  background-color: #FFFFFF;
+}
 
-  padding: 20px;
-
-  background-color: var(--card-color);
-
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
+#receiptList .cart-image {
+  width: 76px;
+  height: 76px;
 }
 
 
-/* 결제금액 정보 */
+/* ========================================
+   테스트 안내 영역
+======================================== */
 
-.price-info {
+.finish-notice {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
+  align-items: flex-start;
 
-  padding: 18px 0;
-}
-
-.price-info .info-row span:last-child {
-  white-space: nowrap;
-}
-
-
-/* 할인금액 색상 */
-
-#cashDiscount,
-#couponDiscount {
-  color: var(--primary-color);
-}
-
-
-/* 최종 결제금액 */
-
-.final-price-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
   gap: 10px;
 
-  padding-top: 18px;
+  margin-top: 24px;
+  padding: 16px;
 
-  border-top: 1px solid var(--border-color);
+  background-color: #F5E7D5;
+
+  border-radius: 12px;
 }
 
+.finish-notice svg {
+  width: 18px;
+  height: 18px;
 
-/* 최종 결제금액 타이틀 */
+  margin-top: 2px;
 
-.final-price-row h2 {
-  font-size: 17px;
-  font-weight: 700;
-  color: #000000;
+  flex-shrink: 0;
+
+  color: #8B7967;
 }
 
+.finish-notice p {
+  font-size: 12px;
 
-/* 최종 결제금액 숫자 */
+  line-height: 1.8;
 
-.final-price-row strong {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--primary-color);
+  color: #8B7967;
 
-  overflow-wrap: anywhere;
-}
-
-
-/* ========================================
-   테스트 주문 안내
-======================================== */
-
-.demo-guide,
-.invalid-order {
-  margin-top: 16px;
-
-  font-size: 11px;
-  font-weight: 400;
-  color: #888888;
-
-  line-height: 1.7;
-
-  text-align: center;
+  word-break: keep-all;
 }
 
 
 /* ========================================
-   SECTION 5
    하단 이동 버튼
 ======================================== */
 
-.button-section {
+.finish-actions {
   display: flex;
   flex-direction: column;
+
   gap: 12px;
 
   margin-top: 24px;
 }
 
-
-/* 홈으로 돌아가기 버튼 */
-
-.home-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  width: 100%;
-  height: 60px;
-
-  background-color: var(--primary-color);
-
-  border-radius: 16px;
-
-  font-size: 18px;
-  font-weight: 700;
-  color: #FFFFFF;
-
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-
-/* 홈 버튼 아이콘 */
-
-.home-btn svg {
-  width: 22px;
-  height: 22px;
-
-  stroke-width: 2;
-}
-
-
-/* 홈 버튼 클릭 */
-
-.home-btn:active {
-  background-color: #C9311E;
-
-  transform: scale(0.98);
-}
-
-
-/* 메뉴 다시 보기 버튼 */
-
-.menu-list-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  width: 100%;
-  height: 56px;
-
-  background-color: transparent;
-
-  border: 1px solid var(--primary-color);
-  border-radius: 16px;
-
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--primary-color);
-
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-
-/* 메뉴 버튼 아이콘 */
-
-.menu-list-btn svg {
+.finish-actions svg {
   width: 20px;
   height: 20px;
-
-  stroke-width: 2;
-}
-
-
-/* 메뉴 버튼 클릭 */
-
-.menu-list-btn:active {
-  background-color: #FFE4DA;
-
-  transform: scale(0.98);
-}
-
-
-/* 키보드 접근성 */
-
-.home-btn:focus-visible,
-.menu-list-btn:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 4px;
 }
 
 
@@ -720,33 +206,30 @@ main {
 
 @media screen and (max-width: 360px) {
 
-  .complete-title {
+  .finish-hero h1 {
     font-size: 24px;
   }
 
-  .complete-slogan {
-    font-size: 15px;
+  .finish-hero p {
+    font-size: 13px;
   }
 
-  .order-section,
-  .price-section {
-    padding: 16px;
-  }
-
-  .order-image {
+  .finish-icon {
     width: 80px;
     height: 80px;
   }
 
-  .order-product-info h3 {
-    font-size: 15px;
+  .finish-icon svg {
+    width: 42px;
+    height: 42px;
   }
 
-  .final-price-row strong {
-    font-size: 24px;
+  #receiptList .cart-image {
+    width: 60px;
+    height: 60px;
   }
 
-  .info-row {
+  .summary-row {
     font-size: 12px;
   }
 
@@ -759,13 +242,8 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
 
-  .complete-icon {
+  .finish-icon {
     animation: none;
-  }
-
-  .home-btn,
-  .menu-list-btn {
-    transition: none;
   }
 
 }
