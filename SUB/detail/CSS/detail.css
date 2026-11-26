@@ -1,953 +1,141 @@
 
 /* ========================================
-   GLOBAL
+   VOC 개선 - 맵기 안내 영역
 ======================================== */
 
-:root {
-  --background-color: #FDF1E1;
-  --primary-color: #E84129;
-  --secondary-color: #FF9D42;
-  --text-color: #000000;
-  --card-color: #FFF9F3;
-  --border-color: #E5D8C8;
-  --global-padding: 20px;
-  --transition-speed: 0.4s;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #FFFFFF;
-  color: var(--text-color);
-}
-
-button,
-input {
-  font-family: inherit;
-}
-
-button {
-  border: none;
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-
-/* 전체 페이지 */
-
-.container {
-  width: 100%;
-  max-width: 500px;
-  min-height: 100vh;
-  margin: 0 auto;
-
-  background-color: #FFFFFF;
-  overflow: hidden;
-}
-
-
-/* 페이지 슬라이드 영역 */
-
-.page-content {
-  width: 100%;
-  min-height: 100vh;
-
-  background-color: var(--background-color);
-
-  transform: translateX(0);
-
-  transition: transform var(--transition-speed) ease-in-out;
-}
-
-
-/* ========================================
-   HEADER
-======================================== */
-
-.header {
-  position: relative;
-
-  width: 100%;
-  height: 60px;
-  padding: 0 var(--global-padding);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-/* 이전 페이지 버튼 */
-
-.back-btn {
-  width: 32px;
-  height: 32px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #000000;
-
-  transition: color 0.15s ease;
-}
-
-.back-btn svg {
-  width: 28px;
-  height: 28px;
-  stroke-width: 2;
-}
-
-.back-btn:active,
-.back-btn.active {
-  color: var(--primary-color);
-}
-
-
-/* 로고 */
-
-.logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 64px;
-  height: 54px;
-}
-
-.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-
-/* 햄버거 메뉴 */
-
-.menu-btn {
-  width: 32px;
-  height: 32px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: transparent;
-  color: #000000;
-}
-
-.menu-btn svg {
-  width: 24px;
-  height: 24px;
-  stroke-width: 2;
-}
-
-
-/* ========================================
-   SECTION 1
-   음식 이미지 및 기본 정보
-======================================== */
-
-.product-section {
-  padding: 0 var(--global-padding);
-}
-
-
-/* 음식 이미지 전체 영역 */
-
-.product-image-area {
-  position: relative;
-
-  width: 100%;
-  height: 270px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-}
-
-
-/* 이미지 배경 장식 */
-
-.decoration {
-  position: absolute;
-
-  background-color: var(--secondary-color);
-  opacity: 0.45;
-
-  border-radius: 50%;
-}
-
-.decoration-1 {
-  width: 140px;
-  height: 140px;
-
-  top: 25px;
-  right: 5px;
-}
-
-.decoration-2 {
-  width: 120px;
-  height: 120px;
-
-  bottom: 35px;
-  left: 10px;
-}
-
-
-/* ========================================
-   음식 이미지 크기 수정 영역
-   
-   이미지 파일 경로는 detail.html의
-   const menuData 부분에서 수정
-======================================== */
-
-.product-image {
-  position: relative;
-
-  /* 음식 이미지 크기 */
-  width: 85%;
-  max-width: 320px;
-  height: 250px;
-
-  /* 회색 배경 제거 */
-  background-color: transparent;
-
-  /* 음식 이미지 설정 */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-
-  border-radius: 20px;
-
-  z-index: 1;
-}
-
-
-/* 음식 정보 */
-
-.product-info {
-  padding: 10px 0 24px;
-
-  border-bottom: 1px solid var(--border-color);
-}
-
-
-/* BEST 라벨 */
-
-.best-label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 4px 14px;
-
-  background-color: var(--primary-color);
-  border-radius: 30px;
-
-  font-size: 14px;
-  font-weight: 700;
-  color: #FFFFFF;
-}
-
-
-/* 음식 타이틀 영역 */
-
-.product-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
-  margin-top: 8px;
-}
-
-
-/* 음식 이름 */
-
-.product-name {
-  font-size: 28px;
-  font-weight: 700;
-  color: #000000;
-  line-height: 1.4;
-}
-
-
-/* 찜하기 버튼 */
-
-.favorite-btn {
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-  background-color: var(--card-color);
-
-  color: #666666;
-
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.favorite-btn svg {
-  width: 24px;
-  height: 24px;
-  stroke-width: 2;
-}
-
-
-/* 찜하기 활성화 */
-
-.favorite-btn.active {
-  color: var(--primary-color);
-  background-color: #FFE4DA;
-}
-
-.favorite-btn.active svg {
-  fill: var(--primary-color);
-}
-
-
-/* 음식 가격 */
-
-.product-price {
-  margin-top: 6px;
-
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-
-/* 음식 설명 */
-
-.product-description {
-  margin-top: 10px;
-
-  font-size: 16px;
-  font-weight: 400;
-  color: #555555;
-
-  line-height: 1.6;
-}
-
-
-/* ========================================
-   SECTION 2
-   주문 옵션
-======================================== */
-
-.option-section {
+.spicy-guide {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 
-  padding: 16px var(--global-padding);
+  gap: 8px;
 
-  padding-bottom: calc(
-    110px + env(safe-area-inset-bottom, 0px)
-  );
-}
-
-
-/* 옵션 공통 카드 */
-
-.option-card {
   width: 100%;
+
+  margin-top: 16px;
   padding: 16px;
 
-  background-color: var(--card-color);
-  border-radius: 16px;
-}
+  box-sizing: border-box;
 
+  background-color: #FFE6CE;
 
-/* 옵션 타이틀 영역 */
-
-.option-title-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  margin-bottom: 16px;
-}
-
-
-/* 옵션 아이콘 */
-
-.option-icon {
-  width: 20px;
-  height: 20px;
-
-  color: var(--primary-color);
-
-  flex-shrink: 0;
-}
-
-
-/* 옵션 타이틀 */
-
-.option-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #000000;
-}
-
-
-/* 필수 라벨 */
-
-.required-label {
-  padding: 1px 8px;
-
-  border: 1px solid var(--primary-color);
-  border-radius: 20px;
-
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--primary-color);
-}
-
-
-/* 선택 라벨 */
-
-.optional-label {
-  padding: 1px 8px;
-
-  border: 1px solid #838383;
-  border-radius: 20px;
-
-  font-size: 12px;
-  font-weight: 500;
-  color: #838383;
-}
-
-
-/* ========================================
-   맵기 선택
-======================================== */
-
-.spicy-options {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-
-/* 맵기 선택 버튼 */
-
-.spicy-btn {
-  position: relative;
-
-  width: 100%;
-  height: 44px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid var(--border-color);
   border-radius: 12px;
-
-  font-size: 14px;
-  font-weight: 500;
-  color: #000000;
-
-  cursor: pointer;
-
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease;
-}
-
-
-/* 기본 라디오 버튼 숨기기 */
-
-.spicy-btn input {
-  position: absolute;
-
-  width: 1px;
-  height: 1px;
-
-  opacity: 0;
-}
-
-
-/* 맵기 선택 활성화 */
-
-.spicy-btn:has(input:checked) {
-  background-color: #FFE4DA;
-  border-color: var(--primary-color);
-
-  color: var(--primary-color);
-  font-weight: 700;
-}
-
-.spicy-btn:has(input:focus-visible) {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
 }
 
 
 /* ========================================
-   토핑 추가
+   안내 제목 및 불꽃 아이콘 배치
 ======================================== */
 
-.topping-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-
-/* 토핑 개별 항목 */
-
-.topping-item {
+.spicy-guide-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+
+  gap: 8px;
 
   width: 100%;
-  min-height: 38px;
-  padding: 8px;
-
-  border-bottom: 1px solid var(--border-color);
-  border-radius: 6px;
-
-  cursor: pointer;
-
-  transition: background-color 0.2s ease;
-}
-
-.topping-item:last-child {
-  border-bottom: none;
 }
 
 
-/* 토핑 체크박스 */
+/* ========================================
+   선택한 맵기 안내 제목
+======================================== */
 
-.topping-checkbox {
-  width: 20px;
-  height: 20px;
+.spicy-guide-label {
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  color: #843B1C;
+}
+
+
+/* ========================================
+   불꽃 아이콘 영역
+======================================== */
+
+.spicy-flames {
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
 
   flex-shrink: 0;
-
-  accent-color: var(--primary-color);
-
-  cursor: pointer;
 }
 
 
-/* 토핑 이름 */
+/* 기본 불꽃 색상 */
 
-.topping-name {
-  flex: 1;
-  min-width: 0;
-
-  font-size: 14px;
-  font-weight: 500;
-  color: #000000;
-}
-
-
-/* 토핑 가격 */
-
-.topping-price {
-  font-size: 14px;
-  font-weight: 500;
-  color: #000000;
-
-  white-space: nowrap;
-}
-
-
-/* 토핑 선택 활성화 */
-
-.topping-item:has(input:checked) {
-  background-color: #FFE9DF;
-  border-bottom-color: transparent;
-}
-
-.topping-item:has(input:checked) .topping-price {
-  color: var(--primary-color);
-}
-
-
-/* ========================================
-   수량 선택
-======================================== */
-
-.quantity-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-
-/* 수량 컨트롤 영역 */
-
-.quantity-control {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 130px;
-  height: 40px;
-
-  border: 1px solid var(--border-color);
-  border-radius: 30px;
-
-  background-color: #FFFFFF;
-}
-
-
-/* 수량 증가 및 감소 버튼 */
-
-.quantity-btn {
-  width: 40px;
-  height: 40px;
-
+.spicy-flame {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: transparent;
-  color: #555555;
+  width: 22px;
+  height: 22px;
+
+  color: #D8BCA6;
+
+  transition: color 0.2s ease;
 }
 
-.quantity-btn svg {
-  width: 20px;
-  height: 20px;
+
+/* 불꽃 아이콘 크기 */
+
+.spicy-flame svg {
+  width: 22px;
+  height: 22px;
+
+  stroke: currentColor;
   stroke-width: 2;
-}
 
-.quantity-btn:active {
-  color: var(--primary-color);
-}
-
-.quantity-btn:disabled {
-  opacity: 0.35;
-  cursor: default;
+  fill: none;
 }
 
 
-/* 현재 수량 */
+/* 선택된 맵기의 불꽃 색상 */
 
-#quantity {
-  font-size: 18px;
-  font-weight: 700;
-  color: #000000;
+.spicy-flame.active {
+  color: #E84129;
 }
 
 
 /* ========================================
-   총 주문금액
+   맵기 안내 핵심 텍스트
 ======================================== */
 
-.total-card {
-  padding: 20px 16px;
-}
+.spicy-guide-text {
+  margin: 0;
 
-.total-price-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
+  font-family: 'Noto Sans KR', sans-serif;
 
+  font-size: 18px;
+  font-weight: 600;
 
-/* 총 주문금액 */
+  line-height: 1.6;
 
-.total-price {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--primary-color);
+  color: #000000;
 
-  white-space: nowrap;
+  word-break: keep-all;
 }
 
 
-/* 금액 상세 설명 */
+/* ========================================
+   체감 맵기 안내 문구
+======================================== */
 
-.price-description {
-  margin-top: 6px;
+.spicy-guide-notice {
+  margin: 0;
 
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
-  color: #555555;
 
-  text-align: right;
-}
+  line-height: 1.6;
 
+  color: #765541;
 
-/* ========================================
-   하단 주문하기 버튼
-======================================== */
-
-.order-footer-frame {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 100%;
-  max-width: 500px;
-
-  padding-top: 16px;
-
-  overflow: hidden;
-  pointer-events: none;
-
-  z-index: 100;
-}
-
-
-/* 하단 주문 영역 */
-
-.order-footer {
-  width: 100%;
-
-  padding: 12px var(--global-padding);
-
-  padding-bottom: calc(
-    12px + env(safe-area-inset-bottom, 0px)
-  );
-
-  background-color: var(--background-color);
-
-  box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.06);
-
-  pointer-events: auto;
-
-  transform: translateX(0);
-
-  transition: transform var(--transition-speed) ease-in-out;
-}
-
-
-/* 주문하기 버튼 */
-
-.order-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  width: 100%;
-  height: 64px;
-
-  border-radius: 16px;
-
-  background-color: var(--primary-color);
-
-  font-size: 22px;
-  font-weight: 700;
-  color: #FFFFFF;
-
-  transition: background-color 0.2s ease;
-}
-
-.order-btn svg {
-  width: 26px;
-  height: 26px;
-  stroke-width: 2;
-}
-
-.order-btn:active {
-  background-color: #C9311E;
-}
-
-
-/* ========================================
-   PAGE TRANSITION
-   이전 페이지 이동
-======================================== */
-
-body.page-leaving .container {
-  pointer-events: none;
-}
-
-body.page-leaving .order-footer {
-  pointer-events: none;
-}
-
-
-/* 페이지 오른쪽으로 슬라이드 */
-
-body.page-leaving .page-content {
-  transform: translateX(100%);
-}
-
-
-/* 하단 주문 버튼도 함께 이동 */
-
-body.page-leaving .order-footer {
-  transform: translateX(100%);
-}
-
-
-/* ========================================
-   SLIDE MENU
-   햄버거 메뉴
-======================================== */
-
-body.menu-open {
-  overflow: hidden;
-}
-
-
-/* 메뉴 전체 영역 */
-
-.menu-layer {
-  position: fixed;
-  inset: 0;
-
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
-  margin: 0 auto;
-
-  overflow: hidden;
-
-  visibility: hidden;
-  pointer-events: none;
-
-  transition: visibility 0s linear 0.4s;
-
-  z-index: 1000;
-}
-
-
-/* 메뉴 활성화 */
-
-.menu-layer.active {
-  visibility: visible;
-  pointer-events: auto;
-
-  transition-delay: 0s;
-}
-
-
-/* 어두운 배경 */
-
-.menu-overlay {
-  position: absolute;
-  inset: 0;
-
-  background-color: rgba(0, 0, 0, 0.45);
-
-  opacity: 0;
-
-  transition: opacity 0.4s ease-in-out;
-}
-
-.menu-layer.active .menu-overlay {
-  opacity: 1;
-}
-
-
-/* 슬라이드 메뉴 */
-
-.side-menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  width: 66.6667%;
-  height: 100%;
-
-  background-color: var(--background-color);
-
-  overflow-y: auto;
-
-  transform: translateX(100%);
-
-  transition: transform 0.4s ease-in-out;
-}
-
-.menu-layer.active .side-menu {
-  transform: translateX(0);
-}
-
-
-/* 슬라이드 메뉴 상단 */
-
-.side-menu-header {
-  width: 100%;
-  height: 60px;
-  padding: 0 var(--global-padding);
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-
-/* 닫기 버튼 */
-
-.close-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: transparent;
-  color: #000000;
-}
-
-.close-btn svg {
-  width: 24px;
-  height: 24px;
-  stroke-width: 2;
-}
-
-
-/* 슬라이드 메뉴 리스트 */
-
-.side-menu-nav {
-  display: flex;
-  flex-direction: column;
-
-  padding: 20px var(--global-padding);
-}
-
-.side-menu-nav a {
-  display: flex;
-  align-items: center;
-
-  width: 100%;
-  min-height: 60px;
-
-  border-bottom: 1px solid var(--border-color);
-
-  font-size: 18px;
-  font-weight: 500;
-  color: #000000;
-}
-
-.side-menu-nav a:active {
-  color: var(--primary-color);
+  word-break: keep-all;
 }
 
 
@@ -957,173 +145,30 @@ body.menu-open {
 
 @media screen and (max-width: 360px) {
 
-  .product-name {
-    font-size: 24px;
+  .spicy-guide {
+    padding: 14px;
   }
 
-  .option-card {
-    padding: 12px;
+  .spicy-guide-label {
+    font-size: 13px;
   }
 
-  .topping-item {
-    gap: 8px;
-  }
-
-  .topping-name,
-  .topping-price {
-    font-size: 12px;
-  }
-
-  .total-price {
-    font-size: 22px;
-  }
-
-}
-
-
-/* ========================================
-   모션 감소 설정
-======================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .menu-layer,
-  .menu-overlay,
-  .side-menu,
-  .page-content,
-  .order-footer,
-  .back-btn,
-  .favorite-btn,
-  .spicy-btn,
-  .topping-item,
-  .order-btn {
-    transition: none;
-  }
-
-}
-
-
-/* ========================================
-   로그인 사용자 프로필
-======================================== */
-
-.side-menu .user-profile {
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  margin: 20px 20px 0;
-  padding-bottom: 24px;
-
-  border-bottom: 1px solid #E5D8C8;
-}
-
-
-/* 비로그인 상태 숨기기 */
-
-.side-menu .user-profile[hidden] {
-  display: none !important;
-}
-
-
-/* 프로필 원형 아이콘 */
-
-.side-menu .profile-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 48px;
-  height: 48px;
-
-  flex-shrink: 0;
-
-  background-color: #FFE0C6;
-  border-radius: 50%;
-
-  color: #E84129;
-}
-
-.side-menu .profile-icon svg {
-  width: 26px;
-  height: 26px;
-
-  stroke-width: 1.8;
-}
-
-
-/* 사용자 정보 */
-
-.side-menu .profile-info {
-  display: flex;
-  flex-direction: column;
-
-  gap: 4px;
-
-  flex: 1;
-  min-width: 0;
-}
-
-
-/* 사용자 이름 */
-
-.side-menu .profile-name {
-  margin: 0;
-
-  font-size: 19px;
-  font-weight: 700;
-
-  line-height: 1.5;
-
-  color: #000000;
-
-  overflow-wrap: anywhere;
-}
-
-
-/* 환영 문구 */
-
-.side-menu .profile-message {
-  margin: 0;
-
-  font-size: 12px;
-  font-weight: 400;
-
-  line-height: 1.5;
-
-  color: #777777;
-}
-
-
-/* 로그아웃 메뉴 */
-
-.side-menu .side-menu-nav a.logout-link {
-  color: #E84129;
-}
-
-
-/* 작은 모바일 화면 대응 */
-
-@media screen and (max-width: 360px) {
-
-  .side-menu .profile-icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .side-menu .profile-icon svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  .side-menu .profile-name {
+  .spicy-guide-text {
     font-size: 17px;
   }
 
-  .side-menu .profile-message {
-    font-size: 11px;
+  .spicy-guide-notice {
+    font-size: 12px;
+  }
+
+  .spicy-flames {
+    gap: 2px;
+  }
+
+  .spicy-flame,
+  .spicy-flame svg {
+    width: 20px;
+    height: 20px;
   }
 
 }
-

@@ -1,9 +1,6 @@
 
 /* ========================================
    입덕볶이 - 공통 회원 관리 기능
-
-   수업용 프로토타입
-   localStorage 기반 가상 회원 시스템
 ======================================== */
 
 (() => {
@@ -88,9 +85,6 @@
 
   // ========================================
   // 테스트용 비밀번호 해시 생성
-  //
-  // 비밀번호 원문은 저장하지 않음
-  // 실제 서비스의 보안 인증 방식은 아님
   // ========================================
 
   async function hashPassword(password, salt) {
@@ -192,7 +186,7 @@
     nickname = String(nickname || '').trim();
 
 
-    // 필수 입력 확인
+    // 필수 정보 확인
 
     if (!id) {
 
@@ -213,7 +207,7 @@
     }
 
 
-    // 기존 회원 확인
+    // 중복 아이디 확인
 
     if (getUsers().some(user => user.id === id)) {
 
@@ -222,7 +216,7 @@
     }
 
 
-    // 비밀번호 원문 대신 해시 생성
+    // 비밀번호 해시 생성
 
     const salt = createSalt();
 
@@ -235,7 +229,7 @@
     );
 
 
-    // 회원 정보 생성
+    // 새로운 회원 정보
 
     const newUser = {
 
@@ -252,7 +246,7 @@
     };
 
 
-    // 저장할 회원 목록
+    // 회원 목록에 추가
 
     const users = getUsers();
 
@@ -265,9 +259,10 @@
     users.push(newUser);
 
 
-    // localStorage에 회원 정보 저장
+    // 회원 정보 저장
 
     saveData(USERS_KEY, users);
+
 
     return {
 
@@ -308,7 +303,7 @@
 
 
   // ========================================
-  // 로그인 상태 확인
+  // 로그인 여부 확인
   // ========================================
 
   function isLoggedIn() {
@@ -319,10 +314,7 @@
 
 
   // ========================================
-  // 기존 페이지의 로그인 기능과 호환
-  //
-  // 기존 order.js 및 햄버거 메뉴에서
-  // 사용하던 로그인 정보와 연결
+  // 기존 로그인 기능과 호환
   // ========================================
 
   function syncLegacyLogin() {
@@ -384,7 +376,7 @@
 
 
   // ========================================
-  // 로그인한 사용자 정보 저장
+  // 로그인 사용자 정보 저장
   // ========================================
 
   function saveLogin(user) {
@@ -419,8 +411,6 @@
     password = String(password || '');
 
 
-    // 입력 확인
-
     if (!id || !password) {
 
       throw new Error(
@@ -432,7 +422,7 @@
     }
 
 
-    // 가입된 회원 확인
+    // 회원 정보 확인
 
     const user = getUsers().find(
 
@@ -472,7 +462,7 @@
     }
 
 
-    // 로그인 상태 저장
+    // 로그인 정보 저장
 
     return saveLogin({
 
@@ -488,9 +478,7 @@
 
 
   // ========================================
-  // 카카오 / 구글 / 애플 테스트 로그인
-  //
-  // 실제 외부 서비스와 연결하지 않음
+  // 테스트용 간편 로그인
   // ========================================
 
   function socialLogin(provider) {
@@ -548,8 +536,6 @@
   syncLegacyLogin();
 
 
-  // 브라우저 뒤로가기 시 로그인 상태 확인
-
   window.addEventListener(
 
     'pageshow',
@@ -558,9 +544,6 @@
 
   );
 
-
-  // 다른 브라우저 탭에서 로그인하거나
-  // 로그아웃했을 경우 상태 반영
 
   window.addEventListener('storage', event => {
 
@@ -601,21 +584,40 @@
 
 })();
 
+
+
+
 /* ========================================
    공통 로그인 및 로그아웃 상태 통일
 ======================================== */
 
 (() => {
 
+  'use strict';
+
   const auth = window.IpAuth;
 
   if (!auth) return;
 
-  const root = new URL('.', document.currentScript.src);
+
+  // ========================================
+  // 프로젝트 경로
+  // ========================================
+
+  const root = new URL(
+
+    '.',
+
+    document.currentScript.src
+
+  );
 
   const loginUrl = new URL(
+
     'SUB/login/login.html',
+
     root
+
   ).href;
 
 
@@ -626,16 +628,23 @@
   function getAuthLinks() {
 
     return Array.from(
+
       document.querySelectorAll('.side-menu-nav a')
+
     ).filter(link => {
 
       const text = link.textContent.replace(/\s/g, '');
 
       return (
+
         text === '로그인/회원가입' ||
+
         text === '로그아웃' ||
+
         link.dataset.ipAuthLink === 'true' ||
+
         link.classList.contains('logout-link')
+
       );
 
     });
@@ -651,19 +660,25 @@
 
     const user = auth.current();
 
+
     getAuthLinks().forEach(link => {
 
       link.dataset.ipAuthLink = 'true';
 
       link.textContent = user
+
         ? '로그아웃'
+
         : '로그인 / 회원가입';
 
       link.href = user ? '#' : loginUrl;
 
       link.classList.toggle(
+
         'logout-link',
+
         !!user
+
       );
 
       if (user) {
@@ -675,19 +690,26 @@
     });
 
 
-    // 기존 사용자 프로필 갱신
+    // 기존 사이드메뉴 프로필 갱신
 
     document.querySelectorAll('.user-profile')
+
       .forEach(profile => {
 
         profile.hidden = !user;
 
-        const name = profile.querySelector('.profile-name');
+        const name = profile.querySelector(
+
+          '.profile-name'
+
+        );
 
         if (name) {
 
           name.textContent = user
+
             ? user.nickname + '님'
+
             : '';
 
         }
@@ -703,7 +725,11 @@
 
   document.addEventListener('click', event => {
 
-    const link = event.target.closest('.side-menu-nav a');
+    const link = event.target.closest(
+
+      '.side-menu-nav a'
+
+    );
 
     if (!link) return;
 
@@ -726,19 +752,11 @@
 
     try {
 
-      // 새로운 로그인 정보 삭제
-
       auth.logout();
-
-
-      // 기존 임시 로그인 정보도 삭제
 
       sessionStorage.removeItem('demoLogin');
 
       sessionStorage.removeItem('demoUsername');
-
-
-      // 화면 업데이트
 
       refreshAuthUI();
 
@@ -754,14 +772,17 @@
 
 
   // ========================================
-  // 페이지 실행 시 로그인 상태 확인
+  // 페이지 최초 실행
   // ========================================
 
   if (document.readyState === 'loading') {
 
     document.addEventListener(
+
       'DOMContentLoaded',
+
       refreshAuthUI
+
     );
 
   } else {
@@ -771,19 +792,744 @@
   }
 
 
-  // 로그인 상태가 변경되면 화면 갱신
+  // 로그인 상태 변경 시 화면 갱신
 
   window.addEventListener(
+
     'ipdeok-auth',
+
     refreshAuthUI
+
   );
 
 
   // 다른 페이지에서 돌아왔을 때 갱신
 
   window.addEventListener(
+
     'pageshow',
+
     refreshAuthUI
+
+  );
+
+})();
+
+
+
+
+/* ========================================
+   입덕볶이 - 헤더 사용자 프로필
+======================================== */
+
+(() => {
+
+  'use strict';
+
+  const auth = window.IpAuth;
+
+  if (!auth) return;
+
+
+  // ========================================
+  // 프로젝트 최상위 경로
+  // ========================================
+
+  const root = new URL(
+
+    '.',
+
+    document.currentScript.src
+
+  );
+
+
+  // 로그인 페이지 경로
+
+  const loginUrl = new URL(
+
+    'SUB/login/login.html',
+
+    root
+
+  ).href;
+
+
+  // ========================================
+  // 공통 회원 CSS 자동 연결
+  // ========================================
+
+  const cssUrl = new URL(
+
+    'CSS/auth.css',
+
+    root
+
+  ).href;
+
+
+  const hasAuthCSS = Array.from(
+
+    document.querySelectorAll(
+
+      'link[rel="stylesheet"]'
+
+    )
+
+  ).some(link => link.href === cssUrl);
+
+
+  if (!hasAuthCSS) {
+
+    const stylesheet =
+
+      document.createElement('link');
+
+    stylesheet.rel = 'stylesheet';
+
+    stylesheet.href = cssUrl;
+
+    document.head.appendChild(stylesheet);
+
+  }
+
+
+  // ========================================
+  // 사용자 아이콘 및 로그아웃 팝업 디자인
+  // ========================================
+
+  const style = document.createElement('style');
+
+  style.textContent = `
+
+    /* 사용자 프로필 버튼 */
+
+    .ip-profile-trigger {
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 3px;
+
+      width: 100%;
+
+      height: 100%;
+
+      padding: 0;
+
+      background: transparent;
+
+      border: none;
+
+      font-family: inherit;
+
+      color: #000000;
+
+      cursor: pointer;
+
+    }
+
+
+    /* 팝업이 열려 있을 때 */
+
+    .header .ip-header-profile.popup-open {
+
+      z-index: 100;
+
+    }
+
+
+    /* ====================================
+       로그아웃 팝업
+
+       사용자 아이콘 정중앙 아래 배치
+    ==================================== */
+
+    .ip-profile-popup {
+
+      position: absolute;
+
+      top: calc(100% + 4px);
+
+      left: 50%;
+
+      right: auto;
+
+      transform: translateX(-50%);
+
+      min-width: 112px;
+
+      padding: 6px;
+
+      background-color: #FFFFFF;
+
+      border: 1px solid #E5D8C8;
+
+      border-radius: 10px;
+
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+      box-sizing: border-box;
+
+      z-index: 100;
+
+    }
+
+
+    /* ====================================
+       팝업 상단 작은 화살표
+    ==================================== */
+
+    .ip-profile-popup::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: -5px;
+
+      left: 50%;
+
+      width: 8px;
+
+      height: 8px;
+
+      background-color: #FFFFFF;
+
+      border-top: 1px solid #E5D8C8;
+
+      border-left: 1px solid #E5D8C8;
+
+      transform: translateX(-50%) rotate(45deg);
+
+      pointer-events: none;
+
+    }
+
+
+    /* 팝업 숨기기 */
+
+    .ip-profile-popup[hidden] {
+
+      display: none !important;
+
+    }
+
+
+    /* 로그아웃 버튼 */
+
+    .ip-profile-logout {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      width: 100%;
+
+      padding: 10px 8px;
+
+      background-color: transparent;
+
+      border: none;
+
+      border-radius: 6px;
+
+      font-family: inherit;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      color: #E84129;
+
+      white-space: nowrap;
+
+      cursor: pointer;
+
+    }
+
+
+    /* 로그아웃 버튼 마우스 효과 */
+
+    .ip-profile-logout:hover {
+
+      background-color: #FDF1E1;
+
+    }
+
+
+    /* 로그아웃 아이콘 */
+
+    .ip-profile-logout svg {
+
+      width: 17px;
+
+      height: 17px;
+
+      stroke-width: 1.8;
+
+    }
+
+  `;
+
+
+  document.head.appendChild(style);
+
+
+  // ========================================
+  // 로그아웃 팝업 닫기
+  // ========================================
+
+  function closeProfilePopup() {
+
+    const profile = document.querySelector(
+
+      '.ip-header-profile'
+
+    );
+
+    if (!profile) return;
+
+
+    const popup = profile.querySelector(
+
+      '.ip-profile-popup'
+
+    );
+
+    const trigger = profile.querySelector(
+
+      '.ip-profile-trigger'
+
+    );
+
+    if (!popup || !trigger) return;
+
+
+    popup.hidden = true;
+
+    profile.classList.remove('popup-open');
+
+    trigger.setAttribute(
+
+      'aria-expanded',
+
+      'false'
+
+    );
+
+  }
+
+
+  // ========================================
+  // 헤더 사용자 프로필 생성
+  // ========================================
+
+  function mountHeaderProfile() {
+
+    const header =
+
+      document.querySelector('.header');
+
+    if (!header) return;
+
+
+    // 헤더 위치 기준 설정
+
+    if (getComputedStyle(header).position === 'static') {
+
+      header.classList.add('ip-auth-position');
+
+    }
+
+
+    // 기존 사이드메뉴 사용자 프로필 숨기기
+
+    document.body.classList.add('ip-auth-ui');
+
+
+    // 기존 사용자 프로필 확인
+
+    let profile = header.querySelector(
+
+      '.ip-header-profile'
+
+    );
+
+
+    // 프로필이 없으면 생성
+
+    if (!profile) {
+
+      profile = document.createElement('div');
+
+      profile.className = 'ip-header-profile';
+
+
+      // 사용자 아이콘 및 로그아웃 팝업
+
+      profile.innerHTML = `
+
+        <button type="button"
+                class="ip-profile-trigger"
+                aria-label="로그인"
+                aria-expanded="false"
+                aria-controls="ipProfilePopup">
+
+          <span class="ip-header-profile-icon">
+
+            <i data-lucide="user-round"></i>
+
+          </span>
+
+          <span class="ip-header-profile-name"></span>
+
+        </button>
+
+
+        <div class="ip-profile-popup"
+             id="ipProfilePopup"
+             hidden>
+
+          <button type="button"
+                  class="ip-profile-logout">
+
+            <i data-lucide="log-out"></i>
+
+            <span>로그아웃</span>
+
+          </button>
+
+        </div>
+
+      `;
+
+
+      header.appendChild(profile);
+
+
+      // ========================================
+      // 사용자 아이콘 클릭 기능
+      // ========================================
+
+      const trigger = profile.querySelector(
+
+        '.ip-profile-trigger'
+
+      );
+
+      const popup = profile.querySelector(
+
+        '.ip-profile-popup'
+
+      );
+
+      const logoutBtn = profile.querySelector(
+
+        '.ip-profile-logout'
+
+      );
+
+
+      trigger.addEventListener('click', () => {
+
+
+        // 비로그인 상태
+        // 로그인페이지 이동
+
+        if (!auth.isLoggedIn()) {
+
+          window.location.href = loginUrl;
+
+          return;
+
+        }
+
+
+        // 로그인 상태
+        // 로그아웃 팝업 열기 및 닫기
+
+        const isOpen = popup.hidden;
+
+        popup.hidden = !isOpen;
+
+        profile.classList.toggle(
+
+          'popup-open',
+
+          isOpen
+
+        );
+
+        trigger.setAttribute(
+
+          'aria-expanded',
+
+          String(isOpen)
+
+        );
+
+      });
+
+
+      // ========================================
+      // 로그아웃 버튼 클릭
+      // ========================================
+
+      logoutBtn.addEventListener('click', () => {
+
+        const result = confirm(
+
+          '로그아웃 하시겠습니까?'
+
+        );
+
+        if (!result) return;
+
+
+        try {
+
+
+          // 공통 로그아웃 실행
+
+          auth.logout();
+
+
+          // 기존 임시 로그인 정보 삭제
+
+          sessionStorage.removeItem('demoLogin');
+
+          sessionStorage.removeItem('demoUsername');
+
+
+          // 팝업 닫기
+
+          closeProfilePopup();
+
+
+          // 헤더 사용자 정보 갱신
+
+          mountHeaderProfile();
+
+
+          // 로그아웃 안내
+
+          alert('로그아웃 되었습니다.');
+
+        } catch (error) {
+
+          alert('로그아웃에 실패했습니다.');
+
+        }
+
+      });
+
+    }
+
+
+    // ========================================
+    // 현재 로그인 상태 확인
+    // ========================================
+
+    const user = auth.current();
+
+
+    const name = profile.querySelector(
+
+      '.ip-header-profile-name'
+
+    );
+
+
+    const trigger = profile.querySelector(
+
+      '.ip-profile-trigger'
+
+    );
+
+
+    // 로그인 여부와 관계없이 아이콘 표시
+
+    profile.hidden = false;
+
+
+    // ========================================
+    // 로그인 상태
+    // ========================================
+
+    if (user) {
+
+      name.textContent = user.nickname + '님';
+
+      trigger.title = user.nickname + '님';
+
+      trigger.setAttribute(
+
+        'aria-label',
+
+        user.nickname + '님, 사용자 메뉴 열기'
+
+      );
+
+      header.classList.add(
+
+        'ip-auth-logged-in'
+
+      );
+
+    } else {
+
+
+      // ========================================
+      // 비로그인 상태
+      // ========================================
+
+      name.textContent = '로그인';
+
+      trigger.title = '로그인 / 회원가입';
+
+      trigger.setAttribute(
+
+        'aria-label',
+
+        '로그인 / 회원가입 페이지 이동'
+
+      );
+
+      header.classList.remove(
+
+        'ip-auth-logged-in'
+
+      );
+
+      closeProfilePopup();
+
+    }
+
+
+    // Lucide 아이콘 적용
+
+    if (window.lucide) {
+
+      lucide.createIcons();
+
+    }
+
+  }
+
+
+  // ========================================
+  // 팝업 외부 클릭 시 닫기
+  // ========================================
+
+  document.addEventListener('click', event => {
+
+    if (!event.target.closest('.ip-header-profile')) {
+
+      closeProfilePopup();
+
+    }
+
+  });
+
+
+  // ========================================
+  // ESC 키 입력 시 닫기
+  // ========================================
+
+  document.addEventListener('keydown', event => {
+
+    if (event.key === 'Escape') {
+
+      const profile = document.querySelector(
+
+        '.ip-header-profile.popup-open'
+
+      );
+
+      if (!profile) return;
+
+
+      closeProfilePopup();
+
+
+      profile.querySelector(
+
+        '.ip-profile-trigger'
+
+      ).focus();
+
+    }
+
+  });
+
+
+  // ========================================
+  // 페이지 최초 실행
+  // ========================================
+
+  if (document.readyState === 'loading') {
+
+    document.addEventListener(
+
+      'DOMContentLoaded',
+
+      mountHeaderProfile
+
+    );
+
+  } else {
+
+    mountHeaderProfile();
+
+  }
+
+
+  // ========================================
+  // 로그인 및 로그아웃 상태 반영
+  // ========================================
+
+  window.addEventListener('ipdeok-auth', () => {
+
+    closeProfilePopup();
+
+    mountHeaderProfile();
+
+  });
+
+
+  // ========================================
+  // 페이지 이동 및 뒤로가기 상태 반영
+  // ========================================
+
+  window.addEventListener('pageshow', () => {
+
+    closeProfilePopup();
+
+    mountHeaderProfile();
+
+  });
+
+
+  // ========================================
+  // 다른 브라우저 탭 로그인 상태 반영
+  // ========================================
+
+  window.addEventListener(
+
+    'storage',
+
+    mountHeaderProfile
+
   );
 
 })();
